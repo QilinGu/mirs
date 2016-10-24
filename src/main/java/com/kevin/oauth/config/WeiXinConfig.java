@@ -4,9 +4,10 @@ package com.kevin.oauth.config;
 import com.kevin.oauth.api.WeiXinApi;
 import com.kevin.oauth.service.CustomOAuthService;
 import org.scribe.builder.ServiceBuilder;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
-@Component
+@Configuration
 public class WeiXinConfig {
     private static final String CALLBACK_URL = "%s/oauth/%s/callback";
 
@@ -14,7 +15,7 @@ public class WeiXinConfig {
     String weixinAppSecret = "dfsdfwefsdfwefsdfd";
     String host = "http://localhost:8080";
 
-
+    @Bean
     public CustomOAuthService getWeixinOAuthService(){
         return (CustomOAuthService) new ServiceBuilder()
                 .provider(WeiXinApi.class)

@@ -5,9 +5,10 @@ import com.kevin.oauth.api.QQApi;
 import com.kevin.oauth.service.OAuthServiceDecorator;
 import com.kevin.oauth.service.QQOAuthService;
 import org.scribe.builder.ServiceBuilder;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
-@Component
+@Configuration
 public class QQConfig {
 
     private static final String CALLBACK_URL = "%s/oauth/%s/callback";
@@ -18,11 +19,13 @@ public class QQConfig {
     String host = "http://localhost:8080";
 
 
+    @Bean
     public QQApi qqApi(){
         return new QQApi(state);
     }
 
 
+    @Bean
     public OAuthServiceDecorator getQQOAuthService(){
         return new QQOAuthService(new ServiceBuilder()
                 .provider(qqApi())

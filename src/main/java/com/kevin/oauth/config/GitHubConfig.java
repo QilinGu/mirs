@@ -5,9 +5,10 @@ import com.kevin.oauth.api.GitHubApi;
 import com.kevin.oauth.service.GithubOAuthService;
 import com.kevin.oauth.service.OAuthServiceDecorator;
 import org.scribe.builder.ServiceBuilder;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
-@Component
+@Configuration
 public class GitHubConfig {
 
     private static final String CALLBACK_URL = "%s/oauth/%s/callback";
@@ -18,10 +19,12 @@ public class GitHubConfig {
     String host = "http://localhost:8080";
 
 
+    @Bean
     public GitHubApi githubApi(){
         return new GitHubApi(state);
     }
 
+    @Bean
     public OAuthServiceDecorator getGithubOAuthService(){
         return new GithubOAuthService(new ServiceBuilder()
                 .provider(githubApi())
