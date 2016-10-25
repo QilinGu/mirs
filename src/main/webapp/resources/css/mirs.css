@@ -1,0 +1,42 @@
+.login-container{
+    margin-top: 5%;
+}
+
+.left-container{
+    float: left;
+}
+
+.right-container{
+    float: right;
+}
+
+.border-container{
+    width: 25%;
+    height: 20%;
+    background-color: #fff;
+    margin: 0px auto;
+    border:1px solid #D3D3D3;
+    border-radius: 5px;
+    padding: 20px;
+}
+
+.icon-size{
+    font-size: 20px;
+}
+
+.title{
+    text-align: center;
+}
+
+.border-container div{
+    margin-bottom: 15px;
+}
+
+.loginstyle{
+    width: 100px;
+    height: 20px;
+    background-color: #1F811F;
+}
+.verify-input{
+    width: 300px;
+}
