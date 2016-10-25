@@ -20,7 +20,9 @@
     <mvc:resources location="resources/" mapping="/resources/**"/>
 
     <!-- 配置Swagger -->
-    <bean class="com.mangofactory.swagger.configuration.SpringSwaggerConfig" />
+    <bean class="com.mangofactory.swagger.configuration.SpringSwaggerConfig"/>
+    <bean class="com.kevin.config.SwaggerConfig"/>
+
     <mvc:resources location="WEB-INF/html/swagger/" mapping="/swagger/**"/>
 
     <!--暂不考虑：配置使用fastjson,代替默认的jackson-->

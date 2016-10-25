@@ -9,6 +9,7 @@ import org.scribe.model.Token;
 import org.scribe.model.Verifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.annotation.Resource;
 
@@ -53,7 +54,7 @@ public class OAuthController {
 //        request.getSession().setAttribute("oauthUser", oAuthUser);
 //        return "redirect:/success";
 //        return new MIRSResult<OAuthUser>(true, oAuthInfo);
-        return "redirect:/success";
+        return "success";
     }
 
 
