@@ -5,16 +5,19 @@ import com.kevin.mirs.dto.MIRSResult;
 import com.kevin.mirs.entity.OAuthUser;
 import com.kevin.oauth.service.CustomOAuthService;
 import com.kevin.oauth.service.OAuthServices;
+import com.mangofactory.swagger.annotations.ApiIgnore;
+import com.wordnik.swagger.annotations.Api;
+import com.wordnik.swagger.annotations.ApiOperation;
 import org.scribe.model.Token;
 import org.scribe.model.Verifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.annotation.Resource;
 
 @Controller
 @RequestMapping("/oauth")
+@Api(value = "/oauth", description = "第三方授权认证相关的接口")
 public class OAuthController {
 
     @Resource
@@ -23,13 +26,14 @@ public class OAuthController {
     @ResponseBody
     @RequestMapping(value = "/{type}",
             method = RequestMethod.POST)
-    public MIRSResult<Url> getGitHubOAuthUrl(@PathVariable(value = "type") String type) {
+    @ApiOperation(value = "{type}", notes = "用于获得第三方授权认证的URL")
+    public MIRSResult<Url> oAuthUrl(@PathVariable(value = "type") String type) {
 
         System.out.println(type);
 
         CustomOAuthService oAuthService = oAuthServices.getoAuthServiceByType(type);
 
-        if(oAuthService != null) {
+        if (oAuthService != null) {
             return new MIRSResult<Url>(true, new Url(oAuthService.getAuthorizationUrl()));
         } else {
             return new MIRSResult<Url>(false, "没有此认证方式！");
@@ -39,8 +43,9 @@ public class OAuthController {
 
 
     @RequestMapping(value = "/{type}/callback", method = RequestMethod.GET)
-    public String gitHubCallback(@RequestParam(value = "code", required = true) String code,
-                                 @PathVariable(value = "type") String type) {
+    @ApiIgnore
+    public String oAuthCallback(@RequestParam(value = "code", required = true) String code,
+                                @PathVariable(value = "type") String type) {
 
         CustomOAuthService oAuthService = oAuthServices.getoAuthServiceByType(type);
         Token accessToken = oAuthService.getAccessToken(null, new Verifier(code));
