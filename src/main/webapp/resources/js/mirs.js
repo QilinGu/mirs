@@ -4,17 +4,8 @@ var mirs = {
 
     // 接口
     URL : {
-        githubOAuthUrl: function () {
-            return '/oauth/github';
-        },
-        qqOAuthUrl: function () {
-            return '/oauth/qq';
-        },
-        weixinOAuthUrl: function () {
-            return '/oauth/weixin';
-        },
-        weiboOAuthUrl: function () {
-            return '/oauth/weibo';
+        oAuthUrl: function (type) {
+            return '/oauth/' + type;
         },
         loginUrl: function () {
             return '/login';

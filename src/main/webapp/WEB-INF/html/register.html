@@ -38,10 +38,10 @@
     $(function () {
         $("#login_form").attr("action", mirs.URL.loginUrl());
         $("#register").attr("href", mirs.URL.registerUrl());
-        mirs.loadOAuthUrl("#qq", mirs.URL.qqOAuthUrl());
-        mirs.loadOAuthUrl("#weixin", mirs.URL.weixinOAuthUrl());
-        mirs.loadOAuthUrl("#weibo", mirs.URL.weiboOAuthUrl());
-        mirs.loadOAuthUrl("#github", mirs.URL.githubOAuthUrl());
+        mirs.loadOAuthUrl("#qq", mirs.URL.oAuthUrl('qq'));
+        mirs.loadOAuthUrl("#weixin", mirs.URL.oAuthUrl('weixin'));
+        mirs.loadOAuthUrl("#weibo", mirs.URL.oAuthUrl('weibo'));
+        mirs.loadOAuthUrl("#github", mirs.URL.oAuthUrl('github'));
     })
 </script>
 <script type="text/babel">
