@@ -8,10 +8,10 @@ var mirs = {
             return '/oauth/' + type;
         },
         loginUrl: function () {
-            return '/login';
+            return '/accounts/login';
         },
         registerUrl: function () {
-            return '/register';
+            return '/accounts/register';
         }
 
     },
