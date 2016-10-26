@@ -19,6 +19,14 @@
                     <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
                     <input type="password" name="password" class="form-control input-margin" placeholder="密码">
                 </div>
+                <div class="form-group">
+                    <label>验证码 </label>
+                    <input id="captcha" maxlength="4" class="form-control" />
+                    <span id="captchaStatus"></span>
+                    <br/>
+                    <img id="captchaImage" onclick="mirs.changeCaptcha('#captchaImage')"/>
+                    <a id="changeCaptcha" onclick="mirs.changeCaptcha('#captchaImage')" >看不清?换一张</a>
+                </div>
                 <p class="text-left remove-margin">
                     <a id="register" href="register.html"><small>注册</small></a>
                     <span>  </span>
@@ -98,10 +106,20 @@
     $(function () {
         $("#login_form").attr("action", mirs.URL.loginUrl());
         $("#register").attr("href", mirs.URL.registerUrl());
+        $("#captchaImage").attr("src", mirs.URL.getCaptchaUrl());
         mirs.loadOAuthUrl("#qq", mirs.URL.oAuthUrl('qq'));
         mirs.loadOAuthUrl("#weixin", mirs.URL.oAuthUrl('weixin'));
         mirs.loadOAuthUrl("#weibo", mirs.URL.oAuthUrl('weibo'));
         mirs.loadOAuthUrl("#github", mirs.URL.oAuthUrl('github'));
-    })
+
+    });
+
+    $("#captcha").bind('input propertychange', function() {
+        var capLen = $(this).val().length;
+        if(capLen == 4) {
+            mirs.checkCaptcha(this, "#captchaStatus");
+        }
+    });
+
 </script>
 </html>

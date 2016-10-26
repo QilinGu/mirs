@@ -10,6 +10,8 @@ import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 import org.scribe.model.Token;
 import org.scribe.model.Verifier;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,6 +21,8 @@ import javax.annotation.Resource;
 @RequestMapping("/oauth")
 @Api(value = "/oauth", description = "第三方授权认证相关的接口")
 public class OAuthController {
+
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Resource
     OAuthServices oAuthServices;
