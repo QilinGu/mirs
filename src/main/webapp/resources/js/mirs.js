@@ -19,14 +19,14 @@ var mirs = {
         checkCaptchaUrl: function (captcha) {
             return '/captcha/check/' + captcha;
         },
-        checkUseremailUrl: function (email) {
-            return '/inspection/userEmail?email=';
+        checkUserEmailUrl: function (email) {
+            return '/inspection/userEmail?email=' + email;
         },
-        checkUsernameUrl: function (name) {
-            return '/inspection/userName?name=';
+        checkUserNameUrl: function (name) {
+            return '/inspection/userName?name=' + name;
         },
         checkVerificationUrl: function (verification) {
-            return '/inspection/verification?verification=';
+            return '/inspection/verification?verification=' + verification;
         }
 
     },
@@ -54,8 +54,8 @@ var mirs = {
         })
     },
 
-    checkUseremail: function (element, status) {
-        $.post(this.URL.checkUseremailUrl($(element).val()), {}, function (result) {
+    checkUserEmail: function (element, status) {
+        $.post(this.URL.checkUserEmailUrl($(element).val()), {}, function (result) {
             if(result && result['success']) {
                 $(status).html("<span style='color: green'>√</span>");
             } else {
@@ -63,8 +63,8 @@ var mirs = {
             }
         })
     },
-    checkUsername: function (element, status) {
-        $.post(this.URL.checkUsernameUrl($(element).val()), {}, function (result) {
+    checkUserName: function (element, status) {
+        $.post(this.URL.checkUserNameUrl($(element).val()), {}, function (result) {
             if(result && result['success']) {
                 $(status).html("<span style='color: green'>√</span>");
             } else {
