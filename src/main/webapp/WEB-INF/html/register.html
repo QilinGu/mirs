@@ -6,13 +6,38 @@
 </head>
 <body>
 <div class="login-container">
-第三方账户登录：
-<a id="qq">QQ</a>
-<a id="weixin">微信</a>
-<a id="weibo">微博</a>
-<a id="github">github</a>
+    <form action="#" method="post" class="form-sigin" enctype="multipart/form-data">
+        <div class="title">
+            <h3 class="form-sigin-heading"><span class="glyphicon glyphicon-user icon-size"></span>注册</h3>
+        </div>
+        <div class="border-container">
+            <div class="input-group" >
+                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                <input id="userName" type="text" name="user" class="form-control " placeholder="用户名">
+            </div>
+            <span id="userNameStatus" style="color: red"></span>
+            <div class="input-group" >
+                <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
+                <input id="userEmail" height="34" class="form-control" style="width: 150px;" placeholder="邮箱" type="email">
+                <button width="10%" height="34" class="btn btn-primary">发送验证码</button>
+            </div>
+            <span id="userEmailStatus" style="color: red"></span>
+            <div class="input-group" >
+                <input id="verification" class="form-control" placeholder="验证码" type="text">
+            </div>
+            <span id="verificationStatus" style="color: red"></span>
+            <h5>请设置密码：</h5>
+            <div class="input-group">
+                <input type="password"  class="form-control " placeholder="密码">
+            </div>
+            <h5>请再次输入密码：</h5>
+            <div class="input-group">
+                <input type="password" class="form-control" placeholder="重复密码">
+            </div>
+            <a id="#"><button class="btn btn-lg btn-primary btn-block input-margin" type="submit">注册</button></a>
+        </div>
+    </form>
 </div>
-<div id="example"></div>
 
 
 </body>
@@ -43,11 +68,17 @@
         mirs.loadOAuthUrl("#weibo", mirs.URL.oAuthUrl('weibo'));
         mirs.loadOAuthUrl("#github", mirs.URL.oAuthUrl('github'));
     })
-</script>
-<script type="text/babel">
-    ReactDOM.render(
-            <h1>Hello, world!</h1>,
-            document.getElementById('example')
-    );
+
+    $("#userName").bind('input propertychange', function() {
+            mirs.checkUsername(this, "#userNameStatus");
+    });
+
+    $("#userEmail").bind('input propertychange', function() {
+        mirs.checkUseremail(this, "#userEmailStatus");
+    });
+
+    $("#verification").bind('input propertychange', function() {
+        mirs.checkVerification(this, "#verificationStatus");
+    });
 </script>
 </html>

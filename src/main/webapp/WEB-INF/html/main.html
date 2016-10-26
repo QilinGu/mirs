@@ -13,52 +13,36 @@
             <div class="border-container">
                 <div class="input-group" >
                     <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                    <input type="text" name="student_id" class="form-control input-margin" placeholder="用户名">
+                    <input type="text" name="user" class="form-control input-margin" placeholder="用户名">
                 </div>
                 <div class="input-group">
                     <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
                     <input type="password" name="password" class="form-control input-margin" placeholder="密码">
                 </div>
-                <div class="form-group">
-                    <label>验证码 </label>
-                    <input id="captcha" maxlength="4" class="form-control" />
-                    <span id="captchaStatus"></span>
-                    <br/>
-                    <img id="captchaImage" onclick="mirs.changeCaptcha('#captchaImage')"/>
-                    <a id="changeCaptcha" onclick="mirs.changeCaptcha('#captchaImage')" >看不清?换一张</a>
+                <div class="input-group">
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
+                    <input id="captcha" maxlength="4" width="50%" height="34" class="form-control" style="width: 180px;"  placeholder="验证码">
+                    <img id="captchaImage" width="30%" height="34" onclick="mirs.changeCaptcha('#captchaImage')"/>
+                    <!--<a id="changeCaptcha" onclick="mirs.changeCaptcha('#captchaImage')" >看不清?换一张</a>-->
                 </div>
+                <span id="captchaStatus" style="color: red"></span>
                 <p class="text-left remove-margin">
-                    <a id="register" href="register.html"><small>注册</small></a>
+                    <a id="register"><small>注册</small></a>
                     <span>  </span>
                     <a href="#"><small>忘记密码？</small></a>
                 </p>
                 <button class="btn btn-lg btn-primary btn-block input-margin" type="submit">登陆</button>
-                </div>
+                <hr/>
+                第三方账户登录：
+                <a id="qq">QQ</a>
+                <a id="weixin">微信</a>
+                <a id="weibo">微博</a>
+                <a id="github">github</a>
+            </div>
         </form>
+
     </div>
-    第三方账户登录：
-    <a id="qq">QQ</a>
-    <a id="weixin">微信</a>
-    <a id="weibo">微博</a>
-    <a id="github">github</a>
 </div>
-<!--<div id="example"></div>-->
-    <!--<form action="#" method="post" class="form-sigin" enctype="multipart/form-data">-->
-        <!--<div class="title">-->
-            <!--<h3 class="form-sigin-heading"><span class="glyphicon glyphicon-user icon-size"></span>注册</h3>-->
-        <!--</div>-->
-        <!--<div class="border-container">-->
-            <!--<div class="input-group" >-->
-                <!--<span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>-->
-                <!--<input name="email" height="34" class="form-control" style="width: 164px;" placeholder="邮箱" type="email">-->
-                <!--<button width="10%" height="34" class="btn btn-primary">发送验证码</button>-->
-            <!--</div>-->
-            <!--<div class="input-group" >-->
-                <!--<input name="verify" class="form-control" placeholder="验证码" type="text">-->
-            <!--</div>-->
-            <!--<button class="btn btn-lg btn-primary btn-block input-margin" type="submit">下一步</button>-->
-        <!--</div>-->
-    <!--</form>-->
 
     <!--<form action="#" method="post" class="form-sigin" enctype="multipart/form-data">-->
         <!--<div class="title">-->

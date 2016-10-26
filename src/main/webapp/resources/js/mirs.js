@@ -19,7 +19,15 @@ var mirs = {
         checkCaptchaUrl: function (captcha) {
             return '/captcha/check/' + captcha;
         },
-
+        checkUseremailUrl: function (email) {
+            return '/inspection/userEmail/' + email;
+        },
+        checkUsernameUrl: function (name) {
+            return '/inspection/userName/' + name;
+        },
+        checkVerificationUrl: function (verification) {
+            return '/inspection/verification/' + verification;
+        }
 
     },
 
@@ -39,7 +47,35 @@ var mirs = {
     checkCaptcha: function (element, status) {
         $.post(this.URL.checkCaptchaUrl($(element).val()), {}, function (result) {
             if(result && result['success']) {
-                $(status).html("√");
+                $(status).html("<span style='color: green'>√</span>");
+            } else {
+                $(status).html(result['error']);
+            }
+        })
+    },
+
+    checkUseremail: function (element, status) {
+        $.post(this.URL.checkUseremailUrl($(element).val()), {}, function (result) {
+            if(result && result['success']) {
+                $(status).html("<span style='color: green'>√</span>");
+            } else {
+                $(status).html(result['error']);
+            }
+        })
+    },
+    checkUsername: function (element, status) {
+        $.post(this.URL.checkUsernameUrl($(element).val()), {}, function (result) {
+            if(result && result['success']) {
+                $(status).html("<span style='color: green'>√</span>");
+            } else {
+                $(status).html(result['error']);
+            }
+        })
+    },
+    checkVerification: function (element, status) {
+        $.post(this.URL.checkVerificationUrl($(element).val()), {}, function (result) {
+            if(result && result['success']) {
+                $(status).html("<span style='color: green'>√</span>");
             } else {
                 $(status).html(result['error']);
             }
