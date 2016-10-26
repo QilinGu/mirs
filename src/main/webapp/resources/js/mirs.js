@@ -12,11 +12,17 @@ var mirs = {
         },
         registerUrl: function () {
             return '/register';
-        }
+        },
+        getCaptchaUrl: function () {
+            return '/captcha/get';
+        },
+        checkCaptchaUrl: function () {
+            return '/captcha/check';
+        },
 
     },
 
-    loadOAuthUrl : function (element, oauthUrl) {
+    loadOAuthUrl: function (element, oauthUrl) {
         $.post(oauthUrl, {}, function (result) {
             if(result && result['success']) {
                 console.log(result['data']['url']);
@@ -24,4 +30,19 @@ var mirs = {
             }
         })
     },
+
+    changeChaptcha: function (element) {
+        $(element).hide().attr('src', this.URL.getCaptchaUrl() + '?' + Math.floor(Math.random()*100) ).fadeIn();
+    },
+
+    checkChaptcha: function (element, status) {
+        $.post(this.URL.checkCaptchaUrl() + '?captcha=' + $(element).val(), {}, function (result) {
+            if(result && result['success']) {
+                $(status).html("√");
+            } else {
+                $(status).html(result['error']);
+            }
+        })
+    }
+
 }

@@ -24,6 +24,7 @@
         <scribe.version>1.3.7</scribe.version>
         <swagger-springmvc.version>1.0.2</swagger-springmvc.version>
         <!--<swagger.version>1.5.10</swagger.version>-->
+        <kaptcha.version>2.3.2</kaptcha.version>
     </properties>
 
     <dependencies>
@@ -171,6 +172,13 @@
             <artifactId>jackson-annotations</artifactId>
             <version>${jackson.version}</version>
         </dependency>
+        <!-- kaptcha 验证码生成 -->
+        <dependency>
+            <groupId>com.github.penggle</groupId>
+            <artifactId>kaptcha</artifactId>
+            <version>${kaptcha.version}</version>
+        </dependency>
+
 
     </dependencies>
 
