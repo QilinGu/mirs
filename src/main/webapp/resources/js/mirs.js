@@ -20,13 +20,13 @@ var mirs = {
             return '/captcha/check/' + captcha;
         },
         checkUseremailUrl: function (email) {
-            return '/inspection/userEmail/' + email;
+            return '/inspection/userEmail?email=';
         },
         checkUsernameUrl: function (name) {
-            return '/inspection/userName/' + name;
+            return '/inspection/userName?name=';
         },
         checkVerificationUrl: function (verification) {
-            return '/inspection/verification/' + verification;
+            return '/inspection/verification?verification=';
         }
 
     },
