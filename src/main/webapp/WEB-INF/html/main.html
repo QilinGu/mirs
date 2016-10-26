@@ -24,8 +24,8 @@
                     <input id="captcha" maxlength="4" class="form-control" />
                     <span id="captchaStatus"></span>
                     <br/>
-                    <img id="captchaImage" onclick="mirs.changeChaptcha('#captchaImage')"/>
-                    <a id="changeCaptcha" onclick="mirs.changeChaptcha('#captchaImage')" >看不清?换一张</a>
+                    <img id="captchaImage" onclick="mirs.changeCaptcha('#captchaImage')"/>
+                    <a id="changeCaptcha" onclick="mirs.changeCaptcha('#captchaImage')" >看不清?换一张</a>
                 </div>
                 <p class="text-left remove-margin">
                     <a id="register" href="register.html"><small>注册</small></a>
@@ -117,7 +117,7 @@
     $("#captcha").bind('input propertychange', function() {
         var capLen = $(this).val().length;
         if(capLen == 4) {
-            mirs.checkChaptcha(this, "#captchaStatus");
+            mirs.checkCaptcha(this, "#captchaStatus");
         }
     });
 

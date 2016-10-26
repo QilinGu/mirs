@@ -31,11 +31,11 @@ var mirs = {
         })
     },
 
-    changeChaptcha: function (element) {
+    changeCaptcha: function (element) {
         $(element).hide().attr('src', this.URL.getCaptchaUrl() + '?' + Math.floor(Math.random()*100) ).fadeIn();
     },
 
-    checkChaptcha: function (element, status) {
+    checkCaptcha: function (element, status) {
         $.post(this.URL.checkCaptchaUrl() + '?captcha=' + $(element).val(), {}, function (result) {
             if(result && result['success']) {
                 $(status).html("√");
