@@ -4,6 +4,8 @@ package com.kevin.mirs.web;
 import com.google.code.kaptcha.Constants;
 import com.google.code.kaptcha.Producer;
 import com.kevin.mirs.dto.MIRSResult;
+import com.wordnik.swagger.annotations.Api;
+import com.wordnik.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,7 @@ import java.io.IOException;
 
 @Controller
 @RequestMapping(value = "/captcha")
+@Api(value = "/captcha", description = "验证码相关的接口")
 public class CaptchaController {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -35,10 +38,11 @@ public class CaptchaController {
      *
      * @param request
      * @param response
-     * @return
+     * @return 验证码
      * @throws IOException
      */
     @RequestMapping(value = "/get", method = RequestMethod.GET)
+    @ApiOperation(value = "/get", notes = "生成带验证码的图片")
     public ModelAndView getCaptchaImage(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         response.setDateHeader("Expires", 0);
@@ -62,7 +66,8 @@ public class CaptchaController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "check")
+    @RequestMapping(value = "/check", method = RequestMethod.POST)
+    @ApiOperation(value = "/check", notes = "检测输入的验证码是否正确")
     public MIRSResult<Boolean> checkCaptchaImage(@RequestParam(value = "captcha") String captcha, HttpServletRequest request) {
 
         String original =(String) request.getSession().getAttribute(Constants.KAPTCHA_SESSION_KEY);
