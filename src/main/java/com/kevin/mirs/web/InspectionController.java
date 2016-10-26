@@ -17,7 +17,7 @@ public class InspectionController {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @ResponseBody
-    @RequestMapping(value = "/user-name/{name}", method = RequestMethod.POST)
+    @RequestMapping(value = "/userName/{name}", method = RequestMethod.POST)
     public MIRSResult<Boolean> inspectUserName(@PathVariable(value = "name") String name) {
 
         //TODO 查询数据库，判断用户名是否存在
@@ -26,12 +26,21 @@ public class InspectionController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/user-email/{email}", method = RequestMethod.POST)
+    @RequestMapping(value = "/userEmail/{email}", method = RequestMethod.POST)
     public MIRSResult<Boolean> inspectUserEmail(@PathVariable(value = "email") String email) {
 
         //TODO 查询数据库，判断邮箱是否已被注册
 
         return new MIRSResult<Boolean>(false, "此邮箱已注册!");
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/verification/{verification}", method = RequestMethod.POST)
+    public MIRSResult<Boolean> inspectVerification(@PathVariable(value = "verification") String verification) {
+
+        //TODO 查询SESSION,判断验证码是否正确
+
+        return new MIRSResult<Boolean>(false, "验证码错误!");
     }
 
 

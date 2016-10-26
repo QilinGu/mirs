@@ -16,8 +16,8 @@ var mirs = {
         getCaptchaUrl: function () {
             return '/captcha/get';
         },
-        checkCaptchaUrl: function () {
-            return '/captcha/check';
+        checkCaptchaUrl: function (captcha) {
+            return '/captcha/check/' + captcha;
         },
 
     },
@@ -36,7 +36,7 @@ var mirs = {
     },
 
     checkCaptcha: function (element, status) {
-        $.post(this.URL.checkCaptchaUrl() + '?captcha=' + $(element).val(), {}, function (result) {
+        $.post(this.URL.checkCaptchaUrl($(element).val()), {}, function (result) {
             if(result && result['success']) {
                 $(status).html("√");
             } else {

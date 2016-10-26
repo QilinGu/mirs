@@ -10,10 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.imageio.ImageIO;
@@ -43,7 +40,8 @@ public class CaptchaController {
      */
     @RequestMapping(value = "/get", method = RequestMethod.GET)
     @ApiOperation(value = "/get", notes = "生成带验证码的图片")
-    public ModelAndView getCaptchaImage(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public ModelAndView getCaptchaImage(HttpServletRequest request,
+                                        HttpServletResponse response) throws IOException {
 
         response.setDateHeader("Expires", 0);
         response.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
@@ -66,9 +64,10 @@ public class CaptchaController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/check", method = RequestMethod.POST)
-    @ApiOperation(value = "/check", notes = "检测输入的验证码是否正确")
-    public MIRSResult<Boolean> checkCaptchaImage(@RequestParam(value = "captcha") String captcha, HttpServletRequest request) {
+    @RequestMapping(value = "/check/{captcha}", method = RequestMethod.POST)
+    @ApiOperation(value = "/check/{captcha}", notes = "检测输入的验证码是否正确")
+    public MIRSResult<Boolean> checkCaptchaImage(@PathVariable(value = "captcha") String captcha,
+                                                 HttpServletRequest request) {
 
         String original =(String) request.getSession().getAttribute(Constants.KAPTCHA_SESSION_KEY);
         logger.info("======用户输入的验证码：" + captcha);
