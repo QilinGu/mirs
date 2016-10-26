@@ -4,10 +4,7 @@ import com.kevin.mirs.dto.MIRSResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 
 @Controller
@@ -17,8 +14,8 @@ public class InspectionController {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @ResponseBody
-    @RequestMapping(value = "/userName/{name}", method = RequestMethod.POST)
-    public MIRSResult<Boolean> inspectUserName(@PathVariable(value = "name") String name) {
+    @RequestMapping(value = "/userName", method = RequestMethod.POST)
+    public MIRSResult<Boolean> inspectUserName(@RequestParam(value = "name") String name) {
 
         //TODO 查询数据库，判断用户名是否存在
 
@@ -26,8 +23,8 @@ public class InspectionController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/userEmail/{email}", method = RequestMethod.POST)
-    public MIRSResult<Boolean> inspectUserEmail(@PathVariable(value = "email") String email) {
+    @RequestMapping(value = "/userEmail", method = RequestMethod.POST)
+    public MIRSResult<Boolean> inspectUserEmail(@RequestParam(value = "email") String email) {
 
         //TODO 查询数据库，判断邮箱是否已被注册
 
@@ -35,8 +32,8 @@ public class InspectionController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/verification/{verification}", method = RequestMethod.POST)
-    public MIRSResult<Boolean> inspectVerification(@PathVariable(value = "verification") String verification) {
+    @RequestMapping(value = "/verification", method = RequestMethod.POST)
+    public MIRSResult<Boolean> inspectVerification(@RequestParam(value = "verification") String verification) {
 
         //TODO 查询SESSION,判断验证码是否正确
 
