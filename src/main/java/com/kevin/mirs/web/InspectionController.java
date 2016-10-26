@@ -1,6 +1,8 @@
 package com.kevin.mirs.web;
 
 import com.kevin.mirs.dto.MIRSResult;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +13,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping("/inspection")
 public class InspectionController {
+
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @ResponseBody
     @RequestMapping(value = "/user-name/{name}", method = RequestMethod.POST)
