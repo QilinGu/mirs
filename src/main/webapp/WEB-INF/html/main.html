@@ -116,7 +116,7 @@
     $("#captcha").bind('input propertychange', function() {s
         var capLen = $(this).val().length;
         if(capLen == 4) {
-            mirs.checkCaptcha(this, "#captchaStatus");
+            mirs.checkStatus(this, mirs.URL.checkCaptchaUrl($(this).val()) ,"#captchaStatus");
         }
     });
 </script>

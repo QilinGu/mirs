@@ -19,14 +19,14 @@ var mirs = {
         checkCaptchaUrl: function (captcha) {
             return '/captcha/check/' + captcha;
         },
-        checkUseremailUrl: function (email) {
-            return '/inspection/userEmail?email=';
+        checkUserEmailUrl: function (email) {
+            return '/inspection/userEmail?email=' + email;
         },
-        checkUsernameUrl: function (name) {
-            return '/inspection/userName?name=';
+        checkUserNameUrl: function (name) {
+            return '/inspection/userName?name=' + name;
         },
         checkVerificationUrl: function (verification) {
-            return '/inspection/verification?verification=';
+            return '/inspection/verification?verification=' + verification;
         }
 
     },
@@ -44,42 +44,15 @@ var mirs = {
         $(element).hide().attr('src', this.URL.getCaptchaUrl() + '?' + Math.floor(Math.random()*100) ).fadeIn();
     },
 
-    checkCaptcha: function (element, status) {
-        $.post(this.URL.checkCaptchaUrl($(element).val()), {}, function (result) {
+    checkStatus: function (element, checkUrl, statusElement) {
+        $.post(checkUrl, {}, function (result) {
             if(result && result['success']) {
-                $(status).html("<span style='color: green'>√</span>");
+                $(statusElement).html("<span style='color: green'>√</span>");
             } else {
-                $(status).html(result['error']);
+                $(statusElement).html(result['error']);
             }
         })
     },
-
-    checkUseremail: function (element, status) {
-        $.post(this.URL.checkUseremailUrl($(element).val()), {}, function (result) {
-            if(result && result['success']) {
-                $(status).html("<span style='color: green'>√</span>");
-            } else {
-                $(status).html(result['error']);
-            }
-        })
-    },
-    checkUsername: function (element, status) {
-        $.post(this.URL.checkUsernameUrl($(element).val()), {}, function (result) {
-            if(result && result['success']) {
-                $(status).html("<span style='color: green'>√</span>");
-            } else {
-                $(status).html(result['error']);
-            }
-        })
-    },
-    checkVerification: function (element, status) {
-        $.post(this.URL.checkVerificationUrl($(element).val()), {}, function (result) {
-            if(result && result['success']) {
-                $(status).html("<span style='color: green'>√</span>");
-            } else {
-                $(status).html(result['error']);
-            }
-        })
-    }
+    
 
 }

@@ -92,15 +92,15 @@
     })
 
     $("#userName").bind('input propertychange', function() {
-            mirs.checkUsername(this, "#userNameStatus");
+        mirs.checkStatus(this, mirs.URL.checkUserNameUrl($(this).val()), "#userNameStatus");
     });
 
     $("#userEmail").bind('input propertychange', function() {
-        mirs.checkUseremail(this, "#userEmailStatus");
+        mirs.checkStatus(this, mirs.URL.checkUserEmailUrl($(this).val()), "#userEmailStatus");
     });
 
     $("#verification").bind('input propertychange', function() {
-        mirs.checkVerification(this, "#verificationStatus");
+        mirs.checkStatus(this, mirs.URL.checkVerificationUrl($(this).val()), "#verificationStatus");
     });
 </script>
 </html>
