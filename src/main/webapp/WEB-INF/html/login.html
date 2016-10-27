@@ -54,7 +54,7 @@
                 <p class="text-left remove-margin">
                     <a href="#" class="atext"><small>忘记密码？</small></a>
                 </p>
-                <button class="btn btn-lg btn-primary btn-block input-margin" type="submit">登陆</button>
+                <button id="submit-button" class="btn btn-lg btn-primary btn-block" disabled="disabled" type="submit">登陆</button>
                 <hr/>
                 <span style="color: #5B5B5B;font-size: 14px;">第三方账户登录</span>
                 <div class="loginstyle-div">
@@ -113,10 +113,10 @@
 
     });
 
-    $("#captcha").bind('input propertychange', function() {s
+    $("#captcha").bind('input propertychange', function() {
         var capLen = $(this).val().length;
         if(capLen == 4) {
-            mirs.checkStatus(this, mirs.URL.checkCaptchaUrl($(this).val()) ,"#captchaStatus");
+            mirs.checkStatus(this, mirs.URL.checkCaptchaUrl($(this).val()) ,"#captchaStatus","#submit-button");
         }
     });
 </script>
