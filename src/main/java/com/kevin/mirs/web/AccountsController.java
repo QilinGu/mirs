@@ -1,6 +1,8 @@
 package com.kevin.mirs.web;
 
 
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -15,8 +17,23 @@ public class AccountsController {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login() {
+        return "login";
+    }
+
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public String doLogin() {
+        Subject currentUser = SecurityUtils.getSubject();
+
+        // 如果已经登录，则转入登录成功的页面，防止继续登录
+        if (currentUser.isAuthenticated()) {
+            return "redirect:/success";
+        }
+
+        // 如果是 GET 则显示登录页面，
+        // 如果是 POST 则进入登录逻辑处理 UserFormAuthenticationFilter.executeLogin()
+
 
         return "redirect:/";
     }
@@ -28,7 +45,7 @@ public class AccountsController {
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String setRegisterInfo(@RequestParam(value = "userName") String userName,
+    public String doRegister(@RequestParam(value = "userName") String userName,
                                   @RequestParam(value = "password") String password,
                                   @RequestParam(value = "userEmail") String userEmail,
                                   @RequestParam(value = "verification") String verification) {

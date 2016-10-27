@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <bean id="loginRealm" class="com.kevin.shiro.realm.LoginRealm"/>
+
+    <!-- 安全管理器 -->
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <property name="realm" ref="loginRealm"/>
+    </bean>
+
+    <!-- Shiro生命周期处理器-->
+    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+
+    <!-- 基于Form表单的身份验证过滤器 -->
+    <!--<bean id="formAuthenticationFilter" class="com.kevin.shiro.filter.UserFormAuthenticationFilter">-->
+    <bean id="formAuthenticationFilter" class="org.apache.shiro.web.filter.authc.FormAuthenticationFilter">
+        <property name="usernameParam" value="username"/>
+        <property name="passwordParam" value="password"/>
+    </bean>
+
+    <!-- Shiro的Web过滤器 -->
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <property name="securityManager" ref="securityManager"/>
+        <property name="loginUrl" value="/accounts/login"/>               <!--登录的 URL-->
+        <property name="successUrl" value="/success" />          <!--登录成功的 URL-->
+        <property name="unauthorizedUrl" value="/unauthorized"/> <!--无权访问的 URL-->
+        <property name="filters">
+            <util:map>
+                <!--使用我们自定义的登录逻辑，为了支持AJAX请求-->
+                <entry key="authc" value-ref="formAuthenticationFilter"/>
+            </util:map>
+        </property>
+
+        <property name="filterChainDefinitions">
+            <value>
+                <!--权限控制
+                    anon: 不需要权限就能访问
+                    logout: 注销
+                    authc: 需要登录后才能访问，但不限制权限
+                    authc, roles[Admin]: 必须是 Admin 权限才能访问
+                -->
+
+                / = anon
+                /accounts/unauthorized = anon
+                /accounts/login = authc
+                /accounts/logout = logout
+                /accounts/register = authc, roles[Register]
+            </value>
+        </property>
+    </bean>
+</beans>
