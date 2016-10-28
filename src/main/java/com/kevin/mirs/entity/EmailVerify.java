@@ -1,14 +1,14 @@
 package com.kevin.mirs.entity;
 
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 public class EmailVerify {
 
     private Integer id;
     private String email;
-    private Date createTime;
-    private Date expireTime;
+    private Timestamp createTime;
+    private Timestamp expireTime;
     private Byte channel;
     private String verifyCode;
     private Byte verifyType;
@@ -33,19 +33,19 @@ public class EmailVerify {
         this.email = email;
     }
 
-    public Date getCreateTime() {
+    public Timestamp getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(Timestamp createTime) {
         this.createTime = createTime;
     }
 
-    public Date getExpireTime() {
+    public Timestamp getExpireTime() {
         return expireTime;
     }
 
-    public void setExpireTime(Date expireTime) {
+    public void setExpireTime(Timestamp expireTime) {
         this.expireTime = expireTime;
     }
 

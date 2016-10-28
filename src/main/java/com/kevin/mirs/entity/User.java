@@ -1,7 +1,7 @@
 package com.kevin.mirs.entity;
 
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 public class User {
 
@@ -16,10 +16,22 @@ public class User {
     private String university;
     private String major;
     private Byte state;
-    private Date lastLoginTime;
+    private Timestamp lastLoginTime;
     private String lastLoginIp;
-    private Date registerTime;
+    private Timestamp registerTime;
     private String registerIp;
+
+    public User() {
+    }
+
+    public User(String username, String password, String salt, String email, Timestamp registerTime, String registerIp) {
+        this.username = username;
+        this.password = password;
+        this.salt = salt;
+        this.email = email;
+        this.registerTime = registerTime;
+        this.registerIp = registerIp;
+    }
 
     public Integer getId() {
         return id;
@@ -109,11 +121,11 @@ public class User {
         this.state = state;
     }
 
-    public Date getLastLoginTime() {
+    public Timestamp getLastLoginTime() {
         return lastLoginTime;
     }
 
-    public void setLastLoginTime(Date lastLoginTime) {
+    public void setLastLoginTime(Timestamp lastLoginTime) {
         this.lastLoginTime = lastLoginTime;
     }
 
@@ -125,11 +137,11 @@ public class User {
         this.lastLoginIp = lastLoginIp;
     }
 
-    public Date getRegisterTime() {
+    public Timestamp getRegisterTime() {
         return registerTime;
     }
 
-    public void setRegisterTime(Date registerTime) {
+    public void setRegisterTime(Timestamp registerTime) {
         this.registerTime = registerTime;
     }
 

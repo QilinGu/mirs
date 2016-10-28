@@ -11,6 +11,9 @@ public class OAuthUser {
     private Integer oAuthAccessExpires;
     private String oAuthScope;
 
+    public OAuthUser() {
+    }
+
     public Integer getId() {
         return id;
     }

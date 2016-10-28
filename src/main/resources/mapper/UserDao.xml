@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kevin.mirs.dao.UserDao">
+
+
+    <insert id="addUser">
+        INSERT ignore INTO mirs.mirs_user(username, password, salt, email, register_time, register_ip)
+         VALUES ('${user.username}', '${user.password}', '${user.salt}', '${user.email}', '${user.registerTime}', '${user.registerIp}')
+    </insert>
+</mapper>

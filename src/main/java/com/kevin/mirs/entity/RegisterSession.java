@@ -1,16 +1,16 @@
 package com.kevin.mirs.entity;
 
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 public class RegisterSession {
 
     private Integer id;
-    private Date createTime;
+    private Timestamp createTime;
     private String email;
     private Byte state;
     private String clientIp;
-    private Date expireTime;
+    private Timestamp expireTime;
 
     public Integer getId() {
         return id;
@@ -20,11 +20,11 @@ public class RegisterSession {
         this.id = id;
     }
 
-    public Date getCreateTime() {
+    public Timestamp getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(Timestamp createTime) {
         this.createTime = createTime;
     }
 
@@ -52,11 +52,11 @@ public class RegisterSession {
         this.clientIp = clientIp;
     }
 
-    public Date getExpireTime() {
+    public Timestamp getExpireTime() {
         return expireTime;
     }
 
-    public void setExpireTime(Date expireTime) {
+    public void setExpireTime(Timestamp expireTime) {
         this.expireTime = expireTime;
     }
 
