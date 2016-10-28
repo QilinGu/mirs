@@ -207,7 +207,6 @@
             <artifactId>ehcache</artifactId>
             <version>${ehcache.version}</version>
         </dependency>
-
     </dependencies>
 
     <build>

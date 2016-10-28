@@ -44,10 +44,11 @@ var mirs = {
         $(element).hide().attr('src', this.URL.getCaptchaUrl() + '?' + Math.floor(Math.random()*100) ).fadeIn();
     },
 
-    checkStatus: function (element, checkUrl, statusElement) {
+    checkStatus: function (element, checkUrl, statusElement,id) {
         $.post(checkUrl, {}, function (result) {
             if(result && result['success']) {
                 $(statusElement).html("<span style='color: green'>√</span>");
+                $(id).removeAttr("disabled");
             } else {
                 $(statusElement).html(result['error']);
             }
