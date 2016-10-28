@@ -27,10 +27,10 @@ CREATE TABLE mirs_email_verify(
   `vrf_channel` TINYINT NOT NULL DEFAULT 0 COMMENT '验证渠道，默认为通过网站版验证',
   `vrf_verify_code` VARCHAR(10) NOT NULL COMMENT '验证码',
   `vrf_verify_type` TINYINT NOT NULL COMMENT '验证类型：0：注册;1：找回密码;2:异地登录',
-  'vrf_request_ip' VARCHAR(15) COMMENT '请求IP',
+  `vrf_request_ip` VARCHAR(15) COMMENT '请求IP',
   `vrf_state` TINYINT NOT NULL DEFAULT 0 COMMENT '验证状态：0:正在验证;1:验证超时;2:验证失败;3:验证成功',
-  'vrf_parameter1' VARCHAR(200) COMMENT '额外参数1',
-  'vrf_parameter2' VARCHAR(200) COMMENT '额外参数2',
+  `vrf_parameter1` VARCHAR(200) COMMENT '额外参数1',
+  `vrf_parameter2` VARCHAR(200) COMMENT '额外参数2',
   PRIMARY KEY (vrf_id)
 )ENGINE = InnoDB DEFAULT CHARSET = utf8 COMMENT '邮件验证表，验证登录注册，修改密码等';
 
@@ -42,7 +42,7 @@ CREATE TABLE mirs_email_template(
   `et_content` TEXT NOT NULL COMMENT '邮件模板内容',
   `et_sort` INT NOT NULL DEFAULT 100 COMMENT '邮件模板排序',
   `et_description` VARCHAR(200) COMMENT '邮件模板描述',
-  `et_unique_identity` VARCHAR(50) CHARSET '邮件模板唯一标识',
+  `et_unique_identity` VARCHAR(50) COMMENT '邮件模板唯一标识',
   PRIMARY KEY (et_id)
 )ENGINE = InnoDB DEFAULT CHARSET = utf8 COMMENT '邮件模板表，用来保存常用的邮件模板';
 
@@ -78,7 +78,9 @@ CREATE TABLE mirs_oauth_user(
   `uo_oauth_id` VARCHAR(128) NOT NULL COMMENT '第三方返回的oauth_id',
   `uo_oauth_access_token` VARCHAR(256) NOT NULL COMMENT '第三方返回的接口调用凭证',
   `uo_oauth_expires` INT COMMENT 'access_token接口调用凭证超时时间，单位（秒）',
-  `uo_oauth_scope` VARCHAR(256) COMMENT '用户授权的作用域，使用逗号（,）分隔'
+  `uo_oauth_scope` VARCHAR(256) COMMENT '用户授权的作用域，使用逗号（,）分隔',
+  PRIMARY KEY (uo_id),
+  INDEX idx_u_id(uo_u_id)
 )ENGINE = InnoDB DEFAULT CHARSET = utf8 COMMENT '用户第三方授权信息表';
 
 
