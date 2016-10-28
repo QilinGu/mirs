@@ -1,17 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-        http://www.springframework.org/schema/beans/spring-beans.xsd
-        http://www.springframework.org/schema/context
-        http://www.springframework.org/schema/context/spring-context.xsd">
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
     <!-- 配置整合Mybatis过程 -->
+    
 
-    <!-- 1.配置数据库相关参数 properties的属性： ${url} -->
-    <context:property-placeholder location="classpath:jdbc.properties"/>
-
-    <!-- 2.数据库连接池 -->
+    <!-- 1.数据库连接池 -->
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
 
         <!-- 配置连接池属性 -->
@@ -34,7 +29,7 @@
     </bean>
 
     <!-- 约定大于配置 -->
-    <!-- 3.配置SqlSessionFactory对象 -->
+    <!-- 2.配置SqlSessionFactory对象 -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 
         <!-- 注入数据库连接池 -->

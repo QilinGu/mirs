@@ -5,18 +5,19 @@ import com.kevin.oauth.api.QQApi;
 import com.kevin.oauth.service.OAuthServiceDecorator;
 import com.kevin.oauth.service.QQOAuthService;
 import org.scribe.builder.ServiceBuilder;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class QQConfig {
 
-    private static final String CALLBACK_URL = "%s/oauth/%s/callback";
+    @Value("${oAuth.callbackUrl}") String CALLBACK_URL;
+    @Value("${oAuth.host}") String host;
+    @Value("${oAuth.qq.state}") String state;
+    @Value("${oAuth.qq.appId}") String qqAppId;
+    @Value("${oAuth.qq.appKey}") String qqAppKey;
 
-    String state = "state3245fg34fdge";
-    String qqAppId = "1105694353";
-    String qqAppKey = "XYwzErJ8SCfWx2Tz";
-    String host = "http://localhost:8080";
 
 
     @Bean

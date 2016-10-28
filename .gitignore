@@ -9,4 +9,4 @@ out
 target/
 
 # 配置文件
-src/main/resources/jdbc.properties
+src/main/resources/properties/jdbc-dev.properties

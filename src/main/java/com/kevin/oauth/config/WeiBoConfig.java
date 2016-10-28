@@ -5,17 +5,19 @@ import com.kevin.oauth.service.OAuthServiceDecorator;
 import com.kevin.oauth.service.SinaWeiboOAuthService;
 import org.scribe.builder.ServiceBuilder;
 import org.scribe.builder.api.SinaWeiboApi20;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class WeiBoConfig {
 
-    private static final String CALLBACK_URL = "%s/oauth/%s/callback";
+    @Value("${oAuth.callbackUrl}") String CALLBACK_URL;
+    @Value("${oAuth.host}") String host;
 
-    String sinaAppKey = "32434523";
-    String sinaAppSecret = "sdfhgfhrtyhdfga";
-    String host = "http://localhost:8080";
+    @Value("${oAuth.weibo.appkey}") String sinaAppKey;
+    @Value("${oAuth.weibo.appSecret}") String sinaAppSecret;
+
 
     @Bean
     public OAuthServiceDecorator getSinaOAuthService(){
