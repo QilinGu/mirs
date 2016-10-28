@@ -6,7 +6,18 @@
 
 
     <insert id="addUser">
-        INSERT ignore INTO mirs.mirs_user(username, password, salt, email, register_time, register_ip)
+        INSERT ignore INTO mirs_user(username, password, salt, email, register_time, register_ip)
          VALUES ('${user.username}', '${user.password}', '${user.salt}', '${user.email}', '${user.registerTime}', '${user.registerIp}')
     </insert>
+
+    <update id="updateUsernameByUserId">
+        UPDATE
+          mirs_user
+        SET
+          username = '${username}'
+        WHERE
+          id = '${id}'
+        AND status = 0
+
+    </update>
 </mapper>

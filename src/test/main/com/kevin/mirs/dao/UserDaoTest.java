@@ -57,7 +57,12 @@ public class UserDaoTest {
         if(t1.getTime() < t2.getTime()) {
             System.out.println(t1.getTime() + "\n" + t2.getTime());
         }
+    }
 
+    @Test
+    public void updateUsernameByUserId() throws Exception {
+        int result = userDao.updateUsernameByUserId("newtest", 10);
+        System.out.println(result);
     }
 
 }
