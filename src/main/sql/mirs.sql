@@ -84,6 +84,43 @@ CREATE TABLE mirs_oauth_user(
 )ENGINE = InnoDB DEFAULT CHARSET = utf8 COMMENT '用户第三方授权信息表';
 
 
+DROP TABLE IF EXISTS mirs_movie;
+CREATE TABLE mirs_movie(
+  `id` VARCHAR(12) NOT NULL COMMENT '电影id，现与豆瓣电影同步',
+  `name` VARCHAR(60) COMMENT '电影名',
+  `year` CHAR(4) COMMENT '电影发行年份',
+  `directors` VARCHAR(60) COMMENT '电影导演',
+  `screenwriters` VARCHAR(60) COMMENT '编剧',
+  `actors` VARCHAR(100) COMMENT '相关演员',
+  `types` VARCHAR(50) COMMENT '电影类型',
+  `official_website` VARCHAR(50) COMMENT '官网',
+  `origin_place` VARCHAR(10) COMMENT '',
+  `release_date` VARCHAR(60) COMMENT '',
+  `languages` VARCHAR(10) COMMENT '',
+  `runtime` VARCHAR(40) COMMENT '',
+  `another_names` VARCHAR(60) COMMENT '又名',
+  `IMDb_link` VARCHAR(20) COMMENT '',
+  `synopsis` VARCHAR(1000) COMMENT '剧情简介',
+  `stills_link` VARCHAR(30) COMMENT '剧照页面链接',
+  `stills_photos_links` VARCHAR(1000) DEFAULT '' COMMENT '剧照照片集合页面链接',
+  `poster_link` VARCHAR(30) COMMENT '海报',
+  `poster_photos_links` VARCHAR(500) DEFAULT '' COMMENT '海报照片集合页面链接',
+  `wallpaper_link` VARCHAR(30) COMMENT '壁纸',
+  `wallpaper_photos_links` VARCHAR(300) DEFAULT '' COMMENT '壁纸照片集合页面链接',
+  `awards` VARCHAR(300) COMMENT '获奖',
+  `also_like_movies` VARCHAR(200) COMMENT '喜欢这部电影的人同样喜欢的电影',
+  `questions` JSON COMMENT '关于这部电影的几个问题',
+  `all_questions_link` VARCHAR(20) COMMENT '关于这部电影所有问题的页面链接',
+  `reviews` JSON COMMENT '所有影评页面链接',
+  `reviews_link` VARCHAR(20) COMMENT '几个影评',
+  `short_pop_comments` JSON COMMENT '几个最新短评',
+  `short_new_comments` JSON COMMENT '几个热门短评',
+  `short_comments_link` VARCHAR(20) COMMENT '所有短评页面链接',
+  PRIMARY KEY (id),
+  INDEX idx_id(id)
+)ENGINE = InnoDB DEFAULT CHARSET = utf8 COMMENT '电影基本信息表';
+
+
 
 
 
