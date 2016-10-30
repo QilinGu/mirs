@@ -47,9 +47,9 @@
 
                 / = anon
                 /accounts/unauthorized = anon
-                /accounts/login = authc
+                /accounts/login = anon
                 /accounts/logout = logout
-                /accounts/register = authc, roles[Register]
+                /accounts/register = anon
             </value>
         </property>
     </bean>
