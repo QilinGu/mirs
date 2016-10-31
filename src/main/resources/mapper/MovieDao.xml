@@ -7,4 +7,7 @@
     <select id="getMovieByMovieId" resultType="com.kevin.mirs.entity.Movie">
         SELECT * FROM mirs_movie WHERE id = #{id}
     </select>
+    <select id="getAllMovie" resultType="com.kevin.mirs.entity.Movie">
+        SELECT * FROM mirs_movie;
+    </select>
 </mapper>

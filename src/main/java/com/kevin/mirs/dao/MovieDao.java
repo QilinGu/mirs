@@ -5,6 +5,8 @@ import com.kevin.mirs.entity.Movie;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
+
 
 @Repository
 public interface MovieDao {
@@ -16,6 +18,9 @@ public interface MovieDao {
      */
     Movie getMovieByMovieId(@Param("id") int id);
 
+
+
+    ArrayList<Movie> getAllMovie();
 
 
 }
