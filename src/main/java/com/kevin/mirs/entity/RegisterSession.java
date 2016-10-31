@@ -8,7 +8,7 @@ public class RegisterSession {
     private Integer id;
     private Timestamp createTime;
     private String email;
-    private Byte state;
+    private Character state;
     private String clientIp;
     private Timestamp expireTime;
 
@@ -36,11 +36,11 @@ public class RegisterSession {
         this.email = email;
     }
 
-    public Byte getState() {
+    public Character getState() {
         return state;
     }
 
-    public void setState(Byte state) {
+    public void setState(Character state) {
         this.state = state;
     }
 

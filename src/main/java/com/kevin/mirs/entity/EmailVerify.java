@@ -9,11 +9,11 @@ public class EmailVerify {
     private String email;
     private Timestamp createTime;
     private Timestamp expireTime;
-    private Byte channel;
+    private Character channel;
     private String verifyCode;
-    private Byte verifyType;
+    private Character verifyType;
     private String requestIp;
-    private Byte state;
+    private Character state;
     private String parameter1;
     private String parameter2;
 
@@ -49,11 +49,11 @@ public class EmailVerify {
         this.expireTime = expireTime;
     }
 
-    public Byte getChannel() {
+    public Character getChannel() {
         return channel;
     }
 
-    public void setChannel(Byte channel) {
+    public void setChannel(Character channel) {
         this.channel = channel;
     }
 
@@ -65,11 +65,11 @@ public class EmailVerify {
         this.verifyCode = verifyCode;
     }
 
-    public Byte getVerifyType() {
+    public Character getVerifyType() {
         return verifyType;
     }
 
-    public void setVerifyType(Byte verifyType) {
+    public void setVerifyType(Character verifyType) {
         this.verifyType = verifyType;
     }
 
@@ -81,11 +81,11 @@ public class EmailVerify {
         this.requestIp = requestIp;
     }
 
-    public Byte getState() {
+    public Character getState() {
         return state;
     }
 
-    public void setState(Byte state) {
+    public void setState(Character state) {
         this.state = state;
     }
 

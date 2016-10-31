@@ -30,7 +30,7 @@ public class UserDaoTest {
     @Test
     public void addUser() throws Exception {
 
-        String username = "test";
+        String username = "test2";
         String password = Encryption.getSalt(64);
         String salt = Encryption.getSalt(32);
         String email = "123@qq.com";
@@ -85,6 +85,7 @@ public class UserDaoTest {
         System.out.println(userDao.getUserByUserEmail("123@qq.com"));
         User user = userDao.getUserByUserEmail("123@qq.com");
         System.out.println(user.getState() == null);
+        System.out.println(user.getAvatar() == null);
 //        System.out.println(userDao.getUserByUserEmail("123@qq.com"));
 //        System.out.println(userDao.getUserByUsername(""));
 //        System.out.println(userDao.getUserByUsername("newte23st"));

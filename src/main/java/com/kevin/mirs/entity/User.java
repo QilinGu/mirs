@@ -15,7 +15,7 @@ public class User {
     private String location;
     private String university;
     private String major;
-    private Byte state;
+    private Character state;
     private Timestamp lastLoginTime;
     private String lastLoginIp;
     private Timestamp registerTime;
@@ -113,11 +113,11 @@ public class User {
         this.major = major;
     }
 
-    public Byte getState() {
+    public Character getState() {
         return state;
     }
 
-    public void setState(Byte state) {
+    public void setState(Character state) {
         this.state = state;
     }
 
