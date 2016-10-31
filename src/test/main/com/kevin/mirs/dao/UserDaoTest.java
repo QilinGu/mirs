@@ -30,10 +30,10 @@ public class UserDaoTest {
     @Test
     public void addUser() throws Exception {
 
-        String username = "test2";
+        String username = "test3";
         String password = Encryption.getSalt(64);
         String salt = Encryption.getSalt(32);
-        String email = "123@qq.com";
+        String email = "1234@qq.com";
         Timestamp registerTime = new Timestamp(new Date().getTime());
         String registerIp = "123.25.63.7";
 

@@ -7,16 +7,16 @@
 
     <insert id="addUser">
         INSERT ignore INTO mirs_user(username, password, salt, email, register_time, register_ip)
-         VALUES ('${user.username}', '${user.password}', '${user.salt}', '${user.email}', '${user.registerTime}', '${user.registerIp}')
+         VALUES (#{user.username}, #{user.password}, #{user.salt}, #{user.email}, #{user.registerTime}, #{user.registerIp})
     </insert>
 
     <update id="updateUsernameByUserId">
         UPDATE
           mirs_user
         SET
-          username = '${username}'
+          username = #{username}
         WHERE
-          id = '${id}'
+          id = #{id}
         AND status = 0
 
     </update>
@@ -24,95 +24,95 @@
         UPDATE
           mirs_user
         SET
-          password = '${password}'
+          password = #{password}
         WHERE
-          id = '${id}'
+          id = #{id}
         AND status = 0
     </update>
     <update id="updateUserSaltByUserId">
         UPDATE
           mirs_user
         SET
-          salt = '${salt}'
+          salt = #{salt}
         WHERE
-          id = '${id}'
+          id = #{id}
         AND status = 0
     </update>
     <update id="updateUserAvatarByUserId">
         UPDATE
           mirs_user
         SET
-           avatar= '${avatar}'
+           avatar= #{avatar}
         WHERE
-          id = '${id}'
+          id = #{id}
         AND status = 0
     </update>
     <update id="updateUserEmailByUserId">
         UPDATE
           mirs_user
         SET
-          email = '${email}'
+          email = #{email}
         WHERE
-          id = '${id}'
+          id = #{id}
         AND status = 0
     </update>
     <update id="updateUserBioByUserId">
         UPDATE
           mirs_user
         SET
-          bio = '${bio}'
+          bio = #{bio}
         WHERE
-          id = '${id}'
+          id = #{id}
         AND status = 0
     </update>
     <update id="updateUserLocationByUserId">
         UPDATE
           mirs_user
         SET
-          location = '${location}'
+          location = #{location}
         WHERE
-          id = '${id}'
+          id = #{id}
         AND status = 0
     </update>
     <update id="updateUserUniversityByUserId">
         UPDATE
           mirs_user
         SET
-          university = '${university}'
+          university = #{university}
         WHERE
-          id = '${id}'
+          id = #{id}
         AND status = 0
     </update>
     <update id="updateUserMajorByUserId">
         UPDATE
           mirs_user
         SET
-          major = '${major}'
+          major = #{major}
         WHERE
-          id = '${id}'
+          id = #{id}
         AND status = 0
     </update>
     <update id="updateUserLoginInfoByUserId">
         UPDATE
           mirs_user
         SET
-          last_login_time = '${time}',
-          last_login_ip = '${ip}'
+          last_login_time = #{time},
+          last_login_ip = #{ip}
         WHERE
-          id = '${id}'
+          id = #{id}
         AND status = 0
     </update>
     <select id="getUserByUsername" resultType="com.kevin.mirs.entity.User">
-        SELECT * FROM mirs_user WHERE username = '${username}'
+        SELECT * FROM mirs_user WHERE username = #{username}
     </select>
     <select id="getUserByUserEmail" resultType="com.kevin.mirs.entity.User">
-        SELECT * FROM mirs_user WHERE email = '${email}'
+        SELECT * FROM mirs_user WHERE email = #{email}
     </select>
     <select id="checkUsername" resultType="java.lang.Integer">
-        SELECT count(*) FROM mirs_user WHERE username = '${username}'
+        SELECT count(*) FROM mirs_user WHERE username = #{username}
     </select>
     <select id="checkUserEmail" resultType="java.lang.Integer">
-        SELECT count(*) FROM mirs_user WHERE email = '${email}'
+        SELECT count(*) FROM mirs_user WHERE email = #{email}
     </select>
 
 
