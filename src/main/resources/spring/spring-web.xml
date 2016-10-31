@@ -122,4 +122,7 @@
     <!-- 扫描OAuth 相关配置 -->
     <context:component-scan base-package="com.kevin.oauth.config"/>
 
+
+    <bean class="com.kevin.config.LuceneConfig"/>
+
 </beans>
