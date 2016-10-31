@@ -15,7 +15,7 @@ public class User {
     private String location;
     private String university;
     private String major;
-    private Character state;
+    private Character status;
     private Timestamp lastLoginTime;
     private String lastLoginIp;
     private Timestamp registerTime;
@@ -113,12 +113,12 @@ public class User {
         this.major = major;
     }
 
-    public Character getState() {
-        return state;
+    public Character getStatus() {
+        return status;
     }
 
-    public void setState(Character state) {
-        this.state = state;
+    public void setStatus(Character status) {
+        this.status = status;
     }
 
     public Timestamp getLastLoginTime() {
@@ -166,7 +166,7 @@ public class User {
                 ", location='" + location + '\'' +
                 ", university='" + university + '\'' +
                 ", major='" + major + '\'' +
-                ", state=" + state +
+                ", status=" + status +
                 ", lastLoginTime=" + lastLoginTime +
                 ", lastLoginIp='" + lastLoginIp + '\'' +
                 ", registerTime=" + registerTime +

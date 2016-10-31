@@ -84,7 +84,7 @@ public class UserDaoTest {
     public void get() throws Exception {
         System.out.println(userDao.getUserByUserEmail("123@qq.com"));
         User user = userDao.getUserByUserEmail("123@qq.com");
-        System.out.println(user.getState() == null);
+        System.out.println(user.getStatus());
         System.out.println(user.getAvatar() == null);
 //        System.out.println(userDao.getUserByUserEmail("123@qq.com"));
 //        System.out.println(userDao.getUserByUsername(""));

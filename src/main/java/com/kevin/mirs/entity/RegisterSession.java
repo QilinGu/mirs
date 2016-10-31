@@ -8,7 +8,7 @@ public class RegisterSession {
     private Integer id;
     private Timestamp createTime;
     private String email;
-    private Character state;
+    private Character status;
     private String clientIp;
     private Timestamp expireTime;
 
@@ -36,12 +36,12 @@ public class RegisterSession {
         this.email = email;
     }
 
-    public Character getState() {
-        return state;
+    public Character getStatus() {
+        return status;
     }
 
-    public void setState(Character state) {
-        this.state = state;
+    public void setStatus(Character status) {
+        this.status = status;
     }
 
     public String getClientIp() {
@@ -66,7 +66,7 @@ public class RegisterSession {
                 "id=" + id +
                 ", createTime=" + createTime +
                 ", email='" + email + '\'' +
-                ", state=" + state +
+                ", status=" + status +
                 ", clientIp='" + clientIp + '\'' +
                 ", expireTime=" + expireTime +
                 '}';

@@ -14,7 +14,7 @@ public class QQConfig {
 
     @Value("${oAuth.callbackUrl}") String CALLBACK_URL;
     @Value("${oAuth.host}") String host;
-    @Value("${oAuth.qq.state}") String state;
+    @Value("${oAuth.qq.status}") String status;
     @Value("${oAuth.qq.appId}") String qqAppId;
     @Value("${oAuth.qq.appKey}") String qqAppKey;
 
@@ -22,7 +22,7 @@ public class QQConfig {
 
     @Bean
     public QQApi qqApi(){
-        return new QQApi(state);
+        return new QQApi(status);
     }
 
 

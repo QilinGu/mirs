@@ -13,7 +13,7 @@ public class EmailVerify {
     private String verifyCode;
     private Character verifyType;
     private String requestIp;
-    private Character state;
+    private Character status;
     private String parameter1;
     private String parameter2;
 
@@ -81,12 +81,12 @@ public class EmailVerify {
         this.requestIp = requestIp;
     }
 
-    public Character getState() {
-        return state;
+    public Character getStatus() {
+        return status;
     }
 
-    public void setState(Character state) {
-        this.state = state;
+    public void setStatus(Character status) {
+        this.status = status;
     }
 
     public String getParameter1() {
@@ -116,7 +116,7 @@ public class EmailVerify {
                 ", verifyCode='" + verifyCode + '\'' +
                 ", verifyType=" + verifyType +
                 ", requestIp='" + requestIp + '\'' +
-                ", state=" + state +
+                ", status=" + status +
                 ", parameter1='" + parameter1 + '\'' +
                 ", parameter2='" + parameter2 + '\'' +
                 '}';

@@ -15,7 +15,7 @@ public class GitHubConfig {
     @Value("${oAuth.callbackUrl}") String CALLBACK_URL;
     @Value("${oAuth.host}") String host;
 
-    @Value("${oAuth.github.state}") String state;
+    @Value("${oAuth.github.status}") String status;
     @Value("${oAuth.github.clientId}") String clientId;
     @Value("${oAuth.github.clientSecret}") String clientSecret;
 
@@ -23,7 +23,7 @@ public class GitHubConfig {
 
     @Bean
     public GitHubApi githubApi(){
-        return new GitHubApi(state);
+        return new GitHubApi(status);
     }
 
     @Bean
