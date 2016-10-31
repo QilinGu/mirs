@@ -5,6 +5,8 @@ import com.kevin.mirs.entity.User;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Timestamp;
+
 @Repository
 public interface UserDao {
 
@@ -104,7 +106,7 @@ public interface UserDao {
      * @param id 用户ID
      * @return 更新的数目，1：更新成功，0：更新失败
      */
-    int updateUserLoginInfoByUserId(@Param("time") String time, @Param("ip") String ip, @Param("id") int id);
+    int updateUserLoginInfoByUserId(@Param("time") Timestamp time, @Param("ip") String ip, @Param("id") int id);
 
 
     /**

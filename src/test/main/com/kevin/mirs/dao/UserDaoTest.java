@@ -60,9 +60,35 @@ public class UserDaoTest {
     }
 
     @Test
-    public void updateUsernameByUserId() throws Exception {
-        int result = userDao.updateUsernameByUserId("newtest", 10);
-        System.out.println(result);
+    public void update() throws Exception {
+        System.out.println(userDao.updateUsernameByUserId("newte23st", 1));
+        System.out.println(userDao.updateUserPasswordByUserId("newtest", 1));
+        System.out.println(userDao.updateUserAvatarByUserId("/src/1.jpeg", 1));
+        System.out.println(userDao.updateUserBioByUserId("2333333", 1));
+        System.out.println(userDao.updateUserLocationByUserId("成都", 1));
+        System.out.println(userDao.updateUserUniversityByUserId("电子科技大学", 1));
+        System.out.println(userDao.updateUserMajorByUserId("软件技术", 1));
+        System.out.println(userDao.updateUserLoginInfoByUserId(new Timestamp(new Date().getTime()), "1.1.1.1", 1));
     }
+
+    @Test
+    public void check() throws Exception {
+        System.out.println(userDao.checkUserEmail(""));
+        System.out.println(userDao.checkUserEmail("123@qq.com"));
+        System.out.println(userDao.checkUsername(""));
+        System.out.println(userDao.checkUsername("newte23st"));
+
+    }
+
+    @Test
+    public void get() throws Exception {
+        System.out.println(userDao.getUserByUserEmail("123@qq.com"));
+        User user = userDao.getUserByUserEmail("123@qq.com");
+        System.out.println(user.getState() == null);
+//        System.out.println(userDao.getUserByUserEmail("123@qq.com"));
+//        System.out.println(userDao.getUserByUsername(""));
+//        System.out.println(userDao.getUserByUsername("newte23st"));
+    }
+
 
 }
