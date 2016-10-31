@@ -20,4 +20,100 @@
         AND status = 0
 
     </update>
+    <update id="updateUserPasswordByUserId">
+        UPDATE
+          mirs_user
+        SET
+          password = '{$password}'
+        WHERE
+          id = '${id}'
+        AND status = 0
+    </update>
+    <update id="updateUserSaltByUserId">
+        UPDATE
+          mirs_user
+        SET
+          salt = '{$salt}'
+        WHERE
+          id = '${id}'
+        AND status = 0
+    </update>
+    <update id="updateUserAvatarByUserId">
+        UPDATE
+          mirs_user
+        SET
+           avatar= '{$avatar}'
+        WHERE
+          id = '${id}'
+        AND status = 0
+    </update>
+    <update id="updateUserEmailByUserId">
+        UPDATE
+          mirs_user
+        SET
+          email = '{$email}'
+        WHERE
+          id = '${id}'
+        AND status = 0
+    </update>
+    <update id="updateUserBioByUserId">
+        UPDATE
+          mirs_user
+        SET
+          bio = '{$bio}'
+        WHERE
+          id = '${id}'
+        AND status = 0
+    </update>
+    <update id="updateUserLocationByUserId">
+        UPDATE
+          mirs_user
+        SET
+          location = '{$location}'
+        WHERE
+          id = '${id}'
+        AND status = 0
+    </update>
+    <update id="updateUserUniversityByUserId">
+        UPDATE
+          mirs_user
+        SET
+          university = '{$university}'
+        WHERE
+          id = '${id}'
+        AND status = 0
+    </update>
+    <update id="updateUserMajorByUserId">
+        UPDATE
+          mirs_user
+        SET
+          major = '{$major}'
+        WHERE
+          id = '${id}'
+        AND status = 0
+    </update>
+    <update id="updateUserLoginInfoByUserId">
+        UPDATE
+          mirs_user
+        SET
+          last_login_time = '{$time}',
+          last_login_ip = '{$ip}'
+        WHERE
+          id = '${id}'
+        AND status = 0
+    </update>
+    <select id="getUserByUsername" resultType="com.kevin.mirs.entity.User">
+        SELECT * FROM mirs_user WHERE username = '{$username}'
+    </select>
+    <select id="getUserByUserEmail" resultType="com.kevin.mirs.entity.User">
+        SELECT * FROM mirs_user WHERE email = '{$email}'
+    </select>
+    <select id="checkUsername" resultType="java.lang.Integer">
+        SELECT count(*) FROM mirs_user WHERE username = '{$username}'
+    </select>
+    <select id="checkUserEmail" resultType="java.lang.Integer">
+        SELECT count(*) FROM mirs_user WHERE email = '{$email}'
+    </select>
+
+
 </mapper>
