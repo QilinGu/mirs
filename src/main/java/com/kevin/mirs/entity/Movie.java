@@ -3,12 +3,12 @@ package com.kevin.mirs.entity;
 
 public class Movie {
 
-    private String id;
-    private String douban_id;
+    private Integer id;
+    private String doubanId;
     private String name;
     private String doubanRating;
     private String imdbRating;
-    private String year;
+    private String releaseYear;
     private String directors;
     private String screenwriters;
     private String actors;
@@ -22,29 +22,49 @@ public class Movie {
     private String imdbLink;
     private String coverLink;
     private String synopsis;
-    private String stillsLink;
     private String stillsPhotosLinks;
-    private String posterLink;
     private String posterPhotosLinks;
-    private String wallpaperLink;
     private String wallpaperPhotosLinks;
     private String awards;
     private String alsoLikeMovies;
-    private String questions;
-    private String allQuestionsLink;
     private String reviews;
-    private String reviewsLink;
     private String shortPopComments;
-    private String shortNewComments;
-    private String shortCommentsLink;
 
+    public Movie(Integer id, String doubanId, String name, String doubanRating, String imdbRating, String releaseYear, String directors, String screenwriters, String actors, String types, String officialWebsite, String originPlace, String releaseDate, String languages, String runtime, String anotherNames, String imdbLink, String coverLink, String synopsis, String stillsPhotosLinks, String posterPhotosLinks, String wallpaperPhotosLinks, String awards, String alsoLikeMovies, String reviews, String shortPopComments) {
+        this.id = id;
+        this.doubanId = doubanId;
+        this.name = name;
+        this.doubanRating = doubanRating;
+        this.imdbRating = imdbRating;
+        this.releaseYear = releaseYear;
+        this.directors = directors;
+        this.screenwriters = screenwriters;
+        this.actors = actors;
+        this.types = types;
+        this.officialWebsite = officialWebsite;
+        this.originPlace = originPlace;
+        this.releaseDate = releaseDate;
+        this.languages = languages;
+        this.runtime = runtime;
+        this.anotherNames = anotherNames;
+        this.imdbLink = imdbLink;
+        this.coverLink = coverLink;
+        this.synopsis = synopsis;
+        this.stillsPhotosLinks = stillsPhotosLinks;
+        this.posterPhotosLinks = posterPhotosLinks;
+        this.wallpaperPhotosLinks = wallpaperPhotosLinks;
+        this.awards = awards;
+        this.alsoLikeMovies = alsoLikeMovies;
+        this.reviews = reviews;
+        this.shortPopComments = shortPopComments;
+    }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public String getDouban_id() {
-        return douban_id;
+    public String getDoubanId() {
+        return doubanId;
     }
 
     public String getName() {
@@ -59,8 +79,8 @@ public class Movie {
         return imdbRating;
     }
 
-    public String getYear() {
-        return year;
+    public String getReleaseYear() {
+        return releaseYear;
     }
 
     public String getDirectors() {
@@ -115,24 +135,12 @@ public class Movie {
         return synopsis;
     }
 
-    public String getStillsLink() {
-        return stillsLink;
-    }
-
     public String getStillsPhotosLinks() {
         return stillsPhotosLinks;
     }
 
-    public String getPosterLink() {
-        return posterLink;
-    }
-
     public String getPosterPhotosLinks() {
         return posterPhotosLinks;
-    }
-
-    public String getWallpaperLink() {
-        return wallpaperLink;
     }
 
     public String getWallpaperPhotosLinks() {
@@ -147,44 +155,23 @@ public class Movie {
         return alsoLikeMovies;
     }
 
-    public String getQuestions() {
-        return questions;
-    }
-
-    public String getAllQuestionsLink() {
-        return allQuestionsLink;
-    }
-
     public String getReviews() {
         return reviews;
-    }
-
-    public String getReviewsLink() {
-        return reviewsLink;
     }
 
     public String getShortPopComments() {
         return shortPopComments;
     }
 
-    public String getShortNewComments() {
-        return shortNewComments;
-    }
-
-    public String getShortCommentsLink() {
-        return shortCommentsLink;
-    }
-
-
     @Override
     public String toString() {
         return "Movie{" +
-                "id='" + id + '\'' +
-                ", douban_id='" + douban_id + '\'' +
+                "id=" + id +
+                ", doubanId='" + doubanId + '\'' +
                 ", name='" + name + '\'' +
                 ", doubanRating='" + doubanRating + '\'' +
                 ", imdbRating='" + imdbRating + '\'' +
-                ", year='" + year + '\'' +
+                ", releaseYear='" + releaseYear + '\'' +
                 ", directors='" + directors + '\'' +
                 ", screenwriters='" + screenwriters + '\'' +
                 ", actors='" + actors + '\'' +
@@ -198,21 +185,13 @@ public class Movie {
                 ", imdbLink='" + imdbLink + '\'' +
                 ", coverLink='" + coverLink + '\'' +
                 ", synopsis='" + synopsis + '\'' +
-                ", stillsLink='" + stillsLink + '\'' +
                 ", stillsPhotosLinks='" + stillsPhotosLinks + '\'' +
-                ", posterLink='" + posterLink + '\'' +
                 ", posterPhotosLinks='" + posterPhotosLinks + '\'' +
-                ", wallpaperLink='" + wallpaperLink + '\'' +
                 ", wallpaperPhotosLinks='" + wallpaperPhotosLinks + '\'' +
                 ", awards='" + awards + '\'' +
                 ", alsoLikeMovies='" + alsoLikeMovies + '\'' +
-                ", questions='" + questions + '\'' +
-                ", allQuestionsLink='" + allQuestionsLink + '\'' +
                 ", reviews='" + reviews + '\'' +
-                ", reviewsLink='" + reviewsLink + '\'' +
                 ", shortPopComments='" + shortPopComments + '\'' +
-                ", shortNewComments='" + shortNewComments + '\'' +
-                ", shortCommentsLink='" + shortCommentsLink + '\'' +
                 '}';
     }
 }

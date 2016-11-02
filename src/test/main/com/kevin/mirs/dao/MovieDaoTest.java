@@ -21,19 +21,27 @@ public class MovieDaoTest {
     @Resource
     MovieDao movieDao;
 
+    @Test
+    public void getMovieById() throws Exception {
+        System.out.println(movieDao.getMovieById(1));
+    }
 
     @Test
-    public void getMovieByMovieId() throws Exception {
-
-        System.out.println(movieDao.getMovieByMovieId(1));
-
+    public void getMovieByDoubanId() throws Exception {
+        System.out.println(movieDao.getMovieByDoubanId("1"));
     }
 
     @Test
     public void getAllMovie() throws Exception {
+        System.out.println(movieDao.getAllMovie("release_year", 2, 1));
+    }
 
-        System.out.println(movieDao.getAllMovie());
+    @Test
+    public void getMovieByMovieName() throws Exception {
+        System.out.println(movieDao.getMovieByMovieName("name"));
 
     }
+
+
 
 }
