@@ -45,9 +45,9 @@ public class AccountsController {
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String doRegister(@RequestParam(value = "userName") String userName,
+    public String doRegister(@RequestParam(value = "username") String username,
                                   @RequestParam(value = "password") String password,
-                                  @RequestParam(value = "userEmail") String userEmail,
+                                  @RequestParam(value = "email") String email,
                                   @RequestParam(value = "verification") String verification) {
 
         return "redirect:/";
@@ -81,7 +81,7 @@ public class AccountsController {
     }
 
     @RequestMapping(value = "/password", method = RequestMethod.PUT)
-    public String updatePassword(@RequestParam(value = "userEmail") String userEmail,
+    public String updatePassword(@RequestParam(value = "email") String email,
                                  @RequestParam(value = "password") String password) {
 
         //返回更新状态
@@ -95,7 +95,7 @@ public class AccountsController {
     }
 
     @RequestMapping(value = "reset-password", method = RequestMethod.POST)
-    public String resetPassword(@RequestParam(value = "userEmail") String userEmail,
+    public String resetPassword(@RequestParam(value = "email") String email,
                                 @RequestParam(value = "password") String password,
                                 @RequestParam(value = "verification") String verification) {
 

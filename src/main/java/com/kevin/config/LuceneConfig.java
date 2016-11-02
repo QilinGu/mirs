@@ -1,6 +1,7 @@
 package com.kevin.config;
 
 import org.apache.lucene.analysis.Analyzer;
+import org.apache.lucene.document.Document;
 import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.index.IndexWriter;
@@ -33,7 +34,7 @@ public class LuceneConfig {
     }
 
     @Bean
-    public Directory directory() throws IOException {
+    private Directory directory() throws IOException {
         String indexPath;
         if(System.getProperty("os.name").substring(0, 3).equals("Win")){
             indexPath = WIN_INDEX_PATH;
@@ -45,7 +46,7 @@ public class LuceneConfig {
     }
 
     @Bean
-    public IndexWriterConfig config() {
+    private IndexWriterConfig config() {
         return new IndexWriterConfig(analyzer());
     }
 
@@ -53,9 +54,14 @@ public class LuceneConfig {
     public IndexWriter indexWriter() throws IOException {
         return new IndexWriter(directory(), config());
     }
+    
+    @Bean
+    public Document document() {
+        return new Document();
+    }
 
     @Bean
-    public IndexReader indexReader() throws IOException {
+    private IndexReader indexReader() throws IOException {
         return DirectoryReader.open(directory());
     }
 
