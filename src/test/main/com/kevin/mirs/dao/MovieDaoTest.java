@@ -1,5 +1,6 @@
 package com.kevin.mirs.dao;
 
+import com.kevin.mirs.enums.MovieColumnEnum;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -33,7 +34,7 @@ public class MovieDaoTest {
 
     @Test
     public void getAllMovie() throws Exception {
-        System.out.println(movieDao.getAllMovie("release_year", 2, 1));
+        System.out.println(movieDao.getAllMovie(MovieColumnEnum.columnOf(6), 2, 1));
     }
 
     @Test
