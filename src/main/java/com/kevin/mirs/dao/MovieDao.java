@@ -19,8 +19,14 @@ public interface MovieDao {
     Movie getMovieByMovieId(@Param("id") int id);
 
 
-
+    /**
+     * 获取所有电影信息
+     * @return 电影信息列表
+     */
     ArrayList<Movie> getAllMovie();
+
+
+
 
 
 }
