@@ -53,5 +53,65 @@ public class MovieDaoTest {
         System.out.println(movieDao.getMoviesByDoubanRating("1.4", "8.4", MovieColumnEnum.columnOf(1), 10, 0));
     }
 
+    @Test
+    public void getMoviesByIMDbRating() throws Exception {
+        System.out.println(movieDao.getMoviesByIMDbRating("1.4", "5.4", MovieColumnEnum.columnOf(1), 10, 0));
+    }
+
+    @Test
+    public void getMoviesByReleaseYear() throws Exception {
+        System.out.println(movieDao.getMoviesByReleaseYear("2000", MovieColumnEnum.columnOf(1), 10, 0));
+    }
+
+    @Test
+    public void getMoviesByReleaseYears() throws Exception {
+        System.out.println(movieDao.getMoviesByReleaseYears("1900", "2000", MovieColumnEnum.columnOf(1), 10, 0));
+    }
+
+    @Test
+    public void getMoviesByRuntime() throws Exception {
+        System.out.println(movieDao.getMoviesByRuntime("23", "300", MovieColumnEnum.columnOf(1), 10, 0));
+    }
+
+    @Test
+    public void getMoviesIncludeDirector() throws Exception {
+        System.out.println(movieDao.getMoviesIncludeDirector("大卫", MovieColumnEnum.columnOf(1), 10, 0));
+    }
+
+    @Test
+    public void getMoviesIncludeScreenwriter() throws Exception {
+        System.out.println(movieDao.getMoviesIncludeScreenwriter("大卫", MovieColumnEnum.columnOf(1), 10, 0));
+    }
+
+    @Test
+    public void getMoviesIncludeActor() throws Exception {
+        System.out.println(movieDao.getMoviesIncludeActor("大卫", MovieColumnEnum.columnOf(1), 10, 0));
+    }
+
+    @Test
+    public void getMoviesIncludeType() throws Exception {
+        System.out.println(movieDao.getMoviesIncludeType("喜剧", MovieColumnEnum.columnOf(1), 10, 0));
+    }
+
+    @Test
+    public void getMoviesIncludeOriginPlace() throws Exception {
+        System.out.println(movieDao.getMoviesIncludeOriginPlace("美国", MovieColumnEnum.columnOf(1), 10, 0));
+    }
+
+    @Test
+    public void getMoviesIncludeLanguage() throws Exception {
+        System.out.println(movieDao.getMoviesIncludeLanguage("中文", MovieColumnEnum.columnOf(1), 10, 0));
+    }
+
+    @Test
+    public void getMoviesIncludeAnotherName() throws Exception {
+        System.out.println(movieDao.getMoviesIncludeAnotherName("大卫", MovieColumnEnum.columnOf(1), 10, 0));
+    }
+
+    @Test
+    public void getMoviesIncludeAward() throws Exception {
+        System.out.println(movieDao.getMoviesIncludeAward("大卫", MovieColumnEnum.columnOf(1), 10, 0));
+    }
+
 
 }
