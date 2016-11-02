@@ -29,6 +29,8 @@
         <ehcache.version>2.10.3</ehcache.version>
         <lucene.version>6.2.1</lucene.version>
         <word.version>1.2</word.version>
+        <mahout-core.version>0.9</mahout-core.version>
+        <mahout-math.version>0.12.2</mahout-math.version>
     </properties>
 
     <dependencies>
@@ -215,11 +217,22 @@
             <artifactId>lucene-queryparser</artifactId>
             <version>${lucene.version}</version>
         </dependency>
-
+        <!-- 中文分词工具 -->
         <dependency>
             <groupId>org.apdplat</groupId>
             <artifactId>word</artifactId>
             <version>${word.version}</version>
+        </dependency>
+        <!-- 推荐算法依赖库 -->
+        <dependency>
+            <groupId>org.apache.mahout</groupId>
+            <artifactId>mahout-core</artifactId>
+            <version>${mahout-core.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.mahout</groupId>
+            <artifactId>mahout-math</artifactId>
+            <version>${mahout-math.version}</version>
         </dependency>
 
     </dependencies>
