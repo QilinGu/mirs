@@ -3,38 +3,50 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kevin.mirs.dao.MovieDao">
-    <sql id="allMovieColumn">
+    <sql id="selectAllMovieColumn">
+        SELECT
         id, douban_id, name, douban_rating, imdb_rating, release_year, directors, screenwriters, actors, types, official_website, origin_place, release_date, languages, runtime, another_names, imdb_link, cover_link, synopsis, stills_photos_links, poster_photos_links, wallpaper_photos_links, awards, also_like_movies, reviews, short_pop_comments
+        FROM mirs_movie
     </sql>
 
-    <select id="getAllMovie" resultType="com.kevin.mirs.entity.Movie">
-        SELECT
-        <include refid="allMovieColumn"></include>
-        FROM mirs_movie
+    <sql id="additionalCondition">
         ORDER BY ${orderBy}
         LIMIT #{limit}
         offset #{offset}
+    </sql>
+
+    <select id="getAllMovie" resultType="com.kevin.mirs.entity.Movie">
+        <include refid="selectAllMovieColumn"></include>
+        <include refid="additionalCondition"></include>
     </select>
 
     <select id="getMovieById" resultType="com.kevin.mirs.entity.Movie">
-        SELECT
-        <include refid="allMovieColumn"></include>
-        FROM mirs_movie
+        <include refid="selectAllMovieColumn"></include>
         WHERE id = #{id}
     </select>
 
     <select id="getMovieByDoubanId" resultType="com.kevin.mirs.entity.Movie">
-        SELECT
-        <include refid="allMovieColumn"></include>
-        FROM mirs_movie
+        <include refid="selectAllMovieColumn"></include>
         WHERE douban_id = #{doubanId}
     </select>
 
     <select id="getMovieByMovieName" resultType="com.kevin.mirs.entity.Movie">
-        SELECT
-        <include refid="allMovieColumn"></include>
-        FROM mirs_movie
+        <include refid="selectAllMovieColumn"></include>
         WHERE name = #{movieName}
+    </select>
+
+    <select id="getMoviesIncludeMovieName" resultType="com.kevin.mirs.entity.Movie">
+        <include refid="selectAllMovieColumn"></include>
+        WHERE name like '%${movieName}%'
+        <include refid="additionalCondition"></include>
+    </select>
+
+
+    <select id="getMoviesByDoubanRating" resultType="com.kevin.mirs.entity.Movie">
+        <include refid="selectAllMovieColumn"></include>
+        WHERE <![CDATA[douban_rating >= #{low}]]>
+        AND <![CDATA[douban_rating <= #{high}]]>
+        <include refid="additionalCondition"></include>
     </select>
 
 </mapper>

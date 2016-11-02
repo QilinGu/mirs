@@ -34,7 +34,7 @@ public class MovieDaoTest {
 
     @Test
     public void getAllMovie() throws Exception {
-        System.out.println(movieDao.getAllMovie(MovieColumnEnum.columnOf(6), 2, 1));
+        System.out.println(movieDao.getAllMovie(MovieColumnEnum.columnOf(6), 10, 0));
     }
 
     @Test
@@ -43,6 +43,15 @@ public class MovieDaoTest {
 
     }
 
+    @Test
+    public void getMoviesIncludeMovieName() throws Exception {
+        System.out.println(movieDao.getMoviesIncludeMovieName("", MovieColumnEnum.columnOf(1), 10, 0));
+    }
+
+    @Test
+    public void getMoviesByDoubanRating() throws Exception {
+        System.out.println(movieDao.getMoviesByDoubanRating("1.4", "8.4", MovieColumnEnum.columnOf(1), 10, 0));
+    }
 
 
 }

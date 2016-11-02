@@ -70,8 +70,8 @@ public interface MovieDao {
      * @param offset 偏移量
      * @return 电影信息列表，没有则返回[]
      */
-    ArrayList<Movie> getMoviesByDoubanRating(@Param("low") float low,
-                                             @Param("high") float high,
+    ArrayList<Movie> getMoviesByDoubanRating(@Param("low") String low,
+                                             @Param("high") String high,
                                              @Param("orderBy") String orderBy,
                                              @Param("limit") int limit,
                                              @Param("offset") int offset);
