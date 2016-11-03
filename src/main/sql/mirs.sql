@@ -131,6 +131,35 @@ CREATE TABLE mirs_movie(
 )ENGINE = InnoDB DEFAULT CHARSET = utf8 COMMENT '电影基本信息表';
 
 
+DROP TABLE IF EXISTS mirs_friend;
+CREATE TABLE mirs_friend(
+  `id` INT NOT NULL AUTO_INCREMENT COMMENT '自增ID',
+  `uid` INT NOT NULL COMMENT '用户ID',
+  `ufid` INT NOT NULL COMMENT '用户好友ID',
+  PRIMARY KEY (id),
+  UNIQUE (uid, ufid),
+  INDEX idx_uid(uid),
+  INDEX idx_ufid(ufid)
+)ENGINE = InnoDB DEFAULT CHARSET = utf8 COMMENT '好友关系表';
+
+
+DROP TABLE IF EXISTS mirs_user_movie;
+CREATE TABLE mirs_user_movie(
+  `id` INT NOT NULL AUTO_INCREMENT COMMENT '自增ID',
+  `uid` INT NOT NULL COMMENT '用户ID',
+  `mid` INT NOT NULL COMMENT '电影ID',
+  `score` ENUM("1","2","3","4","5") COMMENT '用户对电影的评分，暂时定为1-5',
+  `update_time` TIMESTAMP COMMENT '更新时间',
+  PRIMARY KEY (id),
+  UNIQUE (uid, mid),
+  INDEX idx_uid(uid)
+)ENGINE = InnoDB DEFAULT CHARSET = utf8 COMMENT '用户对电影的评分表';
+
+
+
+
+
+
 
 
 
