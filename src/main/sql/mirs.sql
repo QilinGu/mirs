@@ -148,7 +148,7 @@ CREATE TABLE mirs_user_movie(
   `id` INT NOT NULL AUTO_INCREMENT COMMENT '自增ID',
   `uid` INT NOT NULL COMMENT '用户ID',
   `mid` INT NOT NULL COMMENT '电影ID',
-  `score` ENUM("1","2","3","4","5") COMMENT '用户对电影的评分，暂时定为1-5',
+  `score` ENUM('1','2','3','4','5') COMMENT '用户对电影的评分，暂时定为1-5',
   `update_time` TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY (id),
   UNIQUE (uid, mid),
