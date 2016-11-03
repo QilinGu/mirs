@@ -33,7 +33,7 @@ public class LuceneConfig {
         return new ChineseWordAnalyzer();
     }
 
-    @Bean
+
     private Directory directory() throws IOException {
         String indexPath;
         if(System.getProperty("os.name").substring(0, 3).equals("Win")){
@@ -45,7 +45,7 @@ public class LuceneConfig {
         return FSDirectory.open(path);
     }
 
-    @Bean
+
     private IndexWriterConfig config() {
         return new IndexWriterConfig(analyzer());
     }
@@ -60,7 +60,7 @@ public class LuceneConfig {
         return new Document();
     }
 
-    @Bean
+    
     private IndexReader indexReader() throws IOException {
         return DirectoryReader.open(directory());
     }
