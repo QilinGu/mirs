@@ -10,8 +10,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.annotation.Resource;
 
-import static org.junit.Assert.*;
-
 @RunWith(SpringJUnit4ClassRunner.class)
 // 告诉Junit Sping配置文件
 @ContextConfiguration({"classpath:spring/spring-dao.xml"})
@@ -34,7 +32,7 @@ public class MovieDaoTest {
 
     @Test
     public void getAllMovie() throws Exception {
-        System.out.println(movieDao.getAllMovie(MovieColumnEnum.columnOf(6), 10, 0));
+        System.out.println(movieDao.getMovies(MovieColumnEnum.columnOf(6), 10, 0));
     }
 
     @Test

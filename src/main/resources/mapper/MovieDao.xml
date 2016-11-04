@@ -15,7 +15,7 @@
         offset #{offset}
     </sql>
 
-    <select id="getAllMovie" resultType="com.kevin.mirs.entity.Movie">
+    <select id="getMovies" resultType="com.kevin.mirs.entity.Movie">
         <include refid="selectAllMovieColumn"></include>
         <include refid="additionalCondition"></include>
     </select>

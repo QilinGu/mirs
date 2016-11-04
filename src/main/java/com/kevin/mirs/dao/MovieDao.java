@@ -19,9 +19,9 @@ public interface MovieDao {
      * @param offset  偏移量
      * @return 电影信息列表, 没有则返回[]
      */
-    ArrayList<Movie> getAllMovie(@Param("orderBy") String orderBy,
-                                 @Param("limit") int limit,
-                                 @Param("offset") int offset);
+    ArrayList<Movie> getMovies(@Param("orderBy") String orderBy,
+                               @Param("limit") int limit,
+                               @Param("offset") int offset);
 
 
     /**
