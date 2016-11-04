@@ -1,6 +1,6 @@
 package com.kevin.mirs.web;
 
-import com.kevin.mirs.common.Url;
+import com.kevin.mirs.vo.Url;
 import com.kevin.mirs.dto.MIRSResult;
 import com.kevin.mirs.entity.OAuthUser;
 import com.kevin.oauth.service.CustomOAuthService;

@@ -1,4 +1,4 @@
-package com.kevin.mirs.common;
+package com.kevin.mirs.vo;
 
 
 public class Url {

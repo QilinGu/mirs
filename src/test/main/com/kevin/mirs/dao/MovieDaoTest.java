@@ -14,7 +14,7 @@ import javax.annotation.Resource;
 // 告诉Junit Sping配置文件
 @ContextConfiguration({"classpath:spring/spring-dao.xml"})
 public class MovieDaoTest {
-
+    
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Resource
@@ -22,7 +22,7 @@ public class MovieDaoTest {
 
     @Test
     public void getMovieById() throws Exception {
-        System.out.println(movieDao.getMovieById("4"));
+        System.out.println(movieDao.getMovieById(5));
     }
 
     @Test
@@ -109,6 +109,11 @@ public class MovieDaoTest {
     @Test
     public void getMoviesIncludeAward() throws Exception {
         System.out.println(movieDao.getMoviesIncludeAward("大卫", MovieColumnEnum.columnOf(1), 10, 0));
+    }
+
+    @Test
+    public void getSuggestedMovie() throws Exception {
+        System.out.println(movieDao.getSuggestedMovie(3));
     }
 
 

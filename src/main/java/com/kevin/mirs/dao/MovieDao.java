@@ -2,6 +2,7 @@ package com.kevin.mirs.dao;
 
 
 import com.kevin.mirs.entity.Movie;
+import com.kevin.mirs.vo.Suggestion;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -30,7 +31,7 @@ public interface MovieDao {
      * @param id 电影ID
      * @return 电影实体, 没有则返回null
      */
-    Movie getMovieById(@Param("id") String id);
+    Movie getMovieById(@Param("id") int id);
 
 
     /**
@@ -268,5 +269,12 @@ public interface MovieDao {
                                            @Param("limit") int limit,
                                            @Param("offset") int offset);
 
+
+    /**
+     * 获得搜索时建议的电影信息
+     * @param id 电影ID
+     * @return 建议电影信息，没有则返回null
+     */
+    Suggestion getSuggestedMovie(@Param("id") int id);
 
 }

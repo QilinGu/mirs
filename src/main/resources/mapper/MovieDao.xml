@@ -124,5 +124,9 @@
         <include refid="additionalCondition"></include>
     </select>
 
+    <select id="getSuggestedMovie" resultType="com.kevin.mirs.vo.Suggestion">
+        SELECT id, name, cover_link FROM mirs_movie WHERE id = #{id}
+    </select>
+
 
 </mapper>
