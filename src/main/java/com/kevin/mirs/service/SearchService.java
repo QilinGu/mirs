@@ -4,6 +4,7 @@ package com.kevin.mirs.service;
 import com.kevin.mirs.dao.MovieDao;
 import com.kevin.mirs.entity.Movie;
 import com.kevin.mirs.enums.MovieColumnEnum;
+import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
 import org.apache.lucene.document.TextField;
@@ -21,6 +22,9 @@ import java.util.ArrayList;
 public class SearchService {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
+
+    @Resource
+    Analyzer analyzer;
 
     @Resource
     IndexWriter indexWriter;
