@@ -28,12 +28,15 @@ public class SearchService {
 
     private final String[] fields = {
             MovieColumnEnum.NAME.getName(),
+            MovieColumnEnum.RELEASE_YEAR.getName(),
             MovieColumnEnum.DIRECTORS.getName(),
             MovieColumnEnum.SCREENWRITERS.getName(),
             MovieColumnEnum.ACTORS.getName(),
             MovieColumnEnum.TYPES.getName(),
             MovieColumnEnum.ORIGIN_PLACE.getName(),
             MovieColumnEnum.LANGUAGES.getName(),
+            MovieColumnEnum.ANOTHER_NAMES.getName(),
+            MovieColumnEnum.COVER_LINK.getName(),
             MovieColumnEnum.SYNOPSIS.getName()
     };
 
@@ -69,35 +72,78 @@ public class SearchService {
             System.out.println(offset);
             for (Movie movie : movieArrayList) {
                 logger.info("即将索引电影：" + movie.getName());
+
                 Document document = new Document();
-                document.add(new Field(MovieColumnEnum.ID.getName(), movie.getId().toString(), TextField.TYPE_STORED));
+
+                // 添加索引的段，并设置权值
+                if (movie.getId() != null) {
+                    Field field = new Field(MovieColumnEnum.ID.getName(), movie.getId().toString(), TextField.TYPE_STORED);
+                    field.setBoost(MovieColumnEnum.ID.getBoost());
+                    document.add(field);
+                }
                 if (movie.getDoubanId() != null && movie.getDoubanId() != "") {
-                    document.add(new Field(MovieColumnEnum.DOUBAN_ID.getName(), movie.getDoubanId(), TextField.TYPE_STORED));
+                    Field field = new Field(MovieColumnEnum.DOUBAN_ID.getName(), movie.getDoubanId(), TextField.TYPE_NOT_STORED);
+                    field.setBoost(MovieColumnEnum.DOUBAN_ID.getBoost());
+                    document.add(field);
                 }
                 if (movie.getName() != null && movie.getName() != "") {
-                    document.add(new Field(MovieColumnEnum.NAME.getName(), movie.getName(), TextField.TYPE_STORED));
+                    Field field = new Field(MovieColumnEnum.NAME.getName(), movie.getName(), TextField.TYPE_STORED);
+                    field.setBoost(MovieColumnEnum.NAME.getBoost());
+                    document.add(field);
                 }
+                if (movie.getReleaseYear() != null && movie.getReleaseYear() != "") {
+                    Field field = new Field(MovieColumnEnum.RELEASE_YEAR.getName(), movie.getReleaseYear(), TextField.TYPE_STORED);
+                    field.setBoost(MovieColumnEnum.RELEASE_YEAR.getBoost());
+                    document.add(field);
+                }
+
                 if (movie.getDirectors() != null && movie.getDirectors() != "") {
-                    document.add(new Field(MovieColumnEnum.DIRECTORS.getName(), movie.getDirectors(), TextField.TYPE_NOT_STORED));
+                    Field field = new Field(MovieColumnEnum.DIRECTORS.getName(), movie.getDirectors(), TextField.TYPE_NOT_STORED);
+                    field.setBoost(MovieColumnEnum.DIRECTORS.getBoost());
+                    document.add(field);
                 }
                 if (movie.getScreenwriters() != null && movie.getScreenwriters() != "") {
-                    document.add(new Field(MovieColumnEnum.SCREENWRITERS.getName(), movie.getScreenwriters(), TextField.TYPE_NOT_STORED));
+                    Field field = new Field(MovieColumnEnum.SCREENWRITERS.getName(), movie.getScreenwriters(), TextField.TYPE_NOT_STORED);
+                    field.setBoost(MovieColumnEnum.SCREENWRITERS.getBoost());
+                    document.add(field);
                 }
                 if (movie.getActors() != null && movie.getActors() != "") {
-                    document.add(new Field(MovieColumnEnum.ACTORS.getName(), movie.getActors(), TextField.TYPE_NOT_STORED));
+                    Field field = new Field(MovieColumnEnum.ACTORS.getName(), movie.getActors(), TextField.TYPE_NOT_STORED);
+                    field.setBoost(MovieColumnEnum.ACTORS.getBoost());
+                    document.add(field);
                 }
                 if (movie.getTypes() != null && movie.getTypes() != "") {
-                    document.add(new Field(MovieColumnEnum.TYPES.getName(), movie.getTypes(), TextField.TYPE_NOT_STORED));
+                    Field field = new Field(MovieColumnEnum.TYPES.getName(), movie.getTypes(), TextField.TYPE_NOT_STORED);
+                    field.setBoost(MovieColumnEnum.TYPES.getBoost());
+                    document.add(field);
                 }
                 if (movie.getOriginPlace() != null && movie.getOriginPlace() != "") {
-                    document.add(new Field(MovieColumnEnum.ORIGIN_PLACE.getName(), movie.getOriginPlace(), TextField.TYPE_NOT_STORED));
+                    Field field = new Field(MovieColumnEnum.ORIGIN_PLACE.getName(), movie.getOriginPlace(), TextField.TYPE_NOT_STORED);
+                    field.setBoost(MovieColumnEnum.ORIGIN_PLACE.getBoost());
+                    document.add(field);
                 }
                 if (movie.getLanguages() != null && movie.getLanguages() != "") {
-                    document.add(new Field(MovieColumnEnum.LANGUAGES.getName(), movie.getLanguages(), TextField.TYPE_NOT_STORED));
+                    Field field = new Field(MovieColumnEnum.LANGUAGES.getName(), movie.getLanguages(), TextField.TYPE_NOT_STORED);
+                    field.setBoost(MovieColumnEnum.LANGUAGES.getBoost());
+                    document.add(field);
                 }
+                if (movie.getAnotherNames() != null && movie.getAnotherNames() != "") {
+                    Field field = new Field(MovieColumnEnum.ANOTHER_NAMES.getName(), movie.getAnotherNames(), TextField.TYPE_NOT_STORED);
+                    field.setBoost(MovieColumnEnum.ANOTHER_NAMES.getBoost());
+                    document.add(field);
+                }
+                if (movie.getCoverLink() != null && movie.getCoverLink() != "") {
+                    Field field = new Field(MovieColumnEnum.COVER_LINK.getName(), movie.getCoverLink(), TextField.TYPE_NOT_STORED);
+                    field.setBoost(MovieColumnEnum.COVER_LINK.getBoost());
+                    document.add(field);
+                }
+
                 if (movie.getSynopsis() != null && movie.getSynopsis() != "") {
-                    document.add(new Field(MovieColumnEnum.SYNOPSIS.getName(), movie.getSynopsis(), TextField.TYPE_NOT_STORED));
+                    Field field = new Field(MovieColumnEnum.SYNOPSIS.getName(), movie.getSynopsis(), TextField.TYPE_NOT_STORED);
+                    field.setBoost(MovieColumnEnum.SYNOPSIS.getBoost());
+                    document.add(field);
                 }
+
 
                 try {
                     indexWriter.addDocument(document);
@@ -121,9 +167,9 @@ public class SearchService {
             QueryParser queryParser = new MultiFieldQueryParser(fields, analyzer);
             Query query = queryParser.parse(keyword);
             ScoreDoc[] scoreDocs = indexSearcher.search(query, 10).scoreDocs;
-            for(ScoreDoc scoreDoc: scoreDocs) {
+            for (ScoreDoc scoreDoc : scoreDocs) {
                 Document document = indexSearcher.doc(scoreDoc.doc);
-                System.out.println("编号为"+document.get("id")+"号的电影得分是" + scoreDoc.score);
+                System.out.println("编号为" + document.get("id") + "号的电影得分是" + scoreDoc.score);
 
                 Suggestion s = movieDao.getSuggestedMovie(Integer.parseInt(document.get("id")));
                 suggestions.add(s);
