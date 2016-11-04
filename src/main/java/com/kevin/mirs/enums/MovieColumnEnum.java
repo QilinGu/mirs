@@ -33,33 +33,26 @@ public enum MovieColumnEnum {
 
 
     private int index;
-    private String column;
+    private String name;
 
     MovieColumnEnum(int index, String column) {
         this.index = index;
-        this.column = column;
+        this.name = column;
     }
 
     public int getNum() {
         return index;
     }
 
-    public void setNum(int index) {
-        this.index = index;
+    public String getName() {
+        return name;
     }
 
-    public String getColum() {
-        return column;
-    }
-
-    public void setColum(String column) {
-        this.column = column;
-    }
 
     public static String columnOf(int index) {
         for (MovieColumnEnum movieColumnEnum : values()) {
             if(movieColumnEnum.getNum() == index) {
-                return movieColumnEnum.getColum();
+                return movieColumnEnum.getName();
             }
         }
         return null;
