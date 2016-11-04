@@ -28,7 +28,12 @@ public class SearchServiceTest {
 
     @Test
     public void searchMovie() throws Exception {
+        System.out.println(searchService.searchMovie("人妖"));
+    }
 
+    @Test
+    public void deleteAllIndexes() throws Exception {
+        searchService.deleteAllIndexes();
     }
 
 }

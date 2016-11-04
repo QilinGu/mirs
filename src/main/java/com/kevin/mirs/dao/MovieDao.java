@@ -30,7 +30,7 @@ public interface MovieDao {
      * @param id 电影ID
      * @return 电影实体, 没有则返回null
      */
-    Movie getMovieById(@Param("id") int id);
+    Movie getMovieById(@Param("id") String id);
 
 
     /**

@@ -22,7 +22,7 @@ public class MovieDaoTest {
 
     @Test
     public void getMovieById() throws Exception {
-        System.out.println(movieDao.getMovieById(2));
+        System.out.println(movieDao.getMovieById("4"));
     }
 
     @Test

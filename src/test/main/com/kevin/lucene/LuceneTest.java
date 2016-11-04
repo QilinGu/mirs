@@ -54,13 +54,15 @@ public class LuceneTest {
         String text = "jcseg是使用Java开发的一款开源的中文分词器, 基于流行的mmseg算法实现，" +
                 "分词准确率高达98.4%, 支持中文人名识别, 同义词匹配, 停止词过滤等。" +
                 "并且提供了最新版本的lucene,solr,elasticsearch分词接口。";
-        document.add(new Field("fieldname", text, TextField.TYPE_STORED));
+//        document.add(new Field("fieldname", text, TextField.TYPE_STORED));
+        document.add(new Field("fieldname", "好烦", TextField.TYPE_STORED));
+//        indexWriter.deleteAll();
         indexWriter.addDocument(document);
 
         // Now search the index:
         // Parse a simple query that searches for "text":
         QueryParser parser = new QueryParser("fieldname", analyzer);
-        Query query = parser.parse("过滤");
+        Query query = parser.parse("好烦");
         ScoreDoc[] hits = indexSearcher.search(query, 1000).scoreDocs;
         //assertEquals(1, hits.length);
         System.out.println(1 == hits.length);

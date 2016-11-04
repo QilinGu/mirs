@@ -3,7 +3,7 @@ package com.kevin.mirs.utils;
 
 import java.util.Random;
 
-public class Encryption {
+public class EncryptionUtils {
 
     public static String getSalt(int length) {
         String str = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";

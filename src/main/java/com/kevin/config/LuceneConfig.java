@@ -53,25 +53,20 @@ public class LuceneConfig {
         return new IndexWriterConfig(analyzer());
     }
 
+
     @Bean
     public IndexWriter indexWriter() throws IOException {
         return new IndexWriter(directory(), config());
     }
-    
-    @Bean
-    public Document document() {
-        return new Document();
-    }
 
-    
+
     private IndexReader indexReader() throws IOException {
         return DirectoryReader.open(directory());
     }
+
 
     @Bean
     public IndexSearcher indexSearcher() throws IOException {
         return new IndexSearcher(indexReader());
     }
-
-
 }
