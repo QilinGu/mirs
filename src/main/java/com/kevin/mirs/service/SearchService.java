@@ -92,7 +92,7 @@ public class SearchService {
                     document.add(field);
                 }
                 if (movie.getReleaseYear() != null && movie.getReleaseYear() != "") {
-                    Field field = new Field(MovieColumnEnum.RELEASE_YEAR.getName(), movie.getReleaseYear(), TextField.TYPE_STORED);
+                    Field field = new Field(MovieColumnEnum.RELEASE_YEAR.getName(), movie.getReleaseYear(), TextField.TYPE_NOT_STORED);
                     field.setBoost(MovieColumnEnum.RELEASE_YEAR.getBoost());
                     document.add(field);
                 }
@@ -133,7 +133,7 @@ public class SearchService {
                     document.add(field);
                 }
                 if (movie.getCoverLink() != null && movie.getCoverLink() != "") {
-                    Field field = new Field(MovieColumnEnum.COVER_LINK.getName(), movie.getCoverLink(), TextField.TYPE_NOT_STORED);
+                    Field field = new Field(MovieColumnEnum.COVER_LINK.getName(), movie.getCoverLink(), TextField.TYPE_STORED);
                     field.setBoost(MovieColumnEnum.COVER_LINK.getBoost());
                     document.add(field);
                 }
@@ -171,7 +171,15 @@ public class SearchService {
                 Document document = indexSearcher.doc(scoreDoc.doc);
                 System.out.println("编号为" + document.get("id") + "号的电影得分是" + scoreDoc.score);
 
-                Suggestion s = movieDao.getSuggestedMovie(Integer.parseInt(document.get("id")));
+                // 从数据库获取
+                //Suggestion s = movieDao.getSuggestedMovie(Integer.parseInt(document.get("id")));
+
+                //直接获取
+                Suggestion s = new Suggestion(
+                        Integer.parseInt(document.get(MovieColumnEnum.ID.getName())),
+                        document.get(MovieColumnEnum.NAME.getName()),
+                        document.get(MovieColumnEnum.COVER_LINK.getName()));
+
                 suggestions.add(s);
             }
         } catch (Exception e) {
@@ -182,6 +190,9 @@ public class SearchService {
     }
 
 
+    /**
+     * 删除所有的索引
+     */
     public void deleteAllIndexes() {
         try {
             indexWriter.deleteAll();
