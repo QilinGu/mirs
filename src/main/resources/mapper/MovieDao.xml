@@ -5,9 +5,53 @@
 <mapper namespace="com.kevin.mirs.dao.MovieDao">
     <sql id="selectAllMovieColumn">
         SELECT
-        id, douban_id, name, douban_rating, imdb_rating, release_year, directors, screenwriters, actors, types, official_website, origin_place, release_date, languages, runtime, another_names, imdb_link, cover_link, synopsis, stills_photos_links, poster_photos_links, wallpaper_photos_links, awards, also_like_movies, reviews, short_pop_comments
+            id,
+            douban_id,
+            name,
+            douban_rating,
+            imdb_rating,
+            release_year,
+            directors,
+            screenwriters,
+            actors,
+            types,
+            official_website,
+            origin_place,
+            release_date,
+            languages,
+            runtime,
+            another_names,
+            imdb_link,
+            cover_link,
+            synopsis,
+            stills_photos_links,
+            poster_photos_links,
+            wallpaper_photos_links,
+            awards,
+            also_like_movies,
+            reviews,
+            short_pop_comments
         FROM mirs_movie
     </sql>
+    <sql id="simpleMovieColumn">
+        SELECT
+            t1.id,
+            t1.name,
+            t1.douban_rating,
+            t1.imdb_rating,
+            t1.release_year,
+            t1.directors,
+            t1.screenwriters,
+            t1.actors,
+            t1.types,
+            t1.origin_place,
+            t1.languages,
+            t1.runtime,
+            t1.cover_link,
+            t1.synopsis
+        FROM mirs_movie AS t1
+    </sql>
+
 
     <sql id="additionalCondition">
         ORDER BY ${orderBy}
@@ -15,7 +59,7 @@
         offset #{offset}
     </sql>
 
-    <select id="getAllMovie" resultType="com.kevin.mirs.entity.Movie">
+    <select id="getMovies" resultType="com.kevin.mirs.entity.Movie">
         <include refid="selectAllMovieColumn"></include>
         <include refid="additionalCondition"></include>
     </select>
@@ -122,6 +166,24 @@
         <include refid="selectAllMovieColumn"></include>
         WHERE awards like '%${award}%'
         <include refid="additionalCondition"></include>
+    </select>
+
+    <select id="getSuggestedMovie" resultType="com.kevin.mirs.vo.SuggestionMovie">
+        SELECT
+            id,
+            name,
+            cover_link
+        FROM mirs_movie
+        WHERE id = #{id}
+    </select>
+
+    <select id="getRandomSimpleMovies" resultType="com.kevin.mirs.vo.SimpleMovie">
+        <include refid="simpleMovieColumn"></include>
+        JOIN (
+        SELECT ROUND(RAND() * ((SELECT MAX(id) FROM mirs_movie)-(SELECT MIN(id) FROM mirs_movie))+(SELECT MIN(id) FROM
+        mirs_movie)) AS id
+        FROM mirs_movie LIMIT #{limit}) AS t2 on t1.id=t2.id
+        ORDER BY t1.id LIMIT #{limit};
     </select>
 
 

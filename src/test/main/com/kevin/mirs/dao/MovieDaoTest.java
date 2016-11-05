@@ -10,8 +10,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.annotation.Resource;
 
-import static org.junit.Assert.*;
-
 @RunWith(SpringJUnit4ClassRunner.class)
 // 告诉Junit Sping配置文件
 @ContextConfiguration({"classpath:spring/spring-dao.xml"})
@@ -24,7 +22,7 @@ public class MovieDaoTest {
 
     @Test
     public void getMovieById() throws Exception {
-        System.out.println(movieDao.getMovieById(1));
+        System.out.println(movieDao.getMovieById(5));
     }
 
     @Test
@@ -34,7 +32,7 @@ public class MovieDaoTest {
 
     @Test
     public void getAllMovie() throws Exception {
-        System.out.println(movieDao.getAllMovie(MovieColumnEnum.columnOf(6), 10, 0));
+        System.out.println(movieDao.getMovies(MovieColumnEnum.columnOf(6), 10, 0));
     }
 
     @Test
@@ -111,6 +109,16 @@ public class MovieDaoTest {
     @Test
     public void getMoviesIncludeAward() throws Exception {
         System.out.println(movieDao.getMoviesIncludeAward("大卫", MovieColumnEnum.columnOf(1), 10, 0));
+    }
+
+    @Test
+    public void getSuggestedMovie() throws Exception {
+        System.out.println(movieDao.getSuggestedMovie(3));
+    }
+
+    @Test
+    public void getRandomSimpleMovies() throws Exception {
+        System.out.println(movieDao.getRandomSimpleMovies(1));
     }
 
 

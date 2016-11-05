@@ -18,57 +18,60 @@ import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.store.RAMDirectory;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import javax.annotation.Resource;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+// 告诉Junit Sping配置文件
+@ContextConfiguration({"classpath:junit/spring-test.xml"})
 public class LuceneTest {
 
-    String WIN_INDEX_PATH = "c:temp/mirs/indexes/";
-    String DEFAULT_INDEX_PATH = "/tmp/mirs/indexes/";
+    @Resource
+    Analyzer analyzer;
+
+    @Resource
+    IndexWriter indexWriter;
+
+    @Resource
+    Document document;
+
+    @Resource
+    IndexSearcher indexSearcher;
+
 
     @Test
     public void testLucene() throws IOException, ParseException {
-        Analyzer analyzer = new StandardAnalyzer();
 
         // Store the index in memory:
 //        Directory directory = new RAMDirectory();
         // To store an index on disk, use this instead:
-        String indexPath;
-        if(System.getProperty("os.name").substring(0, 3).equals("Win")){
-            indexPath = WIN_INDEX_PATH;
-        } else {
-            indexPath = DEFAULT_INDEX_PATH;
-        }
-        Path path = Paths.get(indexPath);
-        Directory directory = FSDirectory.open(path);
-        System.out.println(path);
-        IndexWriterConfig config = new IndexWriterConfig(analyzer);
-        IndexWriter iwriter = new IndexWriter(directory, config);
-        Document doc = new Document();
-        String text = "This is the text to be indexed.";
-        doc.add(new Field("fieldname", text, TextField.TYPE_STORED));
-        iwriter.addDocument(doc);
-        iwriter.close();
+        String text = "jcseg是使用Java开发的一款开源的中文分词器, 基于流行的mmseg算法实现，" +
+                "分词准确率高达98.4%, 支持中文人名识别, 同义词匹配, 停止词过滤等。" +
+                "并且提供了最新版本的lucene,solr,elasticsearch分词接口。";
+//        document.add(new Field("fieldname", text, TextField.TYPE_STORED));
+        document.add(new Field("fieldname", "好烦", TextField.TYPE_STORED));
+//        indexWriter.deleteAll();
+        indexWriter.addDocument(document);
 
         // Now search the index:
-        DirectoryReader ireader = DirectoryReader.open(directory);
-        IndexSearcher isearcher = new IndexSearcher(ireader);
         // Parse a simple query that searches for "text":
         QueryParser parser = new QueryParser("fieldname", analyzer);
-        Query query = parser.parse("text");
-        ScoreDoc[] hits = isearcher.search(query, 1000).scoreDocs;
+        Query query = parser.parse("好烦");
+        ScoreDoc[] hits = indexSearcher.search(query, 1000).scoreDocs;
         //assertEquals(1, hits.length);
         System.out.println(1 == hits.length);
         // Iterate through the results:
         for (int i = 0; i < hits.length; i++) {
-            Document hitDoc = isearcher.doc(hits[i].doc);
+            Document hitDoc = indexSearcher.doc(hits[i].doc);
             //assertEquals("This is the text to be indexed.", hitDoc.get("fieldname"));
             System.out.println(hitDoc.get("fieldname"));
         }
-        ireader.close();
-        directory.close();
     }
 
 

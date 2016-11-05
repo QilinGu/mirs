@@ -1,7 +1,7 @@
 package com.kevin.mirs.dao;
 
 import com.kevin.mirs.entity.User;
-import com.kevin.mirs.utils.Encryption;
+import com.kevin.mirs.utils.EncryptionUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -31,8 +31,8 @@ public class UserDaoTest {
     public void addUser() throws Exception {
 
         String username = "test3";
-        String password = Encryption.getSalt(64);
-        String salt = Encryption.getSalt(32);
+        String password = EncryptionUtils.getSalt(64);
+        String salt = EncryptionUtils.getSalt(32);
         String email = "1234@qq.com";
         Timestamp registerTime = new Timestamp(new Date().getTime());
         String registerIp = "123.25.63.7";
@@ -76,7 +76,7 @@ public class UserDaoTest {
         System.out.println(userDao.checkUserEmail(""));
         System.out.println(userDao.checkUserEmail("123@qq.com"));
         System.out.println(userDao.checkUsername(""));
-        System.out.println(userDao.checkUsername("newte23st"));
+        System.out.println(userDao.checkUsername("#$%564354*(^%"));
 
     }
 

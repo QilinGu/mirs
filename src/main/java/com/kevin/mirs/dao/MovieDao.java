@@ -2,6 +2,8 @@ package com.kevin.mirs.dao;
 
 
 import com.kevin.mirs.entity.Movie;
+import com.kevin.mirs.vo.SimpleMovie;
+import com.kevin.mirs.vo.SuggestionMovie;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -19,9 +21,9 @@ public interface MovieDao {
      * @param offset  偏移量
      * @return 电影信息列表, 没有则返回[]
      */
-    ArrayList<Movie> getAllMovie(@Param("orderBy") String orderBy,
-                                 @Param("limit") int limit,
-                                 @Param("offset") int offset);
+    ArrayList<Movie> getMovies(@Param("orderBy") String orderBy,
+                               @Param("limit") int limit,
+                               @Param("offset") int offset);
 
 
     /**
@@ -268,5 +270,20 @@ public interface MovieDao {
                                            @Param("limit") int limit,
                                            @Param("offset") int offset);
 
+
+    /**
+     * 获得搜索时建议的电影信息
+     * @param id 电影ID
+     * @return 建议电影信息，没有则返回null
+     */
+    SuggestionMovie getSuggestedMovie(@Param("id") int id);
+
+
+    /**
+     * 随机获得几条简单电影的信息
+     * @param limit
+     * @return
+     */
+    ArrayList<SimpleMovie> getRandomSimpleMovies(@Param("limit") int limit);
 
 }
