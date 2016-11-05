@@ -33,7 +33,7 @@ public class MovieService {
 
     public ArrayList<SimpleMovie> getDailyMovie() {
 
-        int limit = 5;
+        int limit = 6;
         ArrayList<SimpleMovie> suggestionMovies = null;
 
         try {
