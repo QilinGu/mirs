@@ -18,10 +18,10 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                            <a id="register-nav" style="padding-right:0px;">注册</a>
+                            <a id="register_nav" style="padding-right:0px;">注册</a>
                         </li>
                         <li>
-                            <a href="#"  style="padding-right:0px;">登录</a>
+                            <a href="login_form"  style="padding-right:0px;">登录</a>
                         </li>
                     </ul>
                 </div>
@@ -104,7 +104,7 @@
     $(function () {
         $("#login_form").attr("action", mirs.URL.loginUrl());
         $("#register").attr("href", mirs.URL.registerUrl());
-        $("#register-nav").attr("href", mirs.URL.registerUrl());
+        $("#register_nav").attr("href", mirs.URL.registerUrl());
         $("#captchaImage").attr("src", mirs.URL.getCaptchaUrl());
         mirs.loadOAuthUrl("#qq", mirs.URL.oAuthUrl('qq'));
         mirs.loadOAuthUrl("#weixin", mirs.URL.oAuthUrl('weixin'));

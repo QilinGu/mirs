@@ -180,3 +180,10 @@ li{ width:50px;  float:left;list-style: none;}
 .loginstyle-div div span{
     color: #5B5B5B;
 }
+
+/*dailyMovie模块*/
+.movie{
+    width: 300px;
+    height: 600px;
+    background-color: #1F811F;
+}

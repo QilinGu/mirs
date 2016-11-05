@@ -27,6 +27,9 @@ var mirs = {
         },
         checkVerificationUrl: function (verification) {
             return '/inspection/verification?verification=' + verification;
+        },
+        dailyMovieUrl: function () {
+            return '/movie/daily';
         }
 
     },
@@ -54,6 +57,21 @@ var mirs = {
             }
         })
     },
-    
+
+    getDailyMovie: function(statusElement,id) {
+        $.get(this.URL.dailyMovieUrl(), {}, function (result) {
+            if(result && result['success']) {
+                var movies = result['data'];
+                var parent = document.getElementById(statusElement);
+                for(var i = 0; i < movies.length; i++) {
+                    console.log(movies[i]['name']);
+                    var div = '<div style="width: 300px;height: 600px;background-color: #1F811F;float: left"><img src="'+movies[i]['coverLink']+'"></img>' +movies[i]['name']+ '</div>';
+                    $(statusElement).append(div);
+                }
+            } else {
+
+            }
+        })
+    }
 
 }
