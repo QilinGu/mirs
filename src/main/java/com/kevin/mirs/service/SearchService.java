@@ -8,9 +8,7 @@ import com.kevin.mirs.vo.Suggestion;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
-import org.apache.lucene.document.FieldType;
 import org.apache.lucene.document.TextField;
-import org.apache.lucene.index.IndexOptions;
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.queryparser.classic.MultiFieldQueryParser;
 import org.apache.lucene.queryparser.classic.QueryParser;
@@ -63,6 +61,8 @@ public class SearchService {
      * <p>
      * TextField.TYPE_STORED 与 TextField.TYPE_NOT_STORED都是FieldType()类型
      * 都设置了分词，唯一区别在于是否储存
+     *
+     * TODO 自定义Similarity 实现更加用户友好的结果排序，比如按照年份和评分
      */
     public void indexMovie() {
         int limit = 100;
