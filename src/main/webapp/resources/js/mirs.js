@@ -65,7 +65,7 @@ var mirs = {
                 var parent = document.getElementById(statusElement);
                 for(var i = 0; i < movies.length; i++) {
                     console.log(movies[i]['name']);
-                    var div = '<div style="width: 300px;height: 600px;background-color: #1F811F;float: left"><img src="'+movies[i]['coverLink']+'"></img>' +movies[i]['name']+ '</div>';
+                    var div = '<div style="width: 300px;height: 500px;margin-left:80px;margin-right:20px;margin-bottom:20px;background-color: #1F811F;float: left"><img src="'+movies[i]['coverLink']+'"></img>' +movies[i]['name']+ '</div>';
                     $(statusElement).append(div);
                 }
             } else {
