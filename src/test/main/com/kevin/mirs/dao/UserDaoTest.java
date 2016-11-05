@@ -76,7 +76,7 @@ public class UserDaoTest {
         System.out.println(userDao.checkUserEmail(""));
         System.out.println(userDao.checkUserEmail("123@qq.com"));
         System.out.println(userDao.checkUsername(""));
-        System.out.println(userDao.checkUsername("newte23st"));
+        System.out.println(userDao.checkUsername("#$%564354*(^%"));
 
     }
 
