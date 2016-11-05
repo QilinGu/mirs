@@ -8,7 +8,9 @@ import com.kevin.mirs.vo.Suggestion;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
+import org.apache.lucene.document.FieldType;
 import org.apache.lucene.document.TextField;
+import org.apache.lucene.index.IndexOptions;
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.queryparser.classic.MultiFieldQueryParser;
 import org.apache.lucene.queryparser.classic.QueryParser;
@@ -27,6 +29,7 @@ import java.util.ArrayList;
 public class SearchService {
 
     private final String[] fields = {
+            MovieColumnEnum.ID.getName(),
             MovieColumnEnum.NAME.getName(),
             MovieColumnEnum.RELEASE_YEAR.getName(),
             MovieColumnEnum.DIRECTORS.getName(),
@@ -79,11 +82,6 @@ public class SearchService {
                 if (movie.getId() != null) {
                     Field field = new Field(MovieColumnEnum.ID.getName(), movie.getId().toString(), TextField.TYPE_STORED);
                     field.setBoost(MovieColumnEnum.ID.getBoost());
-                    document.add(field);
-                }
-                if (movie.getDoubanId() != null && movie.getDoubanId() != "") {
-                    Field field = new Field(MovieColumnEnum.DOUBAN_ID.getName(), movie.getDoubanId(), TextField.TYPE_NOT_STORED);
-                    field.setBoost(MovieColumnEnum.DOUBAN_ID.getBoost());
                     document.add(field);
                 }
                 if (movie.getName() != null && movie.getName() != "") {
