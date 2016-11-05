@@ -1,7 +1,7 @@
 package com.kevin.mirs.vo;
 
 
-public class Suggestion {
+public class SuggestionMovie {
 
     private final String URL_PERFIX = "";
 
@@ -9,7 +9,7 @@ public class Suggestion {
     String name;
     String pic;
 
-    public Suggestion(Integer id, String name, String pic) {
+    public SuggestionMovie(Integer id, String name, String pic) {
         this.url = URL_PERFIX + id;
         this.name = name;
         this.pic = pic;
@@ -32,7 +32,7 @@ public class Suggestion {
 
     @Override
     public String toString() {
-        return "Suggestion{" +
+        return "SuggestionMovie{" +
                 "url='" + url + '\'' +
                 ", name='" + name + '\'' +
                 ", pic='" + pic + '\'' +

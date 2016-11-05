@@ -2,7 +2,8 @@ package com.kevin.mirs.dao;
 
 
 import com.kevin.mirs.entity.Movie;
-import com.kevin.mirs.vo.Suggestion;
+import com.kevin.mirs.vo.SimpleMovie;
+import com.kevin.mirs.vo.SuggestionMovie;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -275,6 +276,14 @@ public interface MovieDao {
      * @param id 电影ID
      * @return 建议电影信息，没有则返回null
      */
-    Suggestion getSuggestedMovie(@Param("id") int id);
+    SuggestionMovie getSuggestedMovie(@Param("id") int id);
+
+
+    /**
+     * 随机获得几条简单电影的信息
+     * @param limit
+     * @return
+     */
+    ArrayList<SimpleMovie> getRandomSimpleMovies(@Param("limit") int limit);
 
 }

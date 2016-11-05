@@ -4,7 +4,7 @@ package com.kevin.mirs.service;
 import com.kevin.mirs.dao.MovieDao;
 import com.kevin.mirs.entity.Movie;
 import com.kevin.mirs.enums.MovieColumnEnum;
-import com.kevin.mirs.vo.Suggestion;
+import com.kevin.mirs.vo.SuggestionMovie;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
@@ -157,9 +157,9 @@ public class SearchService {
     /**
      * 按照指定条件查询电影信息
      */
-    public ArrayList<Suggestion> searchMovie(String keyword) {
+    public ArrayList<SuggestionMovie> searchMovie(String keyword) {
 
-        ArrayList<Suggestion> suggestions = new ArrayList<Suggestion>();
+        ArrayList<SuggestionMovie> suggestionMovies = new ArrayList<SuggestionMovie>();
 
         try {
             QueryParser queryParser = new MultiFieldQueryParser(fields, analyzer);
@@ -170,21 +170,21 @@ public class SearchService {
                 System.out.println("编号为" + document.get("id") + "号的电影得分是" + scoreDoc.score);
 
                 // 从数据库获取
-                //Suggestion s = movieDao.getSuggestedMovie(Integer.parseInt(document.get("id")));
+                //SuggestionMovie s = movieDao.getSuggestedMovie(Integer.parseInt(document.get("id")));
 
                 //直接获取
-                Suggestion s = new Suggestion(
+                SuggestionMovie s = new SuggestionMovie(
                         Integer.parseInt(document.get(MovieColumnEnum.ID.getName())),
                         document.get(MovieColumnEnum.NAME.getName()),
                         document.get(MovieColumnEnum.COVER_LINK.getName()));
 
-                suggestions.add(s);
+                suggestionMovies.add(s);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println(suggestions);
-        return suggestions;
+        System.out.println(suggestionMovies);
+        return suggestionMovies;
     }
 
 
