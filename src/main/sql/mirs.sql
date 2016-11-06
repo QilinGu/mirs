@@ -155,7 +155,7 @@ CREATE TABLE mirs_user_movie(
   INDEX idx_uid(uid)
 )ENGINE = InnoDB DEFAULT CHARSET = utf8 COMMENT '用户对电影的评分表';
 
-DROP TABLE IF EXISTS mirs_user_recommendedFriendsAndMovies;
+DROP TABLE IF EXISTS mirs_user_recommended_friends_and_movies;
 CREATE TABLE mirs_user_recommendedFriendsAndMovies(
   `uid` INT NOT NULL COMMENT '用户ID',
   `rff` VARCHAR(30) COMMENT '存放推荐好友的文件名',
