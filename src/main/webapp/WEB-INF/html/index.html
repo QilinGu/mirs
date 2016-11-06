@@ -30,16 +30,15 @@
         </div>
     </nav>
 </div>
-<div style="width: 100%;height: 1200px;margin: 0 auto">
+<div class="movie_container">
+    <div class="search">
+        <input id="search_input" class="form-control" type="text" placeholder="请输入你想搜索的一切"/>
+        <div id="suggestion_movie">
 
-    <div id="dailyMovie" style="width: 90%;height: 1200px;margin: 0 auto">
-        <div class="input-group col-md-3" style="margin:0 auto;margin-bottom:20px;positon:relative">
-        <input type="text" class="form-control" placeholder="请输入字段名"/>
-        <span class="input-group-btn">
-               <button class="btn btn-info btn-search">查找</button>
-        </span>
+        </div>
     </div>
-    <div style="margin-left:34%;position: absolute;background-color: #6fc992;height: 300px;width: 310px;display: none;"></div></div>
+    <div id="dailyMovie">
+    </div>
 </div>
 </body>
 
@@ -53,19 +52,30 @@
 
 <!--bootstrap库-->
 <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
-<script src="/resources/bootstrap/js/jquery.min.js"></script>
+<script src="http://cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
 <!-- 新 Bootstrap 核心 CSS 文件 -->
 <link href="/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
 <script src="/resources/bootstrap/js/bootstrap.min.js"></script>
-<!--jQuery Cookie操作插件-->
-<script src="http://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 
 <script type="text/javascript">
     $(function () {
         $("#login_form").attr("href", mirs.URL.loginUrl());
         $("#register").attr("href", mirs.URL.registerUrl());
         mirs.getDailyMovie("#dailyMovie");
+        $("#seach_result").attr("hidden","none");
     });
+
+    $("#search_input").bind('input onchange', function() {
+        var keyword = $(this).val();
+        keyword = keyword.replace(/(^\s*)|(\s*$)/g, "");
+        var keyword_lenth = keyword.length;
+        $("#suggestion_movie").html(" ");
+        $("#suggestion_movie").css("display","none");
+        if(keyword_lenth != 0) {
+            mirs.searchMovie(this, mirs.URL.searchMovieUrl(keyword) ,"#suggestion_movie");
+        }
+    });
+
 </script>
 </html>
