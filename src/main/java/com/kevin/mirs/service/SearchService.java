@@ -19,6 +19,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.annotation.Resource;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -58,12 +60,14 @@ public class SearchService {
 
     /**
      * 将数据库中的电影信息进行索引，方便后续查找
+     * 系统开始时进行索引
      * <p>
      * TextField.TYPE_STORED 与 TextField.TYPE_NOT_STORED都是FieldType()类型
      * 都设置了分词，唯一区别在于是否储存
      *
      * TODO 自定义Similarity 实现更加用户友好的结果排序，比如按照年份和评分
      */
+    @PostConstruct
     public void indexMovie() {
         int limit = 100;
         int offset = 0;
@@ -190,7 +194,9 @@ public class SearchService {
 
     /**
      * 删除所有的索引
+     * 系统结束是进行清理
      */
+    @PreDestroy
     public void deleteAllIndexes() {
         try {
             indexWriter.deleteAll();
