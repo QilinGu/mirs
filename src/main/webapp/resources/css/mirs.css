@@ -188,19 +188,28 @@ li{ width:50px;  float:left;list-style: none;}
 /*dailyMovie模块*/
 .movie{
     width: 300px;
-    height: 500px;
+    height: 520px;
     margin-left:80px;
     margin-right:20px;
     margin-bottom:20px;
     float: left;
 }
-.cs{
+
+.movie h4{
+     text-align: center;
+ }
+
+.movie h4 label{
+    font-size: 12px;
+}
+
+.movie_info{
     width: 300px;
     height: 444px;
     color: #0f0f0f;
-    margin-top: -498px;
+    margin-top: -528px;
+    padding: 10px 10px 10px 10px;
     position: relative;
-    background:#737373;
     opacity: 0;
     display: block;
     font-size: 14px;
@@ -209,7 +218,43 @@ li{ width:50px;  float:left;list-style: none;}
     -moz-transition: .5s;
 }
 
-.movie:hover .cs{
-    color: #656e73;
-    opacity: 0.6;
+.movie_instruction{
+    width: 50px;
+    height: 20px;
+    border: 1px solid #737373;
+    border-radius: 5px;
+    background-color: #2aabd2;
+}
+
+.movie_info label{
+    color: #000000;
+    opacity:1;
+    font-size: 18px;
+}
+
+.movie_info label span{
+    font-size: 14px;
+}
+
+.movie_info label #movie_synopsis{
+    font-size: 12px;
+}
+
+.movie_info label a{
+    margin-left: 5px;
+    color: #080808;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.movie_info label a:hover{
+    margin-left: 5px;
+    color: #0f6ab4;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.movie:hover .movie_info{
+    background-color: #737373;
+    opacity: 0.8;
 }
