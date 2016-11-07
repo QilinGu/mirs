@@ -25,6 +25,7 @@ public class SearchController {
     @RequestMapping(value = "/movie/{keyword}", method = RequestMethod.POST)
     @ApiOperation(value = "/movie/{keyword}", notes = "通过关键字搜索电影")
     public List<SuggestionMovie> searchMovie(@PathVariable(value = "keyword") String keyword) {
+        System.out.println("--------------用户输入了：" + keyword + "-------------");
         return searchService.searchMovie(keyword);
     }
 
