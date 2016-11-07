@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kevin.mirs.dao.UserRecommendedMoviesDao">
+
+    <insert id="addUserRecommendedMovies">
+        INSERT ignore INTO mirs_user_recommended_movies(uid, rmid, rmv)
+        VALUES (#{uid}, #{rmid}, #{rmv})
+    </insert>
+
+
+</mapper>

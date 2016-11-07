@@ -24,13 +24,9 @@ public class RecommendFriendsBySimilarity implements RecommendFriends{
 
     @Override
     public long[] recommendFriends(long uid, int frdnum){
-        try {
-            neighborhood = new NearestNUserNeighborhood(frdnum, similarity, model);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
         long[] neighbors = new long[frdnum];
         try {
+            neighborhood = new NearestNUserNeighborhood(frdnum, similarity, model);
             neighbors = neighborhood.getUserNeighborhood(uid);
         } catch (Exception e) {
             e.printStackTrace();
