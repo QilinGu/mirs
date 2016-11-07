@@ -63,19 +63,23 @@
         $("#login_form").attr("href", mirs.URL.loginUrl());
         $("#register").attr("href", mirs.URL.registerUrl());
         mirs.getDailyMovie("#dailyMovie");
-        $("#seach_result").attr("hidden","none");
+        $("#seach_result").attr("hidden", "none");
     });
 
-    $("#search_input").bind('input onchange', function() {
+    $("#search_input").bind('input onchange', function () {
         var keyword = $(this).val();
         keyword = keyword.replace(/(^\s*)|(\s*$)/g, "");
         var keyword_lenth = keyword.length;
         $("#suggestion_movie").html(" ");
-        $("#suggestion_movie").css("display","none");
-        if(keyword_lenth != 0) {
-            mirs.searchMovie(this, mirs.URL.searchMovieUrl(keyword) ,"#suggestion_movie");
+        $("#suggestion_movie").css("display", "none");
+        if (keyword_lenth != 0) {
+            mirs.utils.throttle(search(keyword), 500, 1000);
         }
     });
+
+    function search(keyword) {
+        mirs.searchMovie(this, mirs.URL.searchMovieUrl(keyword), "#suggestion_movie");
+    }
 
 </script>
 </html>
