@@ -1,6 +1,8 @@
 package com.kevin.mirs.recommendation;
 
 import com.kevin.mirs.dao.UserRecommendedFriendsDao;
+import com.kevin.mirs.dao.UserRecommendedMoviesDao;
+import com.kevin.mirs.entity.UserRecommendedFriends;
 import org.apache.mahout.cf.taste.impl.model.file.FileDataModel;
 import org.apache.mahout.cf.taste.model.DataModel;
 import org.apache.mahout.cf.taste.recommender.RecommendedItem;
@@ -13,6 +15,7 @@ import java.util.List;
 public class RecommendtionController {
 
     @Resource
+    UserRecommendedMoviesDao urmv;
     UserRecommendedFriendsDao urfd;
 
     public static void main(String[] args){
@@ -22,17 +25,12 @@ public class RecommendtionController {
             RecommendMovies recommendMovies = new RecommendMoviesByPerson(model, 20);
             long[] friends = recommendFriends.recommendFriends(1, 3);
             List<RecommendedItem> recommendedItemList = recommendMovies.recommendMovies(1,2);
-            /*RandomAccessFile friendsFile, moviesFile;
-            friendsFile = new RandomAccessFile("target/mirs/resources/recommendation/friends/" + 1 + ".csv", "rw");
             for(long friend : friends) {
-                friendsFile.writeChars(String.valueOf(friend));
-                friendsFile.write('\n');
+
             }
-            moviesFile = new RandomAccessFile("target/mirs/resources/recommendation/movies/" + 1 + ".csv", "rw");
             for(RecommendedItem recommendedItem : recommendedItemList) {
-                moviesFile.writeChars(String.valueOf(recommendedItem.getItemID()));
-                moviesFile.write('\n');
-            }*/
+
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

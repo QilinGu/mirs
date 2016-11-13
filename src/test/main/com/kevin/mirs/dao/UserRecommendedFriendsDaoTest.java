@@ -23,4 +23,9 @@ public class UserRecommendedFriendsDaoTest {
         System.out.println(userRecommendedFriendsDao.addUserRecommendedFriends(1,1));
     }
 
+    @Test
+    public void clearUserRecommendedFriends() throws Exception {
+        System.out.println(userRecommendedFriendsDao.clearUserRecommendedFriends());
+    }
+
 }

@@ -1,6 +1,7 @@
 package com.kevin.mirs.dao;
 
 import com.kevin.mirs.entity.UserRecommendedMovies;
+import com.sun.tools.doclets.formats.html.SourceToHTMLConverter;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -22,6 +23,13 @@ public class UserRecommendedMoviesDaoTest {
     public void addUserRecommendedMovies() throws Exception {
 
         System.out.println(userRecommendedMoviesDao.addUserRecommendedMovies(1,1,1.0f));
+
+    }
+
+    @Test
+    public void clearUserRecommendedMovies() throws Exception{
+
+        System.out.println(userRecommendedMoviesDao.clearUserRecommendedMovies());
 
     }
 

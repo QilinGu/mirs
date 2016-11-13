@@ -11,4 +11,6 @@ public interface UserRecommendedMoviesDao {
                                  @Param("rmid") int rmid,
                                  @Param("rmv") float rmv);
 
+    boolean clearUserRecommendedMovies();
+
 }
