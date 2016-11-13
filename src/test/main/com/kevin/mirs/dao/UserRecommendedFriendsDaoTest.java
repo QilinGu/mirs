@@ -7,6 +7,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.annotation.Resource;
 
+import java.util.HashMap;
+
 import static org.junit.Assert.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -20,7 +22,8 @@ public class UserRecommendedFriendsDaoTest {
 
     @Test
     public void addUserRecommendedFriends() throws Exception {
-        System.out.println(userRecommendedFriendsDao.addUserRecommendedFriends(1,1));
+        long[] fids = {1,2,3};
+        System.out.println(userRecommendedFriendsDao.addUserRecommendedFriends(1, fids));
     }
 
     @Test
