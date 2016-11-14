@@ -4,6 +4,8 @@ import com.kevin.mirs.entity.UserRecommendedMovies;
 import com.sun.tools.doclets.formats.html.SourceToHTMLConverter;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
 import org.apache.mahout.cf.taste.impl.recommender.GenericRecommendedItem;
 import org.apache.mahout.cf.taste.recommender.RecommendedItem;
 import org.junit.Test;
@@ -18,7 +20,7 @@ import java.util.ArrayList;
 import static org.junit.Assert.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-// 告诉Junit Sping配置文件
+// 告诉Junit Spring配置文件
 @ContextConfiguration({"classpath:spring/spring-dao.xml"})
 public class UserRecommendedMoviesDaoTest {
 
@@ -40,9 +42,16 @@ public class UserRecommendedMoviesDaoTest {
     }
 
     @Test
-    public void clearUserRecommendedMovies() throws Exception{
+    public void getUserRecommendedMovies() throws Exception {
+        List<UserRecommendedMovies> rms = userRecommendedMoviesDao.getUserRecommendedMovies(2);
+        for(UserRecommendedMovies rm : rms)
+            System.out.println(rm.getRmid() + " , " + rm.getRmv());
+    }
 
-        System.out.println(userRecommendedMoviesDao.clearUserRecommendedMovies());
+    @Test
+    public void clearUserRecommendedMovies() throws Exception {
+
+        System.out.println(userRecommendedMoviesDao.clearUserRecommendedMovies(2));
 
     }
 

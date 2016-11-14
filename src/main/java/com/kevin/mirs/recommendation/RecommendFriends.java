@@ -8,6 +8,6 @@ import org.apache.mahout.cf.taste.similarity.UserSimilarity;
 /**
  * Created by 昊 on 2016/11/5.
  */
-interface RecommendFriends {
+public interface RecommendFriends {
     long[] recommendFriends(long uid, int frdnum);
 }

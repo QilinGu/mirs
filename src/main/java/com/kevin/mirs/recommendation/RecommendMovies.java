@@ -7,6 +7,6 @@ import java.util.List;
 /**
  * Created by 昊 on 2016/11/5.
  */
-interface RecommendMovies {
+public interface RecommendMovies {
     List<RecommendedItem> recommendMovies(int uid, int itemNum);
 }

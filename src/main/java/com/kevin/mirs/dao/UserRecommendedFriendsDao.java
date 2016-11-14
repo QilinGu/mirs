@@ -11,12 +11,10 @@ import java.util.HashMap;
 @Repository
 public interface UserRecommendedFriendsDao {
 
-    /*int addUserRecommendedFriends(@Param("uid") int uid,
-                                  @Param("rfid") int rfid);*/
-
     int addUserRecommendedFriends(@Param("uid") int uid,
                                   @Param("rfids") long[] rfids);
-    /*int addUserRecommendedFriends(@Param("array") long[] rfid);*/
 
-    boolean clearUserRecommendedFriends();
+    Integer[] getUserRecommendedFriends(@Param("uid") int uid);
+
+    boolean clearUserRecommendedFriends(@Param("uid") int uid);
 }

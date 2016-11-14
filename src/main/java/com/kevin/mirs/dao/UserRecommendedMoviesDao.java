@@ -13,6 +13,8 @@ public interface UserRecommendedMoviesDao {
     int addUserRecommendedMovies(@Param("uid") int uid,
                                  @Param("rms")List<RecommendedItem> rms);
 
-    boolean clearUserRecommendedMovies();
+    List<UserRecommendedMovies> getUserRecommendedMovies(@Param("uid") int uid);
+
+    boolean clearUserRecommendedMovies(@Param("uid") int uid);
 
 }

@@ -13,7 +13,7 @@ public class RecommendFriendsBySimilarity implements RecommendFriends{
     private DataModel model;
     private UserSimilarity similarity;
     private UserNeighborhood neighborhood;
-    RecommendFriendsBySimilarity(DataModel model){
+    public RecommendFriendsBySimilarity(DataModel model){
         this.model = model;
         try {
             similarity = new PearsonCorrelationSimilarity(model);
