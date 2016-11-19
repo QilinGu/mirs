@@ -17,7 +17,7 @@
 
     <!--静态资源默认配置-->
     <mvc:default-servlet-handler />
-    <mvc:resources location="resources/" mapping="/resources/**"/>
+    <!--<mvc:resources location="resources/" mapping="/resources/**"/>-->
 
     <!-- 配置Swagger -->
     <bean class="com.mangofactory.swagger.configuration.SpringSwaggerConfig"/>
@@ -106,11 +106,11 @@
     <!--</bean>-->
 
     <!--配置ViewResolver-->
-    <bean id="viewResolver"
-          class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/WEB-INF/html/"/>
-        <property name="suffix" value=".html"/>
-    </bean>
+    <!--<bean id="viewResolver"-->
+          <!--class="org.springframework.web.servlet.view.InternalResourceViewResolver">-->
+        <!--<property name="prefix" value="/WEB-INF/html/"/>-->
+        <!--<property name="suffix" value=".html"/>-->
+    <!--</bean>-->
 
     <!-- 扫描web相关的bean -->
     <context:component-scan base-package="com.kevin.mirs.web"/>

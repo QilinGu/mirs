@@ -14,13 +14,13 @@ public class HomeController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index() {
-        return "index";
+        return "Restful services is up!";
     }
-
-    @RequestMapping(value = "/success", method = RequestMethod.GET)
-    public String success() {
-        return "success";
-    }
+//
+//    @RequestMapping(value = "/success", method = RequestMethod.GET)
+//    public String success() {
+//        return "success";
+//    }
 
 
 }

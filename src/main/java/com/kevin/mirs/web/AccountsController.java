@@ -24,11 +24,11 @@ public class AccountsController {
     @Resource
     UserService userService;
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    @ApiOperation(value = "/login", notes = "返回登录页面")
-    public String login() {
-        return "login";
-    }
+//    @RequestMapping(value = "/login", method = RequestMethod.GET)
+//    @ApiOperation(value = "/login", notes = "返回登录页面")
+//    public String login() {
+//        return "login";
+//    }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ApiOperation(value = "/login", notes = "执行登录操作")
@@ -47,11 +47,11 @@ public class AccountsController {
         return "redirect:/";
     }
 
-    @RequestMapping(value = "/register", method = RequestMethod.GET)
-    @ApiOperation(value = "/register", notes = "返回注册页面")
-    public String register() {
-        return "register";
-    }
+//    @RequestMapping(value = "/register", method = RequestMethod.GET)
+//    @ApiOperation(value = "/register", notes = "返回注册页面")
+//    public String register() {
+//        return "register";
+//    }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     @ApiOperation(value = "/register", notes = "执行注册操作")
