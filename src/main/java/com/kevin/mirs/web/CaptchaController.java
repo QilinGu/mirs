@@ -64,7 +64,7 @@ public class CaptchaController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/check/{captcha}", method = RequestMethod.POST)
+    @RequestMapping(value = "/check/{captcha}", method = RequestMethod.GET)
     @ApiOperation(value = "/check/{captcha}", notes = "检测输入的验证码是否正确")
     public MIRSResult<Boolean> checkCaptchaImage(@PathVariable(value = "captcha") String captcha,
                                                  HttpServletRequest request) {
