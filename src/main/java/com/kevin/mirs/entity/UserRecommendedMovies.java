@@ -7,6 +7,7 @@ public class UserRecommendedMovies {
     private int rmid;
     private float rmv;
 
+    UserRecommendedMovies(){}
     public UserRecommendedMovies(Integer id, Integer uid, Integer rmid, Float rmv) {
         this.id = id;
         this.uid = uid;

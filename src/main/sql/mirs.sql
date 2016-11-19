@@ -159,7 +159,7 @@ DROP TABLE IF EXISTS mirs_user_recommended_friends;
 CREATE TABLE mirs_user_recommended_friends(
   `id` INT NOT NULL AUTO_INCREMENT COMMENT '自增ID',
   `uid` INT NOT NULL COMMENT '用户ID',
-  `rfid` VARCHAR(30) COMMENT '推荐好友ID',
+  `rfid` INT COMMENT '推荐好友ID',
   PRIMARY KEY (id),
   UNIQUE (uid,rfid),
   INDEX idx_uid(uid)

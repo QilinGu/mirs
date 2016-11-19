@@ -10,7 +10,7 @@ import javax.annotation.Resource;
 import static org.junit.Assert.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-// 告诉Junit Sping配置文件
+// 告诉Junit Spring配置文件
 @ContextConfiguration({"classpath:spring/spring-dao.xml"})
 public class FriendDaoTest {
 

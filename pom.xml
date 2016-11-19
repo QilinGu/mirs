@@ -237,7 +237,6 @@
             <artifactId>mahout-math</artifactId>
             <version>${mahout-math.version}</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/com.thetransactioncompany/cors-filter -->
         <dependency>
             <groupId>com.thetransactioncompany</groupId>
             <artifactId>cors-filter</artifactId>

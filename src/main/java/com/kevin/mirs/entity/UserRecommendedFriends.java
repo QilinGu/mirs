@@ -4,9 +4,9 @@ package com.kevin.mirs.entity;
  * Created by 昊 on 2016/11/7.
  */
 public class UserRecommendedFriends {
-    private int id;
-    private int uid;
-    private int rfid;
+    private Integer id;
+    private Integer uid;
+    private Integer rfid;
 
     public UserRecommendedFriends(Integer id, Integer uid, Integer rfid) {
         this.id = id;

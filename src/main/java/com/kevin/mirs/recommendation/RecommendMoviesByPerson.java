@@ -20,7 +20,7 @@ public class RecommendMoviesByPerson implements RecommendMovies{
     private UserSimilarity similarity;
     private UserNeighborhood neighborhood;
     private Recommender recommender;
-    RecommendMoviesByPerson(DataModel model, int frdN){
+    public RecommendMoviesByPerson(DataModel model, int frdN){
         this.model = model;
         try {
             similarity = new PearsonCorrelationSimilarity(model);

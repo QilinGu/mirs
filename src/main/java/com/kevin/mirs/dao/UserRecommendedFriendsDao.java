@@ -1,18 +1,20 @@
 package com.kevin.mirs.dao;
 
+import com.google.common.collect.HashMultimap;
 import com.kevin.mirs.entity.UserRecommendedFriends;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
+
+import java.util.HashMap;
 
 
 @Repository
 public interface UserRecommendedFriendsDao {
 
     int addUserRecommendedFriends(@Param("uid") int uid,
-                                  @Param("rfid") int rfid);
+                                  @Param("rfids") long[] rfids);
 
-    boolean clearUserRecommendedFriends();
+    Integer[] getUserRecommendedFriends(@Param("uid") int uid);
 
-    int addFriends(@Param("u") int u,
-                   @Param("f") int f);
+    boolean clearUserRecommendedFriends(@Param("uid") int uid);
 }
