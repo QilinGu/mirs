@@ -33,6 +33,7 @@
         <jcseg.version>2.0.0</jcseg.version>
         <mahout-core.version>0.9</mahout-core.version>
         <mahout-math.version>0.12.2</mahout-math.version>
+        <cors-filter.version>2.5</cors-filter.version>
     </properties>
 
     <dependencies>
@@ -235,6 +236,12 @@
             <groupId>org.apache.mahout</groupId>
             <artifactId>mahout-math</artifactId>
             <version>${mahout-math.version}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.thetransactioncompany/cors-filter -->
+        <dependency>
+            <groupId>com.thetransactioncompany</groupId>
+            <artifactId>cors-filter</artifactId>
+            <version>${cors-filter.version}</version>
         </dependency>
 
     </dependencies>
