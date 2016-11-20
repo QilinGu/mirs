@@ -24,44 +24,6 @@ public class AccountsController {
     @Resource
     UserService userService;
 
-//    @RequestMapping(value = "/login", method = RequestMethod.GET)
-//    @ApiOperation(value = "/login", notes = "返回登录页面")
-//    public String login() {
-//        return "login";
-//    }
-
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    @ApiOperation(value = "/login", notes = "执行登录操作")
-    public String doLogin() {
-        Subject currentUser = SecurityUtils.getSubject();
-
-        // 如果已经登录，则转入登录成功的页面，防止继续登录
-        if (currentUser.isAuthenticated()) {
-            return "redirect:/success";
-        }
-
-        // 如果是 GET 则显示登录页面，
-        // 如果是 POST 则进入登录逻辑处理 UserFormAuthenticationFilter.executeLogin()
-
-
-        return "redirect:/";
-    }
-
-//    @RequestMapping(value = "/register", method = RequestMethod.GET)
-//    @ApiOperation(value = "/register", notes = "返回注册页面")
-//    public String register() {
-//        return "register";
-//    }
-
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
-    @ApiOperation(value = "/register", notes = "执行注册操作")
-    public String doRegister(@RequestParam(value = "username") String username,
-                             @RequestParam(value = "password") String password,
-                             @RequestParam(value = "email") String email,
-                             @RequestParam(value = "verification") String verification) {
-
-        return "redirect:/";
-    }
 
     /**
      * 账号和用户有些微区别，登录后的用户可以看得自己账号的完全信息
