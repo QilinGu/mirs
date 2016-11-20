@@ -31,9 +31,9 @@ public class AccountsController {
      *
      * @return
      */
-    @RequestMapping(value = "/profile/{userId}", method = RequestMethod.GET)
-    @ApiOperation(value = "/profile/{userId}", notes = "返回用户个人信息")
-    public String getProfile(@PathVariable(value = "userId") String userId) {
+    @RequestMapping(value = "/profile", method = RequestMethod.GET)
+    @ApiOperation(value = "/profile", notes = "返回用户个人信息")
+    public String getProfile() {
 
         return "";
     }
@@ -43,21 +43,15 @@ public class AccountsController {
      *
      * @return
      */
-    @RequestMapping(value = "/profile", method = RequestMethod.PATCH)
+    @RequestMapping(value = "/profile", method = RequestMethod.POST)
     @ApiOperation(value = "/profile", notes = "更新用户提交的信息")
     public String setProfile() {
 
         return "";
     }
 
-    @RequestMapping(value = "/password/{userId}", method = RequestMethod.GET)
-    @ApiOperation(value = "/password/{userId}", notes = "返回更改密码页面")
-    public String editPassword(@PathVariable(value = "userId") String userId) {
 
-        return "newpage";
-    }
-
-    @RequestMapping(value = "/password", method = RequestMethod.PUT)
+    @RequestMapping(value = "/password", method = RequestMethod.POST)
     @ApiOperation(value = "/password", notes = "执行更改密码操作")
     public String updatePassword(@RequestParam(value = "email") String email,
                                  @RequestParam(value = "password") String password) {
@@ -66,12 +60,6 @@ public class AccountsController {
         return "";
     }
 
-    @RequestMapping(value = "/forget-password", method = RequestMethod.GET)
-    @ApiOperation(value = "/forget-password", notes = "返回忘记密码页面")
-    public String forgetPassword() {
-
-        return "";
-    }
 
     @RequestMapping(value = "/reset-password", method = RequestMethod.POST)
     @ApiOperation(value = "/reset-password", notes = "重置用户密码")

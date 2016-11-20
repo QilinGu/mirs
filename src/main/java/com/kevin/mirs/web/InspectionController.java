@@ -21,8 +21,8 @@ public class InspectionController {
     UserService userService;
 
     @ResponseBody
-    @RequestMapping(value = "/userName", method = RequestMethod.POST)
-    @ApiOperation(value = "/userName", notes = "检查用户名是否被注册")
+    @RequestMapping(value = "/username", method = RequestMethod.POST)
+    @ApiOperation(value = "/username", notes = "检查用户名是否被注册")
     public MIRSResult<Boolean> inspectUserName(@RequestParam(value = "name") String name) {
 
         int registered = userService.checkUsernameRegistered(name);
