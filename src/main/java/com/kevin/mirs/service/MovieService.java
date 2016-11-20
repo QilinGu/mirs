@@ -31,7 +31,7 @@ public class MovieService {
         return movie;
     }
 
-    public ArrayList<SimpleMovie> getDailyMovie() {
+    public ArrayList<SimpleMovie> getTodayMovies() {
 
         int limit = 6;
         ArrayList<SimpleMovie> suggestionMovies = null;

@@ -4,7 +4,6 @@ import com.kevin.mirs.dto.MIRSResult;
 import com.kevin.mirs.entity.Movie;
 import com.kevin.mirs.service.MovieService;
 import com.kevin.mirs.vo.SimpleMovie;
-import com.kevin.mirs.vo.SuggestionMovie;
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
@@ -19,8 +18,8 @@ import javax.annotation.Resource;
 import java.util.ArrayList;
 
 @Controller
-@RequestMapping(value = "/movie")
-@Api(value = "/movie", description = "电影相关的接口")
+@RequestMapping(value = "/movies")
+@Api(value = "/movies", description = "电影相关的接口")
 public class MovieController {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -44,11 +43,11 @@ public class MovieController {
 
 
     @ResponseBody
-    @RequestMapping(value = "/daily", method = RequestMethod.GET)
-    @ApiOperation(value = "/daily", notes = "获得每日的首页电影推荐")
-    public MIRSResult<ArrayList<SimpleMovie>> getDailyMovie() {
+    @RequestMapping(value = "/today", method = RequestMethod.GET)
+    @ApiOperation(value = "/today", notes = "获得每日的首页电影推荐")
+    public MIRSResult<ArrayList<SimpleMovie>> getTodayMovies() {
 
-        ArrayList<SimpleMovie> simpleMovies = movieService.getDailyMovie();
+        ArrayList<SimpleMovie> simpleMovies = movieService.getTodayMovies();
 
         if(simpleMovies != null) {
             return new MIRSResult<ArrayList<SimpleMovie>>(true, simpleMovies);

@@ -21,7 +21,7 @@ public class SearchServiceTest {
     @Test
     public void searchMovie() throws Exception {
 //        System.out.println(searchService.searchMovie("人妖"));
-        System.out.println(searchService.searchMovie("1"));
+        System.out.println(searchService.searchMovie("1", 1));
     }
 
 
