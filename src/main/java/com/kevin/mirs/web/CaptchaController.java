@@ -38,8 +38,8 @@ public class CaptchaController {
      * @return 验证码
      * @throws IOException
      */
-    @RequestMapping(value = "/get", method = RequestMethod.GET)
-    @ApiOperation(value = "/get", notes = "生成带验证码的图片")
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @ApiOperation(value = "/", notes = "生成带验证码的图片")
     public ModelAndView getCaptchaImage(HttpServletRequest request,
                                         HttpServletResponse response) throws IOException {
 
@@ -64,9 +64,9 @@ public class CaptchaController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/check/{captcha}", method = RequestMethod.GET)
-    @ApiOperation(value = "/check/{captcha}", notes = "检测输入的验证码是否正确")
-    public MIRSResult<Boolean> checkCaptchaImage(@PathVariable(value = "captcha") String captcha,
+    @RequestMapping(value = "/", method = RequestMethod.POST)
+    @ApiOperation(value = "/", notes = "检测输入的验证码是否正确")
+    public MIRSResult<Boolean> checkCaptchaImage(@RequestParam(value = "captcha") String captcha,
                                                  HttpServletRequest request) {
 
         String original =(String) request.getSession().getAttribute(Constants.KAPTCHA_SESSION_KEY);
