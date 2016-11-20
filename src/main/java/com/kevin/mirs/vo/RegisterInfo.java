@@ -19,6 +19,26 @@ public class RegisterInfo {
         this.registerIp = registerIp;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public Timestamp getRegisterTime() {
+        return registerTime;
+    }
+
+    public String getRegisterIp() {
+        return registerIp;
+    }
+
     @Override
     public String toString() {
         return "RegisterInfo{" +

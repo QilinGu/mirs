@@ -1,6 +1,8 @@
 package com.kevin.mirs.utils;
 
 
+import org.apache.shiro.crypto.hash.Sha512Hash;
+
 import java.util.Random;
 
 public class EncryptionUtils {
@@ -14,6 +16,10 @@ public class EncryptionUtils {
             buf.append(str.charAt(num));
         }
         return buf.toString();
+    }
+
+    public static String SHA512Encode(String content, String salt) {
+        return new Sha512Hash(content, salt, 100).toString();
     }
 
 }

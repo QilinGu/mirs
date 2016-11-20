@@ -11,6 +11,14 @@ public class LoginInfo {
         this.token = token;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
     @Override
     public String toString() {
         return "LoginInfo{" +

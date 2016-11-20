@@ -2,11 +2,15 @@ package com.kevin.mirs.service;
 
 
 import com.kevin.mirs.dao.UserDao;
+import com.kevin.mirs.entity.User;
+import com.kevin.mirs.utils.EncryptionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.sql.Timestamp;
+import java.util.Date;
 
 @Service
 public class UserService {
@@ -23,11 +27,29 @@ public class UserService {
      * @param password 用户提交的密码
      * @param email 用户邮箱
      * @param verification 验证码
-     * @return
+     * @param ip 用户IP
+     * @return User实例:成功；null：失败
      */
-    public int addUer(String username, String password, String email, String verification) {
+    public User addUer(String username, String password, String email, String verification, String ip) {
 
-        return 0;
+        // TODO 验证验证码
+
+        String salt = EncryptionUtils.getSalt(128);
+        password = EncryptionUtils.SHA512Encode(password, salt);
+        Timestamp registerTime = new Timestamp(new Date().getTime());
+
+        User user = new User(username, password, salt, email, registerTime, ip);
+
+        try {
+            if (userDao.addUser(user) == 1) {
+                return user;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            logger.info("注册时发生异常" + e);
+        }
+
+        return null;
     }
 
 
