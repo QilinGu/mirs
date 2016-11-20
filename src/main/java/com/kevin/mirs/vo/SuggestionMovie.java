@@ -5,9 +5,9 @@ public class SuggestionMovie {
 
     private final String URL_PERFIX = "";
 
-    String url;
-    String name;
-    String pic;
+    private String url;
+    private String name;
+    private String pic;
 
     public SuggestionMovie(Integer id, String name, String pic) {
         this.url = URL_PERFIX + id;

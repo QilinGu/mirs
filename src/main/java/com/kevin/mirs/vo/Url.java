@@ -3,7 +3,7 @@ package com.kevin.mirs.vo;
 
 public class Url {
 
-    String url;
+    private String url;
 
     public Url(String url) {
         this.url = url;
