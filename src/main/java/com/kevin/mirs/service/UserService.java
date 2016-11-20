@@ -57,9 +57,21 @@ public class UserService {
      * 登录时通过用户名检查用户密码
      * @param username 用户名
      * @param password 用户提交的密码
-     * @return
+     * @return 1:成功；0:失败
      */
     public int checkPasswordByUsername(String username, String password) {
+
+        try {
+            User user = userDao.getUserByUsername(username);
+
+            password = EncryptionUtils.SHA512Encode(password, user.getSalt());
+            if (password.equals(user.getPassword())) {
+                return 1;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            logger.info("通过用户名验证密码时发生错误" + e);
+        }
 
         return 0;
     }
@@ -72,6 +84,18 @@ public class UserService {
      * @return
      */
     public int checkPasswordByUserEmail(String email, String password) {
+
+        try {
+            User user = userDao.getUserByUserEmail(email);
+
+            password = EncryptionUtils.SHA512Encode(password, user.getSalt());
+            if (password.equals(user.getPassword())) {
+                return 1;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            logger.info("通过邮箱验证密码时发生错误" + e);
+        }
 
         return 0;
     }

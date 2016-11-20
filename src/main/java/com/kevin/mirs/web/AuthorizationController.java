@@ -1,10 +1,13 @@
 package com.kevin.mirs.web;
 
 
+import com.google.code.kaptcha.Constants;
 import com.kevin.mirs.dto.MIRSResult;
 import com.kevin.mirs.entity.User;
 import com.kevin.mirs.service.UserService;
+import com.kevin.mirs.utils.FormatUtils;
 import com.kevin.mirs.utils.IPUtils;
+import com.kevin.mirs.vo.LoginInfo;
 import com.kevin.mirs.vo.RegisterInfo;
 import com.wordnik.swagger.annotations.ApiOperation;
 import org.apache.shiro.SecurityUtils;
@@ -32,18 +35,35 @@ public class AuthorizationController {
     @ResponseBody
     @RequestMapping(value = "/token", method = RequestMethod.POST)
     @ApiOperation(value = "/token", notes = "登录，返回用户一个Token")
-    public String doLogin(@RequestParam(value = "username") String username,
-                          @RequestParam(value = "password") String password,
-                          @RequestParam(value = "captcha") String captcha) {
+    public MIRSResult<LoginInfo> doLogin(@RequestParam(value = "username") String username,
+                                         @RequestParam(value = "password") String password,
+                                         @RequestParam(value = "captcha") String captcha,
+                                         HttpServletRequest request) {
 //        Subject currentUser = SecurityUtils.getSubject();
 //
 //        // 如果已经登录，则转入登录成功的页面，防止继续登录
 //        if (currentUser.isAuthenticated()) {
 //            return "";
 //        }
+        int vaild = 0;
+        String original = (String) request.getSession().getAttribute(Constants.KAPTCHA_SESSION_KEY);
 
+        if (!captcha.equals(original)) {
+            return new MIRSResult<>(false, "验证码错误！");
+        }
+        if (FormatUtils.emailFormat(username)) {
+            vaild = userService.checkPasswordByUserEmail(username, password);
+        } else {
+            vaild = userService.checkPasswordByUsername(username, password);
+        }
+        if (vaild == 1) {
+            String token = "";
+            LoginInfo loginInfo = new LoginInfo(username, token);
+            return new MIRSResult<>(true, loginInfo);
+        } else {
+            return new MIRSResult<>(false, "用户名或密码错误！");
+        }
 
-        return "";
     }
 
     @ResponseBody
@@ -64,9 +84,9 @@ public class AuthorizationController {
             RegisterInfo registerInfo = new RegisterInfo(user.getUsername(),
                     user.getEmail(), "", user.getRegisterTime(), user.getRegisterIp());
             System.out.println(registerInfo);
-            return new MIRSResult<RegisterInfo>(true, registerInfo);
+            return new MIRSResult<>(true, registerInfo);
         } else {
-            return new MIRSResult<RegisterInfo>(false, "注册失败！");
+            return new MIRSResult<>(false, "注册失败！");
         }
     }
 
