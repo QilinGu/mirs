@@ -8,17 +8,16 @@ import com.kevin.mirs.service.UserService;
 import com.kevin.mirs.utils.FormatUtils;
 import com.kevin.mirs.utils.IPUtils;
 import com.kevin.mirs.vo.LoginInfo;
+import com.kevin.mirs.vo.LoginUser;
 import com.kevin.mirs.vo.RegisterInfo;
+import com.kevin.mirs.vo.RegisterUser;
 import com.wordnik.swagger.annotations.ApiOperation;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -35,9 +34,7 @@ public class AuthorizationController {
     @ResponseBody
     @RequestMapping(value = "/token", method = RequestMethod.POST)
     @ApiOperation(value = "/token", notes = "登录，返回用户一个Token")
-    public MIRSResult<LoginInfo> doLogin(@RequestParam(value = "username") String username,
-                                         @RequestParam(value = "password") String password,
-                                         @RequestParam(value = "captcha") String captcha,
+    public MIRSResult<LoginInfo> doLogin(@RequestBody LoginUser loginUser,
                                          HttpServletRequest request) {
 //        Subject currentUser = SecurityUtils.getSubject();
 //
@@ -45,20 +42,21 @@ public class AuthorizationController {
 //        if (currentUser.isAuthenticated()) {
 //            return "";
 //        }
+        System.out.println(loginUser);
         int vaild = 0;
         String original = (String) request.getSession().getAttribute(Constants.KAPTCHA_SESSION_KEY);
 
-        if (!captcha.equals(original)) {
+        if (!loginUser.getCaptcha().equals(original)) {
             return new MIRSResult<>(false, "验证码错误！");
         }
-        if (FormatUtils.emailFormat(username)) {
-            vaild = userService.checkPasswordByUserEmail(username, password);
+        if (FormatUtils.emailFormat(loginUser.getUsername())) {
+            vaild = userService.checkPasswordByUserEmail(loginUser.getUsername(), loginUser.getPassword());
         } else {
-            vaild = userService.checkPasswordByUsername(username, password);
+            vaild = userService.checkPasswordByUsername(loginUser.getUsername(), loginUser.getPassword());
         }
         if (vaild == 1) {
             String token = "";
-            LoginInfo loginInfo = new LoginInfo(username, token);
+            LoginInfo loginInfo = new LoginInfo(loginUser.getUsername(), token);
             return new MIRSResult<>(true, loginInfo);
         } else {
             return new MIRSResult<>(false, "用户名或密码错误！");
@@ -69,15 +67,17 @@ public class AuthorizationController {
     @ResponseBody
     @RequestMapping(value = "/account", method = RequestMethod.POST)
     @ApiOperation(value = "/account", notes = "注册一个账号")
-    public MIRSResult<RegisterInfo> doRegister(@RequestParam(value = "username") String username,
-                                               @RequestParam(value = "password") String password,
-                                               @RequestParam(value = "email") String email,
-                                               @RequestParam(value = "verification") String verification,
+    public MIRSResult<RegisterInfo> doRegister(@RequestBody RegisterUser registerUser,
                                                HttpServletRequest request) {
 
         String ip = IPUtils.getIpAddr(request);
 
-        User user = userService.addUer(username, password, email, verification, ip);
+        User user = userService.addUer(
+                registerUser.getUsername(),
+                registerUser.getPassward(),
+                registerUser.getEmail(),
+                registerUser.getVerification(),
+                ip);
 
         if (user != null) {
             // TODO 增加token
