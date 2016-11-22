@@ -6,8 +6,21 @@
 
     <insert id="addUserRecommendedMovies">
         INSERT ignore INTO mirs_user_recommended_movies(uid, rmid, rmv)
-        VALUES (#{uid}, #{rmid}, #{rmv})
+        VALUES
+        <foreach collection="rms" item="rm" index="index" separator=",">
+            (#{uid}, #{rm.itemID}, #{rm.value})
+        </foreach>
     </insert>
+
+    <delete id="clearUserRecommendedMovies">
+        DELETE FROM mirs_user_recommended_movies
+        WHERE uid = #{uid}
+    </delete>
+
+    <select id="getUserRecommendedMovies" resultType="UserRecommendedMovies">
+        SELECT rmid rmv FROM mirs_user_recommended_movies
+        WHERE uid = #{uid}
+    </select>
 
 
 </mapper>

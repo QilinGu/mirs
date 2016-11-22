@@ -1,7 +1,6 @@
 package com.kevin.mirs.dao;
 
 import com.kevin.mirs.entity.UserRecommendedMovies;
-import com.sun.tools.doclets.formats.html.SourceToHTMLConverter;
 import java.util.ArrayList;
 import java.util.List;
 

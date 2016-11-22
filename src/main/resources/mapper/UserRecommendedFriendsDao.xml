@@ -6,8 +6,21 @@
 
     <insert id="addUserRecommendedFriends">
         INSERT ignore INTO mirs_user_recommended_friends(uid, rfid)
-        VALUES (#{uid}, #{rfid})
+        VALUES
+        <foreach collection="rfids" item="rfid" index="index" separator=",">
+            (#{uid}, #{rfid})
+        </foreach>
     </insert>
+
+    <delete id="clearUserRecommendedFriends">
+        DELETE FROM mirs_user_recommended_friends
+        WHERE uid = #{uid}
+    </delete>
+
+    <select id="getUserRecommendedFriends" resultType="java.lang.Integer">
+        SELECT rfid FROM mirs_user_recommended_friends
+        WHERE uid = #{uid}
+    </select>
 
 
 
