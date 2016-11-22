@@ -62,6 +62,9 @@ public class UserService {
 
         try {
             User user = userDao.getUserByUsername(username);
+            if (user == null) {
+                return 0;
+            }
 
             password = EncryptionUtils.SHA512Encode(password, user.getSalt());
             if (password.equals(user.getPassword())) {
@@ -86,6 +89,9 @@ public class UserService {
 
         try {
             User user = userDao.getUserByUserEmail(email);
+            if (user == null) {
+                return 0;
+            }
 
             password = EncryptionUtils.SHA512Encode(password, user.getSalt());
             if (password.equals(user.getPassword())) {
