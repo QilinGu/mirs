@@ -48,6 +48,9 @@ public class LuceneService {
      */
     @PostConstruct
     public void indexMovie() {
+
+        logger.info("--------------------indexMovie--------------------");
+
         int limit = 100;
         int offset = 0;
         ArrayList<Movie> movieArrayList;
@@ -143,7 +146,7 @@ public class LuceneService {
      */
     @PreDestroy
     public void deleteAllIndexes() {
-        System.out.println("---------------删除索引-------------");
+        logger.info("--------------------deleteAllIndexes--------------------");
         try {
             indexWriter.deleteAll();
         } catch (IOException e) {

@@ -10,6 +10,8 @@ import org.apache.lucene.queryparser.classic.QueryParser;
 import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.search.Query;
 import org.apache.lucene.search.ScoreDoc;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -17,6 +19,8 @@ import java.util.ArrayList;
 
 @Service
 public class SearchService {
+
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     private final String[] DEFAULT_FIELDS = {
             MovieColumnEnum.ID.getName(),
@@ -46,6 +50,8 @@ public class SearchService {
      * 按照指定条件查询电影信息
      */
     public ArrayList<SuggestionMovie> searchMovie(String keyword, int limit) {
+
+        logger.info("--------------------searchMovie--------------------");
 
         int searchLimit = (limit > 0) ? limit : DEFAULT_LIMIT;
 

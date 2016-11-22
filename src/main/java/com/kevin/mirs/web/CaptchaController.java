@@ -42,6 +42,8 @@ public class CaptchaController {
     @ApiOperation(value = "", notes = "生成带验证码的图片")
     public ModelAndView getCaptchaImage(HttpServletRequest request,
                                         HttpServletResponse response) throws IOException {
+        logger.info("--------------------GET:/captcha--------------------");
+
 
         response.setDateHeader("Expires", 0);
         response.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
@@ -68,6 +70,7 @@ public class CaptchaController {
     @ApiOperation(value = "", notes = "检测输入的验证码是否正确")
     public MIRSResult<Boolean> checkCaptchaImage(@RequestParam(value = "captcha") String captcha,
                                                  HttpServletRequest request) {
+        logger.info("--------------------POST:/captcha--------------------");
 
         String original =(String) request.getSession().getAttribute(Constants.KAPTCHA_SESSION_KEY);
         logger.info("======用户输入的验证码：" + captcha);

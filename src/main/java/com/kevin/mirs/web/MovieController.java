@@ -32,6 +32,8 @@ public class MovieController {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ApiOperation(value = "/{id}", notes = "通过电影的ID查询电影信息")
     public MIRSResult<Movie> getMovieByMovieId(@PathVariable(value = "id") int id) {
+        logger.info("--------------------GET:/movies/" + id + "--------------------");
+
         Movie movie = movieService.getMovieByMovieId(id);
 
         if(movie != null) {
@@ -46,6 +48,7 @@ public class MovieController {
     @RequestMapping(value = "/today", method = RequestMethod.GET)
     @ApiOperation(value = "/today", notes = "获得每日的首页电影推荐")
     public MIRSResult<ArrayList<SimpleMovie>> getTodayMovies() {
+        logger.info("--------------------GET:/movies/today--------------------");
 
         ArrayList<SimpleMovie> simpleMovies = movieService.getTodayMovies();
 

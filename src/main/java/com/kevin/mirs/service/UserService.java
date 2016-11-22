@@ -32,6 +32,8 @@ public class UserService {
      */
     public User addUer(String username, String password, String email, String verification, String ip) {
 
+        logger.info("--------------------addUser--------------------");
+
 
         String salt = EncryptionUtils.getSalt(128);
         password = EncryptionUtils.SHA512Encode(password, salt);
@@ -60,6 +62,8 @@ public class UserService {
      */
     public int checkPasswordByUsername(String username, String password) {
 
+        logger.info("--------------------checkPasswordByUsername--------------------");
+
         try {
             User user = userDao.getUserByUsername(username);
             if (user == null) {
@@ -87,6 +91,8 @@ public class UserService {
      */
     public int checkPasswordByUserEmail(String email, String password) {
 
+        logger.info("--------------------checkPasswordByUserEmail--------------------");
+
         try {
             User user = userDao.getUserByUserEmail(email);
             if (user == null) {
@@ -112,6 +118,9 @@ public class UserService {
      * @return 0：未注册，1：已注册
      */
     public int checkUsernameRegistered(String username) {
+
+        logger.info("--------------------checkUsernameRegistered--------------------");
+
         int registered = 1;
 
         try {
@@ -130,6 +139,9 @@ public class UserService {
      * @return 0：未注册，1：已注册
      */
     public int checkEmailRegistered(String email) {
+
+        logger.info("--------------------checkEmailRegistered--------------------");
+
         int registered = 1;
 
         try {

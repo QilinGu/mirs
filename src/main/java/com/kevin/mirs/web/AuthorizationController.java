@@ -40,6 +40,8 @@ public class AuthorizationController {
 //        if (currentUser.isAuthenticated()) {
 //            return "";
 //        }
+        logger.info("--------------------POST:/authorization/token--------------------");
+
         System.out.println(loginUser);
         int vaild = 0;
         String original = (String) request.getSession().getAttribute(Constants.KAPTCHA_SESSION_KEY);
@@ -67,6 +69,7 @@ public class AuthorizationController {
     @ApiOperation(value = "/account", notes = "注册一个账号")
     public MIRSResult<RegisterInfo> doRegister(@RequestBody RegisterUser registerUser,
                                                HttpServletRequest request) {
+        logger.info("--------------------POST:/authorization/account--------------------");
 
         String ip = IPUtils.getIpAddr(request);
 

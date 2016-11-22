@@ -34,6 +34,7 @@ public class AccountsController {
     @RequestMapping(value = "/profile", method = RequestMethod.GET)
     @ApiOperation(value = "/profile", notes = "返回用户个人信息")
     public String getProfile() {
+        logger.info("--------------------GET:/accounts/profile--------------------");
 
         return "";
     }
@@ -46,6 +47,7 @@ public class AccountsController {
     @RequestMapping(value = "/profile", method = RequestMethod.POST)
     @ApiOperation(value = "/profile", notes = "更新用户提交的信息")
     public String setProfile() {
+        logger.info("--------------------POST:/accounts/profile--------------------");
 
         return "";
     }
@@ -55,6 +57,7 @@ public class AccountsController {
     @ApiOperation(value = "/password", notes = "执行更改密码操作")
     public String updatePassword(@RequestParam(value = "email") String email,
                                  @RequestParam(value = "password") String password) {
+        logger.info("--------------------POST:/accounts/password--------------------");
 
         //返回更新状态
         return "";
@@ -66,6 +69,7 @@ public class AccountsController {
     public String resetPassword(@RequestParam(value = "email") String email,
                                 @RequestParam(value = "password") String password,
                                 @RequestParam(value = "verification") String verification) {
+        logger.info("--------------------POST:/accounts/reset-password--------------------");
 
         return "";
     }

@@ -24,6 +24,7 @@ public class InspectionController {
     @RequestMapping(value = "/username", method = RequestMethod.POST)
     @ApiOperation(value = "/username", notes = "检查用户名是否被注册")
     public MIRSResult<Boolean> inspectUserName(@RequestParam(value = "name") String name) {
+        logger.info("--------------------POST:/inspection/username--------------------");
 
         int registered = userService.checkUsernameRegistered(name);
         if (registered == 0) {
@@ -37,6 +38,7 @@ public class InspectionController {
     @RequestMapping(value = "/userEmail", method = RequestMethod.POST)
     @ApiOperation(value = "/userEmail", notes = "检查用户邮箱是否被注册")
     public MIRSResult<Boolean> inspectUserEmail(@RequestParam(value = "email") String email) {
+        logger.info("--------------------POST:/inspection/userEmail--------------------");
 
         int registered = userService.checkEmailRegistered(email);
         if (registered == 0) {
@@ -50,6 +52,7 @@ public class InspectionController {
     @RequestMapping(value = "/verification", method = RequestMethod.POST)
     @ApiOperation(value = "/verification", notes = "检查用户输入的邮箱的验证码是否正确")
     public MIRSResult<Boolean> inspectVerification(@RequestParam(value = "verification") String verification) {
+        logger.info("--------------------POST:/inspection/verification--------------------");
 
         //TODO 查询SESSION,判断验证码是否正确
 

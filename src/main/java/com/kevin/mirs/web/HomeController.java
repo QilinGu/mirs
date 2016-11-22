@@ -25,6 +25,7 @@ public class HomeController {
 
     @RequestMapping(value = "/email", method = RequestMethod.POST)
     public void sendEmail (@RequestParam(value = "email") String  email) {
+        logger.info("--------------------POST:/email--------------------");
 
         // 验证邮箱格式
 

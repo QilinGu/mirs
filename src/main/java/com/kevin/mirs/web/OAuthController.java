@@ -32,8 +32,7 @@ public class OAuthController {
             method = RequestMethod.POST)
     @ApiOperation(value = "{type}", notes = "用于获得第三方授权认证的URL")
     public MIRSResult<Url> oAuthUrl(@PathVariable(value = "type") String type) {
-
-        System.out.println(type);
+        logger.info("--------------------POST:/oauth/" + type + "--------------------");
 
         CustomOAuthService oAuthService = oAuthServices.getoAuthServiceByType(type);
 
@@ -50,6 +49,8 @@ public class OAuthController {
     @ApiIgnore
     public String oAuthCallback(@RequestParam(value = "code", required = true) String code,
                                 @PathVariable(value = "type") String type) {
+
+        logger.info("--------------------GET:/oauth/" + type + "/callback--------------------");
 
         CustomOAuthService oAuthService = oAuthServices.getoAuthServiceByType(type);
         Token accessToken = oAuthService.getAccessToken(null, new Verifier(code));

@@ -22,6 +22,9 @@ public class MovieService {
 
 
     public Movie getMovieByMovieId(int id) {
+
+        logger.info("--------------------getMovieByMovieId--------------------");
+
         Movie movie = null;
         try {
             movie = movieDao.getMovieById(id);
@@ -32,6 +35,8 @@ public class MovieService {
     }
 
     public ArrayList<SimpleMovie> getTodayMovies() {
+
+        logger.info("--------------------getTodayMovies--------------------");
 
         int limit = 6;
         ArrayList<SimpleMovie> suggestionMovies = null;
