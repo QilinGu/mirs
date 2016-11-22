@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kevin.mirs.dao.RegisterSessionDao">
+
+    <insert id="add">
+        INSERT INTO mirs_register_session(create_time, email, client_ip, expire_time)
+          VALUES (#{createTime}, #{email}, #{clientIp}, #{expireTime})
+    </insert>
+
+    <update id="updateStatusByEmail">
+        UPDATE mirs_register_session
+        SET status = #{status}
+        WHERE email = #{email}
+        ORDER BY expire_time DESC
+        LIMIT 1
+    </update>
+
+    <update id="updateStatusByExpireTime">
+        UPDATE mirs_register_session
+        SET status = #{status}
+        WHERE expire_time = #{expireTime}
+    </update>
+
+    <select id="getExpireTimeByEmail" resultType="java.sql.Timestamp">
+        SELECT expire_time
+        FROM mirs_register_session
+        WHERE email = #{email}
+        ORDER BY expire_time DESC
+        LIMIT 1
+    </select>
+
+    <select id="getExpireTimeByStatus" resultType="java.sql.Timestamp">
+        SELECT expire_time
+        FROM mirs_register_session
+        WHERE status = #{status}
+        ORDER BY #{orderBy} DESC
+        LIMIT #{limit}
+        OFFSET #{offset}
+    </select>
+</mapper>

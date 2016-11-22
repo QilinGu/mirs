@@ -23,4 +23,7 @@
     <!--配置基于注解的声明式事务-->
     <tx:annotation-driven transaction-manager="transactionManager"/>
 
+    <!-- 定时任务 -->
+    <context:component-scan base-package="com.kevin.mirs.jobs"></context:component-scan>
+
 </beans>
