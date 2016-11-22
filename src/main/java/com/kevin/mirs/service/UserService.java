@@ -32,7 +32,6 @@ public class UserService {
      */
     public User addUer(String username, String password, String email, String verification, String ip) {
 
-        // TODO 验证验证码
 
         String salt = EncryptionUtils.getSalt(128);
         password = EncryptionUtils.SHA512Encode(password, salt);

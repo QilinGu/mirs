@@ -12,8 +12,6 @@ import com.kevin.mirs.vo.LoginUser;
 import com.kevin.mirs.vo.RegisterInfo;
 import com.kevin.mirs.vo.RegisterUser;
 import com.wordnik.swagger.annotations.ApiOperation;
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -72,9 +70,14 @@ public class AuthorizationController {
 
         String ip = IPUtils.getIpAddr(request);
 
+        // TODO 验证验证码
+
+
+        System.out.println(registerUser);
+
         User user = userService.addUer(
                 registerUser.getUsername(),
-                registerUser.getPassward(),
+                registerUser.getPassword(),
                 registerUser.getEmail(),
                 registerUser.getVerification(),
                 ip);
