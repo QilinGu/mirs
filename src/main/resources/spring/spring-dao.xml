@@ -29,7 +29,7 @@
         <!-- 关闭连接后不自动commit -->
         <property name="autoCommitOnClose" value="false"/>
         <!-- 获取连接超时时间 -->
-        <property name="checkoutTimeout" value="1000"/>
+        <property name="checkoutTimeout" value="10000"/>
         <!-- 当连接失败重试次数 -->
         <property name="acquireRetryAttempts" value="2"/>
     </bean>

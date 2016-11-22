@@ -5,16 +5,16 @@ public class RegisterUser {
 
     private String username;
     private String email;
-    private String passward;
+    private String password;
     private String verification;
 
     public RegisterUser() {
     }
 
-    public RegisterUser(String username, String email, String passward, String verification) {
+    public RegisterUser(String username, String email, String password, String verification) {
         this.username = username;
         this.email = email;
-        this.passward = passward;
+        this.password = password;
         this.verification = verification;
     }
 
@@ -26,8 +26,8 @@ public class RegisterUser {
         return email;
     }
 
-    public String getPassward() {
-        return passward;
+    public String getPassword() {
+        return password;
     }
 
     public String getVerification() {
@@ -39,7 +39,7 @@ public class RegisterUser {
         return "RegisterUser{" +
                 "username='" + username + '\'' +
                 ", email='" + email + '\'' +
-                ", passward='" + passward + '\'' +
+                ", password='" + password + '\'' +
                 ", verification='" + verification + '\'' +
                 '}';
     }
