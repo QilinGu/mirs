@@ -73,7 +73,11 @@ public class AuthorizationController {
 
         String ip = IPUtils.getIpAddr(request);
 
-        // TODO 验证验证码
+        String originVerification = (String) request.getSession().getAttribute(UserService.VERIFICATION);
+
+        if (!originVerification.equals(registerUser.getVerification())) {
+            return new MIRSResult<>(false, "验证码不正确!");
+        }
 
 
         System.out.println(registerUser);
