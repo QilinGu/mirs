@@ -15,6 +15,12 @@ import java.util.Date;
 @Service
 public class UserService {
 
+    // 过期时间
+    public static final long EXPIRED_TIME = 30 * 60 * 1000;
+
+    // 注册验证SESSION ID
+    public static final String VERIFICATION = "VERIFICATION_SESSION";
+
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Resource
