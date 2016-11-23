@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 
 @Controller
@@ -51,12 +52,16 @@ public class InspectionController {
     @ResponseBody
     @RequestMapping(value = "/verification", method = RequestMethod.POST)
     @ApiOperation(value = "/verification", notes = "检查用户输入的邮箱的验证码是否正确")
-    public MIRSResult<Boolean> inspectVerification(@RequestParam(value = "verification") String verification) {
+    public MIRSResult<Boolean> inspectVerification(@RequestParam(value = "verification") String verification,
+                                                   HttpServletRequest request) {
         logger.info("--------------------POST:/inspection/verification--------------------");
 
-        //TODO 查询SESSION,判断验证码是否正确
+        String originVerification = (String) request.getSession().getAttribute(UserService.VERIFICATION);
 
-        return new MIRSResult<Boolean>(true, true);
+        if (originVerification.equals(verification)) {
+            return new MIRSResult<Boolean>(true, true);
+        }
+        return new MIRSResult<Boolean>(false, "验证码不对哦!");
     }
 
 
