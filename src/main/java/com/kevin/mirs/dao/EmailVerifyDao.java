@@ -1,27 +1,32 @@
 package com.kevin.mirs.dao;
 
-
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Timestamp;
 
 @Repository
-public interface RegisterSessionDao {
+public interface EmailVerifyDao {
+
 
     /**
-     * 添加一条注册信息
-     * @param createTime 注册信息创建时间
-     * @param email 注册邮箱
-     * @param clientIp 注册ip
-     * @param expireTime 注册信息失效时间
-     * @return 1：成功；0：失败
+     * 添加一条邮件验证记录
+     * @param email 邮件
+     * @param createTime 创建时间
+     * @param expireTime 过期时间
+     * @param channel 验证渠道
+     * @param verifyCode 验证码
+     * @param verifyType 验证类型
+     * @param requestIp 请求IP
+     * return 1:添加成功；0：添加失败
      */
-    int add(@Param("createTime") Timestamp createTime,
-            @Param("email") String email,
-            @Param("clientIp") String clientIp,
-            @Param("expireTime") Timestamp expireTime);
-
+    int add(@Param("email") String email,
+            @Param("createTime") Timestamp createTime,
+            @Param("expireTime") Timestamp expireTime,
+            @Param("channel") Character channel,
+            @Param("verifyCode") String verifyCode,
+            @Param("verifyType") Character verifyType,
+            @Param("requestIp") String requestIp);
 
     /**
      *  通过email更新注册状态
@@ -31,7 +36,6 @@ public interface RegisterSessionDao {
      */
     int updateStatusByEmail(@Param("email") String email,
                             @Param("status") Character status);
-
 
     /**
      * 根据时间戳批量更新信息
@@ -62,5 +66,4 @@ public interface RegisterSessionDao {
                                     @Param("orderBy") String orderBy,
                                     @Param("limit") int limit,
                                     @Param("offset") int offset);
-
 }
