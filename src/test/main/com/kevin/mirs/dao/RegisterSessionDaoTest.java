@@ -1,6 +1,6 @@
 package com.kevin.mirs.dao;
 
-import com.kevin.mirs.enums.RegisterSessionEnum;
+import com.kevin.mirs.enums.RSStatusEnum;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -33,7 +33,7 @@ public class RegisterSessionDaoTest {
     public void updateStatusByEmail() throws Exception {
         System.out.println(registerSessionDao.updateStatusByEmail(
                 "22@qq.com",
-                RegisterSessionEnum.REG_EXPIRED.getStatus()));
+                RSStatusEnum.EXPIRED.getStatus()));
     }
 
     @Test

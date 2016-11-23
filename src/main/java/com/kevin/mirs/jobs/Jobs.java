@@ -2,7 +2,7 @@ package com.kevin.mirs.jobs;
 
 
 import com.kevin.mirs.dao.RegisterSessionDao;
-import com.kevin.mirs.enums.RegisterSessionEnum;
+import com.kevin.mirs.enums.RSStatusEnum;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Async;
@@ -47,7 +47,7 @@ public class Jobs {
             if (expireTime.getTime() < new Date().getTime()) {
                 total += registerSessionDao.updateStatusByExpireTime(
                         expireTime,
-                        RegisterSessionEnum.REG_EXPIRED.getStatus());
+                        RSStatusEnum.EXPIRED.getStatus());
             }
         }
 
