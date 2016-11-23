@@ -18,14 +18,14 @@ import java.util.Date;
 @Component
 @EnableAsync
 @EnableScheduling
-public class RegisterJobs {
+public class Jobs {
 
     private static final char STATUS = '1';
     private static final int LIMIT = 1;
     private static final String ORDER_BY = "expire_time";
 
     // 5分钟
-    public static final long RST  = 5 * 60 * 1000;
+    private static final long RST  = 5 * 60 * 1000;
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
