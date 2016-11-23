@@ -40,7 +40,7 @@ public class Jobs {
     @Async
     @Scheduled(fixedRate = RST)
     // 每隔5分钟定时执行
-    private void isRegisterSessionExpired() {
+    protected void isRegisterSessionExpired() {
         logger.info("--------------------开始定时任务：规整数据库的注册信息------------------------");
 
         int offset = 0;
@@ -62,7 +62,7 @@ public class Jobs {
 
     @Async
     @Scheduled(fixedRate = EVT)
-    private void isEmailVerifyExpired() {
+    protected void isEmailVerifyExpired() {
         logger.info("--------------------开始定时任务：规整数据库的邮件验证信息------------------------");
 
         int offset = 0;
