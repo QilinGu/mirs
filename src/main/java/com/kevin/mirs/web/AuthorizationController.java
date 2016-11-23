@@ -2,8 +2,12 @@ package com.kevin.mirs.web;
 
 
 import com.google.code.kaptcha.Constants;
+import com.kevin.mirs.dao.EmailVerifyDao;
+import com.kevin.mirs.dao.RegisterSessionDao;
 import com.kevin.mirs.dto.MIRSResult;
 import com.kevin.mirs.entity.User;
+import com.kevin.mirs.enums.EVStatusEnum;
+import com.kevin.mirs.enums.RSStatusEnum;
 import com.kevin.mirs.service.UserService;
 import com.kevin.mirs.utils.FormatUtils;
 import com.kevin.mirs.utils.IPUtils;
@@ -19,6 +23,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.sql.Timestamp;
+import java.util.Date;
 
 @Controller
 @RequestMapping("/authorization")
@@ -28,6 +34,12 @@ public class AuthorizationController {
 
     @Resource
     UserService userService;
+
+    @Resource
+    RegisterSessionDao RSDao;
+
+    @Resource
+    EmailVerifyDao EVDao;
 
     @ResponseBody
     @RequestMapping(value = "/token", method = RequestMethod.POST)
@@ -79,6 +91,14 @@ public class AuthorizationController {
             return new MIRSResult<>(false, "验证码不正确!");
         }
 
+        // 判断注册是否超时
+        Timestamp expireTime = RSDao.getExpireTimeByEmail(registerUser.getEmail());
+        if (expireTime.getTime() < new Date().getTime()) {
+            RSDao.updateStatusByEmail(registerUser.getEmail(), RSStatusEnum.EXPIRED.getStatus());
+            EVDao.updateStatusByEmail(registerUser.getEmail(), EVStatusEnum.EXPIRED.getStatus());
+            return new MIRSResult<>(false, "注册超时了!");
+        }
+
 
         System.out.println(registerUser);
 
@@ -89,15 +109,22 @@ public class AuthorizationController {
                 registerUser.getVerification(),
                 ip);
 
-        if (user != null) {
-            // TODO 增加token
-            RegisterInfo registerInfo = new RegisterInfo(user.getUsername(),
-                    user.getEmail(), "", user.getRegisterTime(), user.getRegisterIp());
-            System.out.println(registerInfo);
-            return new MIRSResult<>(true, registerInfo);
-        } else {
+        if (user == null) {
             return new MIRSResult<>(false, "注册失败！");
         }
+
+        // TODO 增加token
+        RegisterInfo registerInfo = new RegisterInfo(user.getUsername(),
+                user.getEmail(), "", user.getRegisterTime(), user.getRegisterIp());
+        System.out.println(registerInfo);
+
+        // 修改注册信息表的状态
+        RSDao.updateStatusByEmail(user.getEmail(), RSStatusEnum.SUCCESS.getStatus());
+
+        // 修改邮件认证表的状态
+        EVDao.updateStatusByEmail(user.getEmail(), EVStatusEnum.SUCCESS.getStatus());
+
+        return new MIRSResult<>(true, registerInfo);
     }
 
 }

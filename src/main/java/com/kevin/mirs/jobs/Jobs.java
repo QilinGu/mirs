@@ -52,7 +52,7 @@ public class Jobs {
             if (expireTime.getTime() < new Date().getTime()) {
                 total += registerSessionDao.updateStatusByExpireTime(
                         expireTime,
-                        RSStatusEnum.EXPIRED.getStatus());
+                        RSStatusEnum.FAILED.getStatus());
             }
         }
 
@@ -74,7 +74,7 @@ public class Jobs {
             if (expireTime.getTime() < new Date().getTime()) {
                 total += emailVerifyDao.updateStatusByExpireTime(
                         expireTime,
-                        EVStatusEnum.EXPIRED.getStatus());
+                        EVStatusEnum.FAILED.getStatus());
             }
         }
 
