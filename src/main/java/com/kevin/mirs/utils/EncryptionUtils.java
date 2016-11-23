@@ -7,6 +7,8 @@ import java.util.Random;
 
 public class EncryptionUtils {
 
+    private static final int VERIFICATION_LENGTH = 6;
+
     public static String getSalt(int length) {
         String str = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
         Random random = new Random();
@@ -20,6 +22,10 @@ public class EncryptionUtils {
 
     public static String SHA512Encode(String content, String salt) {
         return new Sha512Hash(content, salt, 100).toString();
+    }
+
+    public static String getVerification() {
+        return getSalt(VERIFICATION_LENGTH);
     }
 
 }

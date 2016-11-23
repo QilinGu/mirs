@@ -34,6 +34,7 @@
         <mahout-core.version>0.9</mahout-core.version>
         <mahout-math.version>0.12.2</mahout-math.version>
         <cors-filter.version>2.5</cors-filter.version>
+        <mail.version>1.4.7</mail.version>
     </properties>
 
     <dependencies>
@@ -109,6 +110,11 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
             <version>${spring.version}</version>
         </dependency>
         <!-- Spring DAO 依赖-->
@@ -242,6 +248,12 @@
             <artifactId>cors-filter</artifactId>
             <version>${cors-filter.version}</version>
         </dependency>
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>mail</artifactId>
+            <version>${mail.version}</version>
+        </dependency>
+
 
     </dependencies>
 

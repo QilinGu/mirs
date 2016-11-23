@@ -26,4 +26,23 @@
     <!-- 定时任务 -->
     <context:component-scan base-package="com.kevin.mirs.jobs"></context:component-scan>
 
+    <!-- 发送邮件 -->
+
+    <!-- JavaMail相关配置 -->
+    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl" >
+        <property name="host" value="${mailHost}"></property>
+        <property name="username" value="${maillUsername}"></property>
+        <property name="password" value="${mailPassword}"></property>
+        <property name="protocol" value="smtp"></property>
+        <property name="defaultEncoding" value="utf-8"></property>
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.smtp.auth">true</prop>
+                <prop key="mail.smtp.from">${mailFrom}</prop>
+                <prop key="mail.debug">true</prop>
+            </props>
+        </property>
+    </bean>
+
+
 </beans>

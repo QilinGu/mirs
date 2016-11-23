@@ -9,7 +9,7 @@
     <!-- 配置整合Mybatis过程 -->
 
     <!-- 统一加载配置文件 -->
-    <context:property-placeholder location="classpath:properties/*-dev.properties"/>
+    <context:property-placeholder location="classpath:properties/*-prod.properties"/>
 
 
     <!-- 1.数据库连接池 -->
