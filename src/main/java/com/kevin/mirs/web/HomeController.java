@@ -59,7 +59,7 @@ public class HomeController {
                                           HttpServletRequest request) {
         logger.info("--------------------POST:/email--------------------");
 
-        // TODO: 2016/11/23 考虑如何保证接口安全，不被恶意利用。比如加上验证码 
+        // TODO: 2016/11/23 考虑如何保证接口安全，不被恶意利用。比如加上验证码
 
         // 验证邮箱格式
         if(FormatUtils.emailFormat(email) == false) {
