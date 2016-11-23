@@ -3,6 +3,7 @@ package com.kevin.mirs.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.mail.MailSendException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.stereotype.Service;
@@ -22,7 +23,7 @@ public class EmailService {
 
     // TODO: 2016/11/23 按照不同的邮件类型封装不同的方法：注册，找回密码等
 
-    public void sendVerificationEmail(String sendTo, String verification) {
+    public boolean sendVerificationEmail(String sendTo, String verification) {
 
         logger.info("--------------------sendVerificationEmail:" + sendTo + "--------------------");
 
@@ -36,14 +37,14 @@ public class EmailService {
 
         try {
             sender.send(smm);
-        } catch (Exception e) {
+        } catch (MailSendException e) {
             e.printStackTrace();
-            logger.info("--------------------sendVerificationEmail failed" + e + "--------------------");
+            logger.info("--------------------sendVerificationEmail failed--------------------");
 
+            return false;
         }
-
         logger.info("--------------------sendVerificationEmail:" + sendTo + " succeed--------------------");
-
+        return true;
     }
 
 }

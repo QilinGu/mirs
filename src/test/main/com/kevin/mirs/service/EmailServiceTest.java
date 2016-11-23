@@ -24,7 +24,7 @@ public class EmailServiceTest {
         String to = "1351650853@qq.com";
         String verification = EncryptionUtils.getVerification();
 
-        emailService.sendVerificationEmail(to, verification);
+        System.out.println(emailService.sendVerificationEmail(to, verification));
 
     }
 

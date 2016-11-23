@@ -2,6 +2,7 @@ package com.kevin.mirs.web;
 
 import com.kevin.mirs.dao.EmailVerifyDao;
 import com.kevin.mirs.dao.RegisterSessionDao;
+import com.kevin.mirs.dto.MIRSResult;
 import com.kevin.mirs.enums.EVChannelEnum;
 import com.kevin.mirs.enums.EVTypeEnum;
 import com.kevin.mirs.service.EmailService;
@@ -52,19 +53,22 @@ public class HomeController {
 //        return "success";
 //    }
 
+    @ResponseBody
     @RequestMapping(value = "/email", method = RequestMethod.POST)
-    public void sendEmail (@RequestParam(value = "email") String  email,
-                           HttpServletRequest request) {
+    public MIRSResult<Boolean> sendEmail (@RequestParam(value = "email") String  email,
+                                          HttpServletRequest request) {
         logger.info("--------------------POST:/email--------------------");
+
+        // TODO: 2016/11/23 考虑如何保证接口安全，不被恶意利用。比如加上验证码 
 
         // 验证邮箱格式
         if(FormatUtils.emailFormat(email) == false) {
-            return;
+            return new MIRSResult<Boolean>(false, "邮件格式不正确!");
         }
 
         // 验证是否注册
         if(userService.checkEmailRegistered(email) == 1) {
-            return;
+            return new MIRSResult<Boolean>(false, "此邮箱已被注册!");
         }
 
         // 创建注册会话
@@ -81,8 +85,10 @@ public class HomeController {
         EVDao.add(email, createTime, expireTime, EVChannelEnum.WEB.getChannel(),verification, EVTypeEnum.REG.getType(), ip);
 
         // 发送邮件
-        emailService.sendVerificationEmail(email, verification);
-
+        if (!emailService.sendVerificationEmail(email, verification)) {
+            return new MIRSResult<Boolean>(false, "系统内部错误!");
+        }
+        return new MIRSResult<Boolean>(true, true);
     }
 
 }
