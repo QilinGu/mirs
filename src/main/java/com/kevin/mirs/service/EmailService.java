@@ -33,7 +33,7 @@ public class EmailService {
         smm.setFrom(sender.getUsername());
         smm.setTo(sendTo);
         smm.setSubject(SUBJECT);
-        smm.setText("您的验证码是：" + verification);
+        smm.setText("您的验证码是：" + verification + "\n如果不是本人操作，请忽略此信息。");
 
         try {
             sender.send(smm);
