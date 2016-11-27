@@ -88,18 +88,18 @@ DROP TABLE IF EXISTS mirs_movie;
 CREATE TABLE mirs_movie(
   `id` INT NOT NULL AUTO_INCREMENT COMMENT '自增ID',
   `douban_id` VARCHAR(12) NOT NULL UNIQUE COMMENT '豆瓣电影ID',
-  `name` VARCHAR(60) COMMENT '电影名',
+  `name` VARCHAR(600) COMMENT '电影名',
   `douban_rating` CHAR(3) COMMENT '豆瓣评分',
   `imdb_rating` CHAR(3) COMMENT 'IMDb评分',
   `release_year` CHAR(4) COMMENT '电影发行年份',
-  `directors` VARCHAR(60) COMMENT '电影导演',
-  `screenwriters` VARCHAR(60) COMMENT '编剧',
-  `actors` VARCHAR(200) COMMENT '相关演员',
+  `directors` VARCHAR(600) COMMENT '电影导演',
+  `screenwriters` VARCHAR(600) COMMENT '编剧',
+  `actors` VARCHAR(500) COMMENT '相关演员',
   `types` VARCHAR(100) COMMENT '电影类型',
   `official_website` VARCHAR(100) COMMENT '官网',
   `origin_place` VARCHAR(30) COMMENT '国家',
-  `release_date` VARCHAR(60) COMMENT '上映时间',
-  `languages` VARCHAR(50) COMMENT '语言',
+  `release_date` VARCHAR(600) COMMENT '上映时间',
+  `languages` VARCHAR(500) COMMENT '语言',
   `runtime` VARCHAR(10) COMMENT '时长',
   `another_names` VARCHAR(100) COMMENT '又名',
   `imdb_link` VARCHAR(50) COMMENT 'IMDb的电影链接',
@@ -108,7 +108,7 @@ CREATE TABLE mirs_movie(
   `stills_photos_links` JSON COMMENT '剧照照片集合页面链接',
   `poster_photos_links` JSON COMMENT '海报照片集合页面链接',
   `wallpaper_photos_links` JSON COMMENT '壁纸照片集合页面链接',
-  `awards` VARCHAR(300) COMMENT '获奖',
+  `awards` TEXT COMMENT '获奖',
   `also_like_movies` VARCHAR(200) COMMENT '喜欢这部电影的人同样喜欢的电影',
   `reviews` JSON COMMENT '几个影评',
   `short_pop_comments` JSON COMMENT '几个热门短评',
@@ -126,8 +126,7 @@ CREATE TABLE mirs_movie(
   INDEX idx_origin_place(origin_place),
   INDEX idx_languages(languages),
   INDEX idx_runtime(runtime),
-  INDEX idx_another_names(another_names),
-  INDEX idx_awards(awards)
+  INDEX idx_another_names(another_names)
 )ENGINE = InnoDB DEFAULT CHARSET = utf8 COMMENT '电影基本信息表';
 
 
