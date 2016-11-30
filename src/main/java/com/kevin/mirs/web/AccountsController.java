@@ -1,6 +1,7 @@
 package com.kevin.mirs.web;
 
 
+import com.kevin.mirs.dto.MIRSResult;
 import com.kevin.mirs.entity.User;
 import com.kevin.mirs.service.UserService;
 import com.kevin.mirs.vo.UserProfile;
@@ -33,12 +34,18 @@ public class AccountsController {
      */
     @RequestMapping(value = "/profile", method = RequestMethod.GET)
     @ApiOperation(value = "/profile", notes = "返回用户个人信息")
-    public UserProfile getProfile(HttpServletRequest request) {
+    public MIRSResult<UserProfile> getProfile(HttpServletRequest request) {
         logger.info("--------------------GET:/accounts/profile--------------------");
 
         int id = (int) request.getSession().getAttribute(UserService.USER_ID);
 
-        return null;
+        UserProfile userProfile = userService.getUserProfileByUserId(id);
+
+        if (userProfile != null) {
+            return new MIRSResult<UserProfile>(true, userProfile);
+        }
+
+        return new MIRSResult<UserProfile>(false, "获取信息时出错!");
     }
 
     /**
