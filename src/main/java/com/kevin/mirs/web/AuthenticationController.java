@@ -27,7 +27,7 @@ import java.sql.Timestamp;
 import java.util.Date;
 
 @Controller
-@RequestMapping("/authentication ")
+@RequestMapping("/authentication")
 public class AuthenticationController {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
