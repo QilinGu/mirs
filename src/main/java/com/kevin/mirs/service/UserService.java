@@ -4,6 +4,7 @@ package com.kevin.mirs.service;
 import com.kevin.mirs.dao.UserDao;
 import com.kevin.mirs.entity.User;
 import com.kevin.mirs.utils.EncryptionUtils;
+import com.kevin.mirs.vo.UserProfile;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -163,5 +164,46 @@ public class UserService {
     }
 
 
+    /**
+     * 通过用户ID得到用户信息
+     * @param id 用户id
+     * @return 成功:UserProfile; 失败：null
+     */
+    public UserProfile getUserProfileByUserId(int id) {
+
+        logger.info("--------------------getUserProfileByUserId--------------------");
+
+        UserProfile userProfile = null;
+
+        try {
+            userProfile = userDao.getUserProfileByUserId(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            logger.info("获取用户信息时发生异常" + e);
+        }
+        return userProfile;
+    }
+
+
+    /**
+     * 更新用户信息
+     * @param userProfile 用户信息
+     * @return 更新的数目，1：更新成功，0：更新失败
+     */
+    public int updateUserProfile(UserProfile userProfile) {
+
+        logger.info("--------------------updateUserProfile--------------------");
+
+        int status = 0;
+
+        try {
+            status = userDao.updateUserProfile(userProfile);
+        } catch (Exception e) {
+            e.printStackTrace();
+            logger.info("获取用户信息时发生异常" + e);
+        }
+
+        return status;
+    }
 
 }

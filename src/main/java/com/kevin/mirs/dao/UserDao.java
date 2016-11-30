@@ -145,7 +145,7 @@ public interface UserDao {
     /**
      * 通过用户ID得到用户信息
      * @param id 用户id
-     * @return 成功:user; 失败：null
+     * @return 成功:UserProfile; 失败：null
      */
     UserProfile getUserProfileByUserId(@Param("id") int id);
 
