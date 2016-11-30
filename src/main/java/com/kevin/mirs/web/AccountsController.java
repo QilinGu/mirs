@@ -1,19 +1,19 @@
 package com.kevin.mirs.web;
 
 
+import com.kevin.mirs.entity.User;
 import com.kevin.mirs.service.UserService;
+import com.kevin.mirs.vo.UserProfile;
 import com.wordnik.swagger.annotations.ApiOperation;
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @RequestMapping("/accounts")
@@ -33,10 +33,12 @@ public class AccountsController {
      */
     @RequestMapping(value = "/profile", method = RequestMethod.GET)
     @ApiOperation(value = "/profile", notes = "返回用户个人信息")
-    public String getProfile() {
+    public UserProfile getProfile(HttpServletRequest request) {
         logger.info("--------------------GET:/accounts/profile--------------------");
 
-        return "";
+        int id = (int) request.getSession().getAttribute(UserService.USER_ID);
+
+        return null;
     }
 
     /**

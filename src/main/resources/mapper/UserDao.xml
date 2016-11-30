@@ -17,7 +17,7 @@
           username = #{username}
         WHERE
           id = #{id}
-        AND status = 0
+        AND status = 1
 
     </update>
     <update id="updateUserPasswordByUserId">
@@ -27,7 +27,7 @@
           password = #{password}
         WHERE
           id = #{id}
-        AND status = 0
+        AND status = 1
     </update>
     <update id="updateUserSaltByUserId">
         UPDATE
@@ -36,7 +36,7 @@
           salt = #{salt}
         WHERE
           id = #{id}
-        AND status = 0
+        AND status = 1
     </update>
     <update id="updateUserAvatarByUserId">
         UPDATE
@@ -45,7 +45,7 @@
            avatar= #{avatar}
         WHERE
           id = #{id}
-        AND status = 0
+        AND status = 1
     </update>
     <update id="updateUserEmailByUserId">
         UPDATE
@@ -54,7 +54,7 @@
           email = #{email}
         WHERE
           id = #{id}
-        AND status = 0
+        AND status = 1
     </update>
     <update id="updateUserBioByUserId">
         UPDATE
@@ -63,7 +63,7 @@
           bio = #{bio}
         WHERE
           id = #{id}
-        AND status = 0
+        AND status = 1
     </update>
     <update id="updateUserLocationByUserId">
         UPDATE
@@ -72,7 +72,7 @@
           location = #{location}
         WHERE
           id = #{id}
-        AND status = 0
+        AND status = 1
     </update>
     <update id="updateUserUniversityByUserId">
         UPDATE
@@ -81,7 +81,7 @@
           university = #{university}
         WHERE
           id = #{id}
-        AND status = 0
+        AND status = 1
     </update>
     <update id="updateUserMajorByUserId">
         UPDATE
@@ -90,7 +90,7 @@
           major = #{major}
         WHERE
           id = #{id}
-        AND status = 0
+        AND status = 1
     </update>
     <update id="updateUserLoginInfoByUserId">
         UPDATE
@@ -100,7 +100,21 @@
           last_login_ip = #{ip}
         WHERE
           id = #{id}
-        AND status = 0
+        AND status = 1
+    </update>
+    <update id="updateUserProfile" parameterType="com.kevin.mirs.vo.UserProfile">
+        UPDATE
+            mirs_user
+        SET
+            username = #{username},
+            email = #{email},
+            bio = #{bio},
+            location = #{location},
+            university = #{university},
+            major = #{major}
+        WHERE
+            id = #{id}
+            AND status = 1
     </update>
     <select id="getUserByUsername" resultType="com.kevin.mirs.entity.User">
         SELECT * FROM mirs_user WHERE username = #{username}
@@ -113,6 +127,9 @@
     </select>
     <select id="checkUserEmail" resultType="java.lang.Integer">
         SELECT count(*) FROM mirs_user WHERE email = #{email}
+    </select>
+    <select id="getUserProfileByUserId" resultType="com.kevin.mirs.vo.UserProfile">
+        SELECT id, username, email, bio, location, university, major FROM mirs_user WHERE id = #{id}
     </select>
 
 

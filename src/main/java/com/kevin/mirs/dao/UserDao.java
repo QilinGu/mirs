@@ -2,6 +2,7 @@ package com.kevin.mirs.dao;
 
 
 import com.kevin.mirs.entity.User;
+import com.kevin.mirs.vo.UserProfile;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -139,6 +140,22 @@ public interface UserDao {
      * @return 1：已被注册;0：未被注册
      */
     int checkUserEmail(@Param("email") String  email);
+
+
+    /**
+     * 通过用户ID得到用户信息
+     * @param id 用户id
+     * @return 成功:user; 失败：null
+     */
+    UserProfile getUserProfileByUserId(@Param("id") int id);
+
+
+    /**
+     * 更新用户信息
+     * @param userProfile 用户信息
+     * @return 更新的数目，1：更新成功，0：更新失败
+     */
+    int updateUserProfile(UserProfile userProfile);
 
 
 }

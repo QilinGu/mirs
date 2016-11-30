@@ -2,6 +2,7 @@ package com.kevin.mirs.dao;
 
 import com.kevin.mirs.entity.User;
 import com.kevin.mirs.utils.EncryptionUtils;
+import com.kevin.mirs.vo.UserProfile;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -94,6 +95,17 @@ public class UserDaoTest {
 //        System.out.println(userDao.getUserByUserEmail("123@qq.com"));
 //        System.out.println(userDao.getUserByUsername(""));
 //        System.out.println(userDao.getUserByUsername("newte23st"));
+    }
+
+    @Test
+    public void getUserProfileByUserId() throws Exception {
+        System.out.println(userDao.getUserProfileByUserId(63));
+    }
+
+    @Test
+    public void updateUserProfile () throws Exception {
+        UserProfile userProfile = new UserProfile(63, "123", "1@qq.com", "", "", "", "");
+        System.out.println(userDao.updateUserProfile(userProfile));
     }
 
 
