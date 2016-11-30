@@ -41,7 +41,8 @@ public class LuceneConfig {
     }
 
 
-    private Directory directory() throws IOException {
+    @Bean
+    public Directory directory() throws IOException {
         System.out.println("--------------初始化directory----------");
         String indexPath;
         if(System.getProperty("os.name").substring(0, 3).equals("Win")){

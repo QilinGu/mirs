@@ -7,6 +7,8 @@ import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
 import org.apache.lucene.document.TextField;
+import org.apache.lucene.index.DirectoryReader;
+import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.store.Directory;
 import org.slf4j.Logger;
@@ -34,6 +36,9 @@ public class LuceneService {
     IndexWriter indexWriter;
 
     @Resource
+    Directory directory;
+
+    @Resource
     MovieDao movieDao;
 
 
@@ -54,6 +59,17 @@ public class LuceneService {
         int limit = 100;
         int offset = 0;
         ArrayList<Movie> movieArrayList;
+
+
+        try {
+            // 如果索引已经存在，则不用索引
+            if (DirectoryReader.indexExists(directory)) {
+                logger.info("--------------------索引已存在--------------------");
+                return;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         // 当movieArrayList不为空
         while (!(movieArrayList = movieDao.getMovies(MovieColumnEnum.columnOf(1), limit, offset)).isEmpty()) {
@@ -142,9 +158,8 @@ public class LuceneService {
 
     /**
      * 删除所有的索引
-     * 系统结束是进行清理
      */
-    @PreDestroy
+    // @PreDestroy
     public void deleteAllIndexes() {
         logger.info("--------------------deleteAllIndexes--------------------");
         try {
