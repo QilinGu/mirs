@@ -13,9 +13,9 @@ public interface UserDao {
     /**
      * 添加注册用户
      * @param user 用户实体
-     * @return 影响的数目，1：添加成功，0：用户名/邮箱已存在
+     * @return 影响的数目，1：添加成功（同时设置user的id属性），0：用户名/邮箱已存在
      */
-    int addUser(@Param("user") User user);
+    int addUser(User user);
 
 
     /**

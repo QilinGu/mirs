@@ -5,9 +5,9 @@
 <mapper namespace="com.kevin.mirs.dao.UserDao">
 
 
-    <insert id="addUser">
+    <insert id="addUser" useGeneratedKeys="true" keyProperty="id" parameterType="com.kevin.mirs.entity.User">
         INSERT ignore INTO mirs_user(username, password, salt, email, register_time, register_ip)
-         VALUES (#{user.username}, #{user.password}, #{user.salt}, #{user.email}, #{user.registerTime}, #{user.registerIp})
+         VALUES (#{username}, #{password}, #{salt}, #{email}, #{registerTime}, #{registerIp})
     </insert>
 
     <update id="updateUsernameByUserId">
