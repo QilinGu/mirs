@@ -21,6 +21,9 @@ public class UserService {
     // 注册验证SESSION ID
     public static final String VERIFICATION = "VERIFICATION_SESSION";
 
+    // 存储到SESSION中的用户ID
+    public static final String USER_ID = "USER_ID";
+
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Resource
@@ -64,7 +67,7 @@ public class UserService {
      * 登录时通过用户名检查用户密码
      * @param username 用户名
      * @param password 用户提交的密码
-     * @return 1:成功；0:失败
+     * @return 用户ID:成功；0:失败
      */
     public int checkPasswordByUsername(String username, String password) {
 
@@ -78,7 +81,7 @@ public class UserService {
 
             password = EncryptionUtils.SHA512Encode(password, user.getSalt());
             if (password.equals(user.getPassword())) {
-                return 1;
+                return user.getId();
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -93,7 +96,7 @@ public class UserService {
      * 登录时通过用户邮箱检查用户密码
      * @param email 用户邮箱
      * @param password 用户提交的密码
-     * @return
+     * @return 用户ID:成功；0:失败
      */
     public int checkPasswordByUserEmail(String email, String password) {
 
@@ -107,7 +110,7 @@ public class UserService {
 
             password = EncryptionUtils.SHA512Encode(password, user.getSalt());
             if (password.equals(user.getPassword())) {
-                return 1;
+                return user.getId();
             }
         } catch (Exception e) {
             e.printStackTrace();

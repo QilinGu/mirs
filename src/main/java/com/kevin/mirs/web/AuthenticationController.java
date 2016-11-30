@@ -55,19 +55,21 @@ public class AuthenticationController {
         logger.info("--------------------POST:/authorization/token--------------------");
 
         System.out.println(loginUser);
-        int vaild = 0;
+        int userId = 0;
         String original = (String) request.getSession().getAttribute(Constants.KAPTCHA_SESSION_KEY);
 
         if (!loginUser.getCaptcha().equals(original)) {
             return new MIRSResult<>(false, "验证码错误！");
         }
         if (FormatUtils.emailFormat(loginUser.getUsername())) {
-            vaild = userService.checkPasswordByUserEmail(loginUser.getUsername(), loginUser.getPassword());
+            userId = userService.checkPasswordByUserEmail(loginUser.getUsername(), loginUser.getPassword());
         } else {
-            vaild = userService.checkPasswordByUsername(loginUser.getUsername(), loginUser.getPassword());
+            userId = userService.checkPasswordByUsername(loginUser.getUsername(), loginUser.getPassword());
         }
-        if (vaild == 1) {
+        if (userId != 0) {
             String token = "";
+            // 将用户ID存储在SESSION中
+            request.getSession().setAttribute(UserService.USER_ID, userId);
             LoginInfo loginInfo = new LoginInfo(loginUser.getUsername(), token);
             return new MIRSResult<>(true, loginInfo);
         } else {
@@ -112,6 +114,9 @@ public class AuthenticationController {
         if (user == null) {
             return new MIRSResult<>(false, "注册失败！");
         }
+
+        request.getSession().setAttribute(UserService.USER_ID, user.getId());
+
 
         // TODO 增加token
         RegisterInfo registerInfo = new RegisterInfo(user.getUsername(),
