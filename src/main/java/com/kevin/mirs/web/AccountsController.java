@@ -37,6 +37,12 @@ public class AccountsController {
     public MIRSResult<UserProfile> getProfile(HttpServletRequest request) {
         logger.info("--------------------GET:/accounts/profile--------------------");
 
+        // 检查SESSION信息
+        // FIXME: 2016/12/4 apache直接返回了404，考虑自己定义一个全局的过滤器
+        if (request.getSession().getAttribute(UserService.USER_ID) == null) {
+            return new MIRSResult<UserProfile>(false, "请先登录!");
+        }
+        
         int id = (int) request.getSession().getAttribute(UserService.USER_ID);
 
         UserProfile userProfile = userService.getUserProfileByUserId(id);

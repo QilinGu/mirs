@@ -200,7 +200,7 @@ public class UserService {
             status = userDao.updateUserProfile(userProfile);
         } catch (Exception e) {
             e.printStackTrace();
-            logger.info("获取用户信息时发生异常" + e);
+            logger.info("更新用户信息时发生异常" + e);
         }
 
         return status;
