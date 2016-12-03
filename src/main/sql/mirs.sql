@@ -15,7 +15,7 @@ CREATE TABLE mirs_register_session(
   `expire_time` DATETIME NOT NULL COMMENT '注册会话过期时间',
   PRIMARY KEY (id),
   INDEX idx_email_address(email)
-)ENGINE = InnoDB DEFAULT CHARSET = utf8 COMMENT '注册会话表';
+)ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT '注册会话表';
 
 
 DROP TABLE IF EXISTS mirs_email_verify;
@@ -32,7 +32,7 @@ CREATE TABLE mirs_email_verify(
   `parameter1` VARCHAR(200) COMMENT '额外参数1',
   `parameter2` VARCHAR(200) COMMENT '额外参数2',
   PRIMARY KEY (id)
-)ENGINE = InnoDB DEFAULT CHARSET = utf8 COMMENT '邮件验证表，验证登录注册，修改密码等';
+)ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT '邮件验证表，验证登录注册，修改密码等';
 
 
 DROP TABLE IF EXISTS mirs_email_template;
@@ -44,7 +44,7 @@ CREATE TABLE mirs_email_template(
   `description` VARCHAR(200) COMMENT '邮件模板描述',
   `unique_identity` VARCHAR(50) COMMENT '邮件模板唯一标识',
   PRIMARY KEY (id)
-)ENGINE = InnoDB DEFAULT CHARSET = utf8 COMMENT '邮件模板表，用来保存常用的邮件模板';
+)ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT '邮件模板表，用来保存常用的邮件模板';
 
 
 DROP TABLE IF EXISTS mirs_user;
@@ -67,7 +67,7 @@ CREATE TABLE mirs_user(
   PRIMARY KEY (id),
   INDEX idx_user_name(username),
   INDEX idx_user_email(email)
-)ENGINE = InnoDB DEFAULT CHARSET = utf8 COMMENT '用户基本信息表';
+)ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT '用户基本信息表';
 
 
 DROP TABLE IF EXISTS mirs_oauth_user;
@@ -81,7 +81,7 @@ CREATE TABLE mirs_oauth_user(
   `oauth_scope` VARCHAR(256) COMMENT '用户授权的作用域，使用逗号（,）分隔',
   PRIMARY KEY (id),
   INDEX idx_u_id(u_id)
-)ENGINE = InnoDB DEFAULT CHARSET = utf8 COMMENT '用户第三方授权信息表';
+)ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT '用户第三方授权信息表';
 
 
 DROP TABLE IF EXISTS mirs_movie;
@@ -110,8 +110,8 @@ CREATE TABLE mirs_movie(
   `wallpaper_photos_links` JSON COMMENT '壁纸照片集合页面链接',
   `awards` TEXT COMMENT '获奖',
   `also_like_movies` VARCHAR(200) COMMENT '喜欢这部电影的人同样喜欢的电影',
-  `reviews` JSON COMMENT '几个影评',
-  `short_pop_comments` JSON COMMENT '几个热门短评',
+  `reviews` TEXT COMMENT '几个影评',
+  `short_pop_comments` TEXT COMMENT '几个热门短评',
   PRIMARY KEY (id),
   INDEX idx_id(id),
   INDEX idx_douban_id(douban_id),
@@ -127,7 +127,7 @@ CREATE TABLE mirs_movie(
   INDEX idx_languages(languages),
   INDEX idx_runtime(runtime),
   INDEX idx_another_names(another_names)
-)ENGINE = InnoDB DEFAULT CHARSET = utf8 COMMENT '电影基本信息表';
+)ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT '电影基本信息表';
 
 
 DROP TABLE IF EXISTS mirs_friend;
@@ -139,7 +139,7 @@ CREATE TABLE mirs_friend(
   UNIQUE (uid, ufid),
   INDEX idx_uid(uid),
   INDEX idx_ufid(ufid)
-)ENGINE = InnoDB DEFAULT CHARSET = utf8 COMMENT '好友关系表';
+)ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT '好友关系表';
 
 
 DROP TABLE IF EXISTS mirs_user_movie;
@@ -152,7 +152,7 @@ CREATE TABLE mirs_user_movie(
   PRIMARY KEY (id),
   UNIQUE (uid, mid),
   INDEX idx_uid(uid)
-)ENGINE = InnoDB DEFAULT CHARSET = utf8 COMMENT '用户对电影的评分表';
+)ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT '用户对电影的评分表';
 
 DROP TABLE IF EXISTS mirs_user_recommended_friends;
 CREATE TABLE mirs_user_recommended_friends(
@@ -162,7 +162,7 @@ CREATE TABLE mirs_user_recommended_friends(
   PRIMARY KEY (id),
   UNIQUE (uid,rfid),
   INDEX idx_uid(uid)
-)ENGINE = InnoDB DEFAULT CHARSET = utf8 COMMENT '用户好友推荐表';
+)ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT '用户好友推荐表';
 
 DROP TABLE IF EXISTS mirs_user_recommended_movies;
 CREATE TABLE mirs_user_recommended_movies(
@@ -173,7 +173,7 @@ CREATE TABLE mirs_user_recommended_movies(
   PRIMARY KEY (id),
   UNIQUE (uid, rmid),
   INDEX idx_uid(uid)
-)ENGINE = InnoDB DEFAULT CHARSET = utf8 COMMENT '用户电影推荐表';
+)ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT '用户电影推荐表';
 
 
 
