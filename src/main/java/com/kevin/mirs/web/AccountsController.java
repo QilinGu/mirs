@@ -58,7 +58,7 @@ public class AccountsController {
     @RequestMapping(value = "/profile", method = RequestMethod.POST)
     @ApiOperation(value = "/profile", notes = "更新用户提交的信息")
     public MIRSResult<Boolean> setProfile(@RequestBody UserProfile userProfile,
-                             HttpServletRequest request) {
+                                          HttpServletRequest request) {
         logger.info("--------------------POST:/accounts/profile--------------------");
 
         // 检查SESSION信息
@@ -71,6 +71,7 @@ public class AccountsController {
             return new MIRSResult<Boolean>(false, "数据被篡改了!");
         }
 
+        // 更新用户信息
         if (userService.updateUserProfile(userProfile) == 1) {
             return new MIRSResult<Boolean>(true, true);
         }
@@ -81,22 +82,42 @@ public class AccountsController {
     @ResponseBody
     @RequestMapping(value = "/password", method = RequestMethod.POST)
     @ApiOperation(value = "/password", notes = "执行更改密码操作")
-    public MIRSResult<Boolean> updatePassword(@RequestParam(value = "email") String email,
-                                 @RequestParam(value = "password") String password) {
+    public MIRSResult<Boolean> updatePassword(@RequestParam(value = "oldPassword") String oldPassword,
+                                              @RequestParam(value = "newPassword") String newPassword,
+                                              HttpServletRequest request) {
         logger.info("--------------------POST:/accounts/password--------------------");
 
-        //返回更新状态
-        return new MIRSResult<Boolean>(false, false);
+        // 检查SESSION信息
+        if (request.getSession().getAttribute(UserService.USER_ID) == null) {
+            return new MIRSResult<Boolean>(false, "请先登录!");
+        }
+        int id = (int) request.getSession().getAttribute(UserService.USER_ID);
+
+        if (userService.updatePasswordByUserId(id, oldPassword, newPassword) == 1) {
+            return new MIRSResult<Boolean>(true, true);
+        }
+        return new MIRSResult<Boolean>(false, "更新失败!");
     }
 
 
     @ResponseBody
     @RequestMapping(value = "/reset-password", method = RequestMethod.POST)
     @ApiOperation(value = "/reset-password", notes = "重置用户密码")
-    public MIRSResult<Boolean> resetPassword(@RequestParam(value = "email") String email,
-                                @RequestParam(value = "password") String password,
-                                @RequestParam(value = "verification") String verification) {
+    public MIRSResult<Boolean> resetPassword(@RequestParam(value = "password") String password,
+                                             @RequestParam(value = "verification") String verification,
+                                             HttpServletRequest request) {
         logger.info("--------------------POST:/accounts/reset-password--------------------");
+
+        // 检查SESSION信息
+        if (request.getSession().getAttribute(UserService.USER_ID) == null) {
+            return new MIRSResult<Boolean>(false, "请先登录!");
+        }
+        int id = (int) request.getSession().getAttribute(UserService.USER_ID);
+
+        // 校验邮件验证码
+
+        // 设置新密码
+
 
         return new MIRSResult<Boolean>(false, false);
     }

@@ -206,4 +206,35 @@ public class UserService {
         return status;
     }
 
+
+    /**
+     * 更新用户的密码
+     * @param id 用户id
+     * @param oldPassword 旧密码
+     * @param newPassword 新密码
+     * @return 更新的数目，1：更新成功，0：更新失败
+     */
+    public int updatePasswordByUserId(int id, String oldPassword, String newPassword) {
+
+        int status = 0;
+
+        try {
+            User user = userDao.getUserPasswordByUserId(id);
+            if (user == null) {
+                return 0;
+            }
+
+            String password = EncryptionUtils.SHA512Encode(oldPassword, user.getSalt());
+            if (password.equals(user.getPassword())) {
+                newPassword = EncryptionUtils.SHA512Encode(newPassword, user.getSalt());
+                status = userDao.updateUserPasswordByUserId(newPassword, id);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            logger.info("更新用户密码时发生异常" + e);
+        }
+
+        return status;
+    }
+
 }
