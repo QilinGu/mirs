@@ -9,9 +9,7 @@ import com.wordnik.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -27,18 +25,16 @@ public class AccountsController {
 
 
     /**
-     * 账号和用户有些微区别，登录后的用户可以看得自己账号的完全信息
-     * 然而只能看到别的用户设置为公开的信息
-     *
-     * @return
+     * 返回用户个人信息
+     * @return 成功返回用户信息，失败返回错误原因
      */
+    @ResponseBody
     @RequestMapping(value = "/profile", method = RequestMethod.GET)
     @ApiOperation(value = "/profile", notes = "返回用户个人信息")
     public MIRSResult<UserProfile> getProfile(HttpServletRequest request) {
         logger.info("--------------------GET:/accounts/profile--------------------");
 
         // 检查SESSION信息
-        // FIXME: 2016/12/4 apache直接返回了404，考虑自己定义一个全局的过滤器
         if (request.getSession().getAttribute(UserService.USER_ID) == null) {
             return new MIRSResult<UserProfile>(false, "请先登录!");
         }
@@ -55,38 +51,54 @@ public class AccountsController {
     }
 
     /**
-     * TODO 考虑是全部信息一起提交还是分别提交
-     *
-     * @return
+     * 更新用户提交的信息
+     * @return 返回是否修改成功
      */
+    @ResponseBody
     @RequestMapping(value = "/profile", method = RequestMethod.POST)
     @ApiOperation(value = "/profile", notes = "更新用户提交的信息")
-    public String setProfile() {
+    public MIRSResult<Boolean> setProfile(@RequestBody UserProfile userProfile,
+                             HttpServletRequest request) {
         logger.info("--------------------POST:/accounts/profile--------------------");
 
-        return "";
+        // 检查SESSION信息
+        if (request.getSession().getAttribute(UserService.USER_ID) == null) {
+            return new MIRSResult<Boolean>(false, "请先登录!");
+        }
+        // 检查ID是否匹配
+        int id = (int) request.getSession().getAttribute(UserService.USER_ID);
+        if (userProfile.getId() != id) {
+            return new MIRSResult<Boolean>(false, "数据被篡改了!");
+        }
+
+        if (userService.updateUserProfile(userProfile) == 1) {
+            return new MIRSResult<Boolean>(true, true);
+        }
+        return new MIRSResult<Boolean>(false, "更新失败了!");
     }
 
 
+    @ResponseBody
     @RequestMapping(value = "/password", method = RequestMethod.POST)
     @ApiOperation(value = "/password", notes = "执行更改密码操作")
-    public String updatePassword(@RequestParam(value = "email") String email,
+    public MIRSResult<Boolean> updatePassword(@RequestParam(value = "email") String email,
                                  @RequestParam(value = "password") String password) {
         logger.info("--------------------POST:/accounts/password--------------------");
 
         //返回更新状态
-        return "";
+        return new MIRSResult<Boolean>(false, false);
     }
 
 
+    @ResponseBody
     @RequestMapping(value = "/reset-password", method = RequestMethod.POST)
     @ApiOperation(value = "/reset-password", notes = "重置用户密码")
-    public String resetPassword(@RequestParam(value = "email") String email,
+    public MIRSResult<Boolean> resetPassword(@RequestParam(value = "email") String email,
                                 @RequestParam(value = "password") String password,
                                 @RequestParam(value = "verification") String verification) {
         logger.info("--------------------POST:/accounts/reset-password--------------------");
 
-        return "";
+        return new MIRSResult<Boolean>(false, false);
     }
 
 }

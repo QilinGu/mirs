@@ -13,6 +13,9 @@ public class UserProfile {
     private String university;
     private String major;
 
+    public UserProfile() {
+    }
+
     public UserProfile(Integer id, String username, String email, String bio, String location, String university, String major) {
         this.id = id;
         this.username = username;
