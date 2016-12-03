@@ -121,5 +121,9 @@ public class MovieDaoTest {
         System.out.println(movieDao.getRandomSimpleMovies(1));
     }
 
+    @Test
+    public void getIndexMovies() throws Exception {
+        System.out.println(movieDao.getIndexMovies(MovieColumnEnum.columnOf(1), 10, 0));
+    }
 
 }

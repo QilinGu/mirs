@@ -25,6 +25,18 @@ public interface MovieDao {
                                @Param("limit") int limit,
                                @Param("offset") int offset);
 
+    /**
+     * 获取索引需要的电影信息
+     *
+     * @param orderBy 排序方式
+     * @param limit   限制条数
+     * @param offset  偏移量
+     * @return 电影信息列表, 没有则返回[]
+     */
+    ArrayList<Movie> getIndexMovies(@Param("orderBy") String orderBy,
+                               @Param("limit") int limit,
+                               @Param("offset") int offset);
+
 
     /**
      * 通过电影的ID获取电影的基本信息

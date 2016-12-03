@@ -30,6 +30,24 @@ public class Movie {
     private String reviews;
     private String shortPopComments;
 
+
+    // 索引电影需要的字段
+    public Movie(Integer id, String name, String releaseYear, String directors, String screenwriters, String actors, String types, String originPlace, String languages, String anotherNames, String coverLink, String synopsis) {
+        this.id = id;
+        this.name = name;
+        this.releaseYear = releaseYear;
+        this.directors = directors;
+        this.screenwriters = screenwriters;
+        this.actors = actors;
+        this.types = types;
+        this.originPlace = originPlace;
+        this.languages = languages;
+        this.anotherNames = anotherNames;
+        this.coverLink = coverLink;
+        this.synopsis = synopsis;
+    }
+
+    // 所有字段的构造器
     public Movie(Integer id, String doubanId, String name, String doubanRating, String imdbRating, String releaseYear, String directors, String screenwriters, String actors, String types, String officialWebsite, String originPlace, String releaseDate, String languages, String runtime, String anotherNames, String imdbLink, String coverLink, String synopsis, String stillsPhotosLinks, String posterPhotosLinks, String wallpaperPhotosLinks, String awards, String alsoLikeMovies, String reviews, String shortPopComments) {
         this.id = id;
         this.doubanId = doubanId;

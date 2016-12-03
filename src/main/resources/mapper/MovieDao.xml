@@ -51,6 +51,22 @@
             t1.synopsis
         FROM mirs_movie AS t1
     </sql>
+    <sql id="indexMovieColumn">
+        SELECT
+            id,
+            name,
+            release_year,
+            directors,
+            screenwriters,
+            actors,
+            types,
+            origin_place,
+            languages,
+            another_names,
+            cover_link,
+            synopsis
+        FROM mirs_movie
+    </sql>
 
 
     <sql id="additionalCondition">
@@ -61,6 +77,11 @@
 
     <select id="getMovies" resultType="com.kevin.mirs.entity.Movie">
         <include refid="selectAllMovieColumn"></include>
+        <include refid="additionalCondition"></include>
+    </select>
+
+    <select id="getIndexMovies" resultType="com.kevin.mirs.entity.Movie">
+        <include refid="indexMovieColumn"></include>
         <include refid="additionalCondition"></include>
     </select>
 
@@ -185,6 +206,7 @@
         FROM mirs_movie LIMIT #{limit}) AS t2 on t1.id=t2.id
         ORDER BY t1.id LIMIT #{limit};
     </select>
+
 
 
 </mapper>
