@@ -248,6 +248,9 @@ public class UserService {
         int status = 0;
 
         try {
+            String salt = EncryptionUtils.getSalt(128);
+            password = EncryptionUtils.SHA512Encode(password, salt);
+            userDao.updateUserSaltByUserId(id, salt);
             status = userDao.updateUserPasswordByUserId(id, password);
         } catch (Exception e) {
             e.printStackTrace();
