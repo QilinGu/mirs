@@ -131,6 +131,9 @@
     <select id="getUserProfileByUserId" resultType="com.kevin.mirs.vo.UserProfile">
         SELECT id, username, email, bio, location, university, major FROM mirs_user WHERE id = #{id}
     </select>
+    <select id="getUserPasswordByUserId" resultType="com.kevin.mirs.entity.User">
+        SELECT id, password, salt FROM mirs_user WHERE id = #{id}
+    </select>
 
 
 </mapper>

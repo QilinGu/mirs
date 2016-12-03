@@ -24,6 +24,14 @@ public class User {
     public User() {
     }
 
+    // 修改密码时
+    public User(Integer id, String password, String salt) {
+        this.id = id;
+        this.password = password;
+        this.salt = salt;
+    }
+
+    // 注册时
     public User(String username, String password, String salt, String email, Timestamp registerTime, String registerIp) {
         this.username = username;
         this.password = password;

@@ -108,5 +108,9 @@ public class UserDaoTest {
         System.out.println(userDao.updateUserProfile(userProfile));
     }
 
+    @Test
+    public void getUserPasswordByUserId() throws Exception {
+        System.out.println(userDao.getUserPasswordByUserId(63));
+    }
 
 }

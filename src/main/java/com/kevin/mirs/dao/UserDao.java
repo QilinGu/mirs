@@ -158,4 +158,12 @@ public interface UserDao {
     int updateUserProfile(UserProfile userProfile);
 
 
+    /**
+     * 通过用户ID得到用户密码和盐
+     * @param id 用户id
+     * @return User
+     */
+    User getUserPasswordByUserId(@Param("id") int id);
+
+
 }
