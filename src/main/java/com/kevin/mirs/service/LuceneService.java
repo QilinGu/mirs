@@ -72,7 +72,7 @@ public class LuceneService {
         }
 
         // 当movieArrayList不为空
-        while (!(movieArrayList = movieDao.getMovies(MovieColumnEnum.columnOf(1), limit, offset)).isEmpty()) {
+        while (!(movieArrayList = movieDao.getIndexMovies(MovieColumnEnum.columnOf(1), limit, offset)).isEmpty()) {
             offset += limit;
             System.out.println(offset);
             for (Movie movie : movieArrayList) {
