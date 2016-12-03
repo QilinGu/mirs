@@ -216,6 +216,8 @@ public class UserService {
      */
     public int updatePasswordByUserId(int id, String oldPassword, String newPassword) {
 
+        logger.info("--------------------updatePasswordByUserId--------------------");
+
         int status = 0;
 
         try {
@@ -232,6 +234,24 @@ public class UserService {
         } catch (Exception e) {
             e.printStackTrace();
             logger.info("更新用户密码时发生异常" + e);
+        }
+
+        return status;
+    }
+
+
+
+    public int resetPasswordByUserId(int id, String password) {
+
+        logger.info("--------------------resetPasswordByUserId--------------------");
+
+        int status = 0;
+
+        try {
+            status = userDao.updateUserPasswordByUserId(password, id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            logger.info("重置用户密码时发生异常" + e);
         }
 
         return status;

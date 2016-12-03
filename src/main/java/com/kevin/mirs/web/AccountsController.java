@@ -4,6 +4,7 @@ package com.kevin.mirs.web;
 import com.kevin.mirs.dto.MIRSResult;
 import com.kevin.mirs.entity.User;
 import com.kevin.mirs.service.UserService;
+import com.kevin.mirs.vo.RegisterInfo;
 import com.kevin.mirs.vo.UserProfile;
 import com.wordnik.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
@@ -112,14 +113,22 @@ public class AccountsController {
         if (request.getSession().getAttribute(UserService.USER_ID) == null) {
             return new MIRSResult<Boolean>(false, "请先登录!");
         }
+        if (request.getSession().getAttribute(UserService.VERIFICATION) == null) {
+            return new MIRSResult<Boolean>(false, "还没有发送验证邮件!");
+        }
         int id = (int) request.getSession().getAttribute(UserService.USER_ID);
 
-        // 校验邮件验证码
+        String originVerification = (String) request.getSession().getAttribute(UserService.VERIFICATION);
+
+        if (!originVerification.equals(verification)) {
+            return new MIRSResult<>(false, "验证码不正确!");
+        }
 
         // 设置新密码
-
-
-        return new MIRSResult<Boolean>(false, false);
+        if (userService.resetPasswordByUserId(id, password) == 1) {
+            return new MIRSResult<Boolean>(true, true);
+        }
+        return new MIRSResult<Boolean>(false, "更新失败!");
     }
 
 }
