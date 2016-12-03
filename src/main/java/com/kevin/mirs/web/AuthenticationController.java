@@ -85,6 +85,11 @@ public class AuthenticationController {
                                                HttpServletRequest request) {
         logger.info("--------------------POST:/authorization/account--------------------");
 
+        // 验证SESSION
+        if (request.getSession().getAttribute(UserService.VERIFICATION) == null) {
+            return new MIRSResult<RegisterInfo>(false, "还没有发送验证邮件!");
+        }
+
         String ip = IPUtils.getIpAddr(request);
 
         String originVerification = (String) request.getSession().getAttribute(UserService.VERIFICATION);
