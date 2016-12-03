@@ -71,6 +71,11 @@ public class AuthenticationController {
             // 将用户ID存储在SESSION中
             request.getSession().setAttribute(UserService.USER_ID, userId);
             LoginInfo loginInfo = new LoginInfo(loginUser.getUsername(), token);
+
+            // 更新用户上次登录信息
+            String ip = IPUtils.getIpAddr(request);
+            userService.updateUserLoginInfoByUserId(userId, ip);
+
             return new MIRSResult<>(true, loginInfo);
         } else {
             return new MIRSResult<>(false, "用户名或密码错误！");

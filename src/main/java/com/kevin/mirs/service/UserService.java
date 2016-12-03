@@ -240,7 +240,12 @@ public class UserService {
     }
 
 
-
+    /**
+     * 重置用户密码
+     * @param id 用户id
+     * @param password 新的密码
+     * @return 更新的数目，1：更新成功，0：更新失败
+     */
     public int resetPasswordByUserId(int id, String password) {
 
         logger.info("--------------------resetPasswordByUserId--------------------");
@@ -258,6 +263,25 @@ public class UserService {
         }
 
         return status;
+    }
+
+
+    /**
+     * 更新用户登录信息
+     * @param id 用户id
+     * @param ip 用户登录ip
+     */
+    public void updateUserLoginInfoByUserId(int id, String ip) {
+
+        logger.info("--------------------updateUserLoginInfoByUserId--------------------");
+
+        try {
+            Timestamp now = new Timestamp(new Date().getTime());
+            userDao.updateUserLoginInfoByUserId(id, now, ip);
+        } catch (Exception e) {
+            e.printStackTrace();
+            logger.info("更新用户登录信息时发生异常" + e);
+        }
     }
 
 }
