@@ -67,14 +67,14 @@ public class UserDaoTest {
 
     @Test
     public void update() throws Exception {
-        System.out.println(userDao.updateUsernameByUserId("newte23st", 1));
-        System.out.println(userDao.updateUserPasswordByUserId("newtest", 1));
-        System.out.println(userDao.updateUserAvatarByUserId("/src/1.jpeg", 1));
-        System.out.println(userDao.updateUserBioByUserId("2333333", 1));
-        System.out.println(userDao.updateUserLocationByUserId("成都", 1));
-        System.out.println(userDao.updateUserUniversityByUserId("电子科技大学", 1));
-        System.out.println(userDao.updateUserMajorByUserId("软件技术", 1));
-        System.out.println(userDao.updateUserLoginInfoByUserId(new Timestamp(new Date().getTime()), "1.1.1.1", 1));
+        System.out.println(userDao.updateUsernameByUserId(1, "newte23st"));
+        System.out.println(userDao.updateUserPasswordByUserId(1, "newtest"));
+        System.out.println(userDao.updateUserAvatarByUserId(1, "/src/1.jpeg"));
+        System.out.println(userDao.updateUserBioByUserId(1, "2333333"));
+        System.out.println(userDao.updateUserLocationByUserId(1, "成都"));
+        System.out.println(userDao.updateUserUniversityByUserId(1, "电子科技大学"));
+        System.out.println(userDao.updateUserMajorByUserId(1, "软件技术"));
+        System.out.println(userDao.updateUserLoginInfoByUserId(1, new Timestamp(new Date().getTime()), "1.1.1.1"));
     }
 
     @Test

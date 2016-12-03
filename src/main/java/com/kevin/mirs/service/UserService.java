@@ -229,7 +229,7 @@ public class UserService {
             String password = EncryptionUtils.SHA512Encode(oldPassword, user.getSalt());
             if (password.equals(user.getPassword())) {
                 newPassword = EncryptionUtils.SHA512Encode(newPassword, user.getSalt());
-                status = userDao.updateUserPasswordByUserId(newPassword, id);
+                status = userDao.updateUserPasswordByUserId(id, newPassword);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -248,7 +248,7 @@ public class UserService {
         int status = 0;
 
         try {
-            status = userDao.updateUserPasswordByUserId(password, id);
+            status = userDao.updateUserPasswordByUserId(id, password);
         } catch (Exception e) {
             e.printStackTrace();
             logger.info("重置用户密码时发生异常" + e);

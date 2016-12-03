@@ -21,93 +21,93 @@ public interface UserDao {
 
     /**
      * 通过用户ID更新用户名
-     * @param username 新用户名
      * @param id 用户ID
+     * @param username 新用户名
      * @return 更新的数目，1：更新成功，0：更新失败
      */
-    int updateUsernameByUserId(@Param("username") String  username, @Param("id") int id);
+    int updateUsernameByUserId(@Param("id") int id, @Param("username") String username);
 
 
     /**
      * 通过用户ID更新用户密码
-     * @param password 新密码
      * @param id 用户ID
+     * @param password 新密码
      * @return 更新的数目，1：更新成功，0：更新失败
      */
-    int updateUserPasswordByUserId(@Param("password") String password, @Param("id") int id);
+    int updateUserPasswordByUserId(@Param("id") int id, @Param("password") String password);
 
 
     /**
      * 通过用户ID更新用户加密盐值
-     * @param salt 新密码
      * @param id 用户ID
+     * @param salt 新密码
      * @return 更新的数目，1：更新成功，0：更新失败
      */
-    int updateUserSaltByUserId(@Param("salt") String salt, @Param("id") int id);
+    int updateUserSaltByUserId(@Param("id") int id, @Param("salt") String salt);
 
 
      /**
      * 通过用户ID更新用户头像地址，似乎没用
-     * @param avatar 头像地址
      * @param id 用户ID
+     * @param avatar 头像地址
      * @return 更新的数目，1：更新成功，0：更新失败
      */
-    int updateUserAvatarByUserId(@Param("avatar") String avatar, @Param("id") int id);
+    int updateUserAvatarByUserId(@Param("id") int id, @Param("avatar") String avatar);
 
 
     /**
      * 通过用户ID更新用户邮箱
-     * @param email 新邮箱
      * @param id 用户ID
+     * @param email 新邮箱
      * @return 更新的数目，1：更新成功，0：更新失败
      */
-    int updateUserEmailByUserId(@Param("email") String email, @Param("id") int id);
+    int updateUserEmailByUserId(@Param("id") int id, @Param("email") String email);
 
 
     /**
      * 通过用户ID更新用户格言
-     * @param bio 新格言
      * @param id 用户ID
+     * @param bio 新格言
      * @return 更新的数目，1：更新成功，0：更新失败
      */
-    int updateUserBioByUserId(@Param("bio") String bio, @Param("id") int id);
+    int updateUserBioByUserId(@Param("id") int id, @Param("bio") String bio);
 
 
     /**
      * 通过用户ID更新用户地址
-     * @param location 新地址
      * @param id 用户ID
+     * @param location 新地址
      * @return 更新的数目，1：更新成功，0：更新失败
      */
-    int updateUserLocationByUserId(@Param("location") String location, @Param("id") int id);
+    int updateUserLocationByUserId(@Param("id") int id, @Param("location") String location);
 
 
     /**
      * 通过用户ID更新用户大学学校信息
-     * @param university 新学校
      * @param id 用户ID
+     * @param university 新学校
      * @return 更新的数目，1：更新成功，0：更新失败
      */
-    int updateUserUniversityByUserId(@Param("university") String university, @Param("id") int id);
+    int updateUserUniversityByUserId(@Param("id") int id, @Param("university") String university);
 
 
     /**
      * 通过用户ID更新用户专业信息
-     * @param major 新专业
      * @param id 用户ID
+     * @param major 新专业
      * @return 更新的数目，1：更新成功，0：更新失败
      */
-    int updateUserMajorByUserId(@Param("major") String major, @Param("id") int id);
+    int updateUserMajorByUserId(@Param("id") int id, @Param("major") String major);
 
 
     /**
      * 通过用户ID更新上次登录信息
+     * @param id 用户ID
      * @param time 登录时间
      * @param ip 登录IP
-     * @param id 用户ID
      * @return 更新的数目，1：更新成功，0：更新失败
      */
-    int updateUserLoginInfoByUserId(@Param("time") Timestamp time, @Param("ip") String ip, @Param("id") int id);
+    int updateUserLoginInfoByUserId(@Param("id") int id, @Param("time") Timestamp time, @Param("ip") String ip);
 
 
     /**
