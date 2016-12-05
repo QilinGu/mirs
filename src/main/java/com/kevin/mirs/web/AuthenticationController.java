@@ -11,10 +11,7 @@ import com.kevin.mirs.enums.RSStatusEnum;
 import com.kevin.mirs.service.UserService;
 import com.kevin.mirs.utils.FormatUtils;
 import com.kevin.mirs.utils.IPUtils;
-import com.kevin.mirs.vo.LoginInfo;
-import com.kevin.mirs.vo.LoginUser;
-import com.kevin.mirs.vo.RegisterInfo;
-import com.kevin.mirs.vo.RegisterUser;
+import com.kevin.mirs.vo.*;
 import com.wordnik.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -44,8 +41,8 @@ public class AuthenticationController {
     @ResponseBody
     @RequestMapping(value = "/token", method = RequestMethod.POST)
     @ApiOperation(value = "/token", notes = "登录，返回用户一个Token")
-    public MIRSResult<LoginInfo> doLogin(@RequestBody LoginUser loginUser,
-                                         HttpServletRequest request) {
+    public MIRSResult<UserProfile> doLogin(@RequestBody LoginUser loginUser,
+                                           HttpServletRequest request) {
 //        Subject currentUser = SecurityUtils.getSubject();
 //
 //        // 如果已经登录，则转入登录成功的页面，防止继续登录
@@ -70,13 +67,13 @@ public class AuthenticationController {
             String token = "";
             // 将用户ID存储在SESSION中
             request.getSession().setAttribute(UserService.USER_ID, userId);
-            LoginInfo loginInfo = new LoginInfo(loginUser.getUsername(), token);
+            UserProfile userProfile = userService.getUserProfileByUserId(userId);
 
             // 更新用户上次登录信息
             String ip = IPUtils.getIpAddr(request);
             userService.updateUserLoginInfoByUserId(userId, ip);
 
-            return new MIRSResult<>(true, loginInfo);
+            return new MIRSResult<>(true, userProfile);
         } else {
             return new MIRSResult<>(false, "用户名或密码错误！");
         }
@@ -86,13 +83,13 @@ public class AuthenticationController {
     @ResponseBody
     @RequestMapping(value = "/account", method = RequestMethod.POST)
     @ApiOperation(value = "/account", notes = "注册一个账号")
-    public MIRSResult<RegisterInfo> doRegister(@RequestBody RegisterUser registerUser,
+    public MIRSResult<UserProfile> doRegister(@RequestBody RegisterUser registerUser,
                                                HttpServletRequest request) {
         logger.info("--------------------POST:/authorization/account--------------------");
 
         // 验证SESSION
         if (request.getSession().getAttribute(UserService.VERIFICATION) == null) {
-            return new MIRSResult<RegisterInfo>(false, "还没有发送验证邮件!");
+            return new MIRSResult<>(false, "还没有发送验证邮件!");
         }
 
         String ip = IPUtils.getIpAddr(request);
@@ -129,9 +126,8 @@ public class AuthenticationController {
 
 
         // TODO 增加token
-        RegisterInfo registerInfo = new RegisterInfo(user.getUsername(),
-                user.getEmail(), "", user.getRegisterTime(), user.getRegisterIp());
-        System.out.println(registerInfo);
+        UserProfile userProfile = new UserProfile(user.getId(), user.getUsername(), user.getEmail(), "", "", "", "");
+        System.out.println(userProfile);
 
         // 修改注册信息表的状态
         RSDao.updateStatusByEmail(user.getEmail(), RSStatusEnum.SUCCESS.getStatus());
@@ -139,7 +135,7 @@ public class AuthenticationController {
         // 修改邮件认证表的状态
         EVDao.updateStatusByEmail(user.getEmail(), EVStatusEnum.SUCCESS.getStatus());
 
-        return new MIRSResult<>(true, registerInfo);
+        return new MIRSResult<>(true, userProfile);
     }
 
 }
