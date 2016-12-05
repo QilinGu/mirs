@@ -100,7 +100,7 @@ CREATE TABLE mirs_movie(
   `origin_place` VARCHAR(30) COMMENT '国家',
   `release_date` VARCHAR(600) COMMENT '上映时间',
   `languages` VARCHAR(500) COMMENT '语言',
-  `runtime` VARCHAR(10) COMMENT '时长',
+  `runtime` VARCHAR(100) COMMENT '时长',
   `another_names` VARCHAR(100) COMMENT '又名',
   `imdb_link` VARCHAR(50) COMMENT 'IMDb的电影链接',
   `cover_link` VARCHAR(150) COMMENT '电影封面链接',
