@@ -115,3 +115,16 @@ http {
 }
 
 ```
+
+Tomcat配置
+```
+<Host name="localhost"  appBase="webapps" unpackWARs="true" autoDeploy="true">
+
+  ...
+
+	<Context path="/api" docBase="mirs" debug="0" reloadable="true" />
+
+  ...
+        
+</Host>
+```
