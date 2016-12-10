@@ -133,7 +133,7 @@ http {
 | groupId | artifactId | version | 说明 |
 | :------: | :------: | :------: | :------: |
 | junit | junit | 4.12 | 单元测试依赖 |
-| org.slf4j | slf4j-api | | 1.7.21 | 日志依赖 |
+| org.slf4j | slf4j-api | 1.7.21 | 日志依赖 |
 | ch.qos.logback | logback-core | 1.1.7 | 日志依赖 |
 | ch.qos.logback | logback-classic | 1.1.7 | 日志依赖 |
 | mysql | mysql-connector-java | 6.0.3 | 数据库连接依赖 |
