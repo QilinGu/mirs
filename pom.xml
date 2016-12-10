@@ -38,7 +38,7 @@
     </properties>
 
     <dependencies>
-     <dependency>
+        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>${junit.version}</version>
@@ -68,6 +68,7 @@
             <version>${mysql.version}</version>
             <scope>runtime</scope>
         </dependency>
+        <!-- 数据库连接池 -->
         <dependency>
             <groupId>c3p0</groupId>
             <artifactId>c3p0</artifactId>
@@ -85,11 +86,13 @@
             <artifactId>mybatis-spring</artifactId>
             <version>${mybatis-spring.version}</version>
         </dependency>
+        <!-- JSON处理依赖 -->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
             <version>${fastjson.version}</version>
         </dependency>
+        <!-- TODO:替换c3p0连接池 -->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid</artifactId>
@@ -178,6 +181,7 @@
             <!--<artifactId>swagger-annotations</artifactId>-->
             <!--<version>${swagger.version}</version>-->
         <!--</dependency>-->
+        <!-- 数据绑定依赖 -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
@@ -220,7 +224,7 @@
             <artifactId>shiro-spring</artifactId>
             <version>${shiro.version}</version>
         </dependency>
-        <!-- chcache 缓存 -->
+        <!-- ehcache 缓存 -->
         <dependency>
             <groupId>net.sf.ehcache</groupId>
             <artifactId>ehcache</artifactId>
@@ -254,18 +258,18 @@
             <artifactId>mahout-math</artifactId>
             <version>${mahout-math.version}</version>
         </dependency>
+        <!-- 跨域请求依赖 -->
         <dependency>
             <groupId>com.thetransactioncompany</groupId>
             <artifactId>cors-filter</artifactId>
             <version>${cors-filter.version}</version>
         </dependency>
+        <!-- 发送邮件依赖 -->
         <dependency>
             <groupId>javax.mail</groupId>
             <artifactId>mail</artifactId>
             <version>${mail.version}</version>
         </dependency>
-
-
     </dependencies>
 
     <build>
