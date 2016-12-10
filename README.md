@@ -116,7 +116,7 @@ http {
 
 ```
 
-Tomcat配置
+## Tomcat配置
 ```
 <Host name="localhost"  appBase="webapps" unpackWARs="true" autoDeploy="true">
 
@@ -125,6 +125,48 @@ Tomcat配置
 	<Context path="/api" docBase="mirs" debug="0" reloadable="true" />
 
   ...
-        
+
 </Host>
 ```
+
+## 项目依赖
+| groupId | artifactId | version | 说明 |
+| :------: | :------: | :------: | :------: |
+| junit | junit | 4.12 | 单元测试依赖 |
+| org.slf4j | slf4j-api | | 1.7.21 | 日志依赖 |
+| ch.qos.logback | logback-core | 1.1.7 | 日志依赖 |
+| ch.qos.logback | logback-classic | 1.1.7 | 日志依赖 |
+| mysql | mysql-connector-java | 6.0.3 | 数据库连接依赖 |
+| c3p0 | c3p0 | 0.9.1.2 | 数据库连接池依赖 |
+| org.mybatis | mybatis | 3.4.1 | DAO框架：Mybatis依赖  |
+| org.mybatis | mybatis-spring | 1.3.0 | Mybatis自身实现的Spring整合依赖 |
+| com.alibaba | fastjson | 1.2.18 | JSON处理依赖 |
+| org.springframework | spring-core | 4.3.2.RELEASE | Spring 核心依赖 |
+| org.springframework | spring-beans | 4.3.2.RELEASE | Spring 核心依赖 |
+| org.springframework | spring-context | 4.3.2.RELEASE | Spring 核心依赖 |
+| org.springframework | spring-context-support | 4.3.2.RELEASE | Spring 核心依赖 |
+| org.springframework | spring-jdbc | 4.3.2.RELEASE | Spring DAO 依赖 |
+| org.springframework | spring-tx | 4.3.2.RELEASE | Spring DAO 依赖 |
+| org.springframework | spring-web | 4.3.2.RELEASE | Sping Web 依赖 |
+| org.springframework | spring-webmvc | 4.3.2.RELEASE | Sping Web 依赖 |
+| org.springframework | spring-websocket | 4.3.2.RELEASE | Sping Websocket 依赖 |
+| org.springframework | spring-messaging | 4.3.2.RELEASE | Sping Websocket 依赖 |
+| org.springframework | spring-test | 4.3.2.RELEASE | Spring Test 依赖 |
+| org.scribe | scribe | 1.3.7 | OAuth认证依赖 |
+| com.mangofactory | swagger-springmvc | 1.0.2 | Swagger 自动生成接口文档依赖 |
+| com.fasterxml.jackson.core | jackson-core | 2.8.2 | 数据绑定依赖 |
+| com.fasterxml.jackson.core | jackson-databind | 2.8.2 | 数据绑定依赖 |
+| com.fasterxml.jackson.core | jackson-annotations | 2.8.2 | 数据绑定依赖 |
+| com.github.penggle | kaptcha | 2.3.2 | 生成验证码依赖 |
+| org.apache.shiro | shiro-core | 1.3.2 | 权限管理依赖 |
+| org.apache.shiro | shiro-web | 1.3.2 | 权限管理依赖 |
+| org.apache.shiro | shiro-ehcache | 1.3.2 | 权限管理依赖 |
+| org.apache.shiro | shiro-spring | 1.3.2 | 权限管理依赖 |
+| net.sf.ehcache | ehcache | 2.10.3 | 缓存依赖 |
+| org.apache.lucene | lucene-core | 6.2.1 | 搜索引擎依赖 |
+| org.apache.lucene | lucene-queryparser | 6.2.1 | 搜索引擎依赖 |
+| org.lionsoul | jcseg-analyzer | 2.0.0 | 中文分词依赖 |
+| org.apache.mahout | mahout-core | 0.9 | 推荐系统依赖 |
+| org.apache.mahout | mahout-math | 0.12.2 | 推荐系统依赖 |
+| com.thetransactioncompany | cors-filter | 2.5 | 跨域请求过滤依赖 |
+| javax.mail | mail | 1.4.7 | 发送邮件依赖 |
