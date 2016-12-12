@@ -1,7 +1,9 @@
 package com.kevin.mirs.service;
 
 
+import com.kevin.mirs.dao.MovieDao;
 import com.kevin.mirs.enums.MovieColumnEnum;
+import com.kevin.mirs.vo.SimpleMovie;
 import com.kevin.mirs.vo.SuggestionMovie;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.document.Document;
@@ -45,13 +47,16 @@ public class SearchService {
     @Resource
     IndexSearcher indexSearcher;
 
+    @Resource
+    MovieDao movieDao;
+
 
     /**
      * 按照指定条件查询电影信息
      */
-    public ArrayList<SuggestionMovie> searchMovie(String keyword, int limit) {
+    public ArrayList<SuggestionMovie> getSuggestionMovies(String keyword, int limit) {
 
-        logger.info("--------------------searchMovie--------------------");
+        logger.info("--------------------getSuggestionMovies--------------------");
 
         int searchLimit = (limit > 0) ? limit : DEFAULT_LIMIT;
 
@@ -83,7 +88,75 @@ public class SearchService {
         return suggestionMovies;
     }
 
+    /**
+     * 根据分类搜索电影
+     * @param keywords
+     * @param type
+     * @param sort
+     * @param limit
+     * @param offset
+     * @return
+     */
+    public ArrayList<SimpleMovie> searchMoives(String keywords, int type, int sort, int limit, int offset) {
 
+        logger.info("--------------------searchMoives--------------------");
+
+        ArrayList<SimpleMovie> results = new ArrayList<>();
+        String column = MovieColumnEnum.columnOf(type);
+        String orderBy = MovieColumnEnum.columnOf(sort);
+
+        String low = "";
+        String high = "";
+
+
+        // TODO: 2016/12/12 校验合法性，避免SQL注入
+
+        try {
+            if(column.equals("name")) {
+                results = movieDao.getMoviesIncludeMovieName(keywords, orderBy, limit, offset);
+            } else if (column.equals("another_names")) {
+                results = movieDao.getMoviesIncludeAnotherName(keywords, orderBy, limit, offset);
+            } else if (column.equals("directors")) {
+                results = movieDao.getMoviesIncludeDirector(keywords, orderBy, limit, offset);
+            } else if (column.equals("screenwriters")) {
+                results = movieDao.getMoviesIncludeScreenwriter(keywords, orderBy, limit, offset);
+            } else if (column.equals("actors")) {
+                results = movieDao.getMoviesIncludeActor(keywords, orderBy, limit, offset);
+            } else if (column.equals("types")) {
+                results = movieDao.getMoviesIncludeType(keywords, orderBy, limit, offset);
+            } else if (column.equals("origin_place")) {
+                results = movieDao.getMoviesIncludeOriginPlace(keywords, orderBy, limit, offset);
+            } else if (column.equals("languages")) {
+                results = movieDao.getMoviesIncludeLanguage(keywords, orderBy, limit, offset);
+            } else if (column.equals("release_year")) {
+                results = movieDao.getMoviesByReleaseYear(keywords, orderBy, limit, offset);
+            } else if (column.equals("douban_rating")) {
+                String[] score = keywords.split("-");
+                low = high = score[0];
+                if (score.length == 2) {
+                    high = score[1];
+                }
+                results = movieDao.getMoviesByDoubanRating(low, high, orderBy, limit, offset);
+            } else if (column.equals("imdb_rating")) {
+                String[] score = keywords.split("-");
+                low = high = score[0];
+                if (score.length == 2) {
+                    high = score[1];
+                }
+                results = movieDao.getMoviesByDoubanRating(low, high, orderBy, limit, offset);
+            } else if (column.equals("awards")) {
+                results = movieDao.getMoviesIncludeAward(keywords, orderBy, limit, offset);
+            } else {
+                results = null;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            results = null;
+        }
+
+        return results;
+    }
 
 
 }
