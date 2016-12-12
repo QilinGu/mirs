@@ -74,10 +74,10 @@ public interface MovieDao {
      * @param offset    偏移量
      * @return 电影信息列表，没有则返回[]
      */
-    ArrayList<Movie> getMoviesIncludeMovieName(@Param("movieName") String movieName,
-                                               @Param("orderBy") String orderBy,
-                                               @Param("limit") int limit,
-                                               @Param("offset") int offset);
+    ArrayList<SimpleMovie> getMoviesIncludeMovieName(@Param("movieName") String movieName,
+                                                     @Param("orderBy") String orderBy,
+                                                     @Param("limit") int limit,
+                                                     @Param("offset") int offset);
 
 
     /**
@@ -90,11 +90,11 @@ public interface MovieDao {
      * @param offset  偏移量
      * @return 电影信息列表，没有则返回[]
      */
-    ArrayList<Movie> getMoviesByDoubanRating(@Param("low") String low,
-                                             @Param("high") String high,
-                                             @Param("orderBy") String orderBy,
-                                             @Param("limit") int limit,
-                                             @Param("offset") int offset);
+    ArrayList<SimpleMovie> getMoviesByDoubanRating(@Param("low") String low,
+                                                   @Param("high") String high,
+                                                   @Param("orderBy") String orderBy,
+                                                   @Param("limit") int limit,
+                                                   @Param("offset") int offset);
 
 
     /**
@@ -107,11 +107,11 @@ public interface MovieDao {
      * @param offset  偏移量
      * @return 电影信息列表，没有则返回[]
      */
-    ArrayList<Movie> getMoviesByIMDbRating(@Param("low") String low,
-                                           @Param("high") String high,
-                                           @Param("orderBy") String orderBy,
-                                           @Param("limit") int limit,
-                                           @Param("offset") int offset);
+    ArrayList<SimpleMovie> getMoviesByIMDbRating(@Param("low") String low,
+                                                 @Param("high") String high,
+                                                 @Param("orderBy") String orderBy,
+                                                 @Param("limit") int limit,
+                                                 @Param("offset") int offset);
 
 
     /**
@@ -123,10 +123,10 @@ public interface MovieDao {
      * @param offset  偏移量
      * @return 电影信息列表，没有则返回[]
      */
-    ArrayList<Movie> getMoviesByReleaseYear(@Param("year") String year,
-                                            @Param("orderBy") String orderBy,
-                                            @Param("limit") int limit,
-                                            @Param("offset") int offset);
+    ArrayList<SimpleMovie> getMoviesByReleaseYear(@Param("year") String year,
+                                                  @Param("orderBy") String orderBy,
+                                                  @Param("limit") int limit,
+                                                  @Param("offset") int offset);
 
 
     /**
@@ -139,11 +139,11 @@ public interface MovieDao {
      * @param offset  偏移量
      * @return 电影信息列表，没有则返回[]
      */
-    ArrayList<Movie> getMoviesByReleaseYears(@Param("low") String low,
-                                             @Param("high") String high,
-                                             @Param("orderBy") String orderBy,
-                                             @Param("limit") int limit,
-                                             @Param("offset") int offset);
+    ArrayList<SimpleMovie> getMoviesByReleaseYears(@Param("low") String low,
+                                                   @Param("high") String high,
+                                                   @Param("orderBy") String orderBy,
+                                                   @Param("limit") int limit,
+                                                   @Param("offset") int offset);
 
 
     /**
@@ -156,11 +156,11 @@ public interface MovieDao {
      * @param offset  偏移量
      * @return 电影信息列表，没有则返回[]
      */
-    ArrayList<Movie> getMoviesByRuntime(@Param("low") String low,
-                                        @Param("high") String high,
-                                        @Param("orderBy") String orderBy,
-                                        @Param("limit") int limit,
-                                        @Param("offset") int offset);
+    ArrayList<SimpleMovie> getMoviesByRuntime(@Param("low") String low,
+                                              @Param("high") String high,
+                                              @Param("orderBy") String orderBy,
+                                              @Param("limit") int limit,
+                                              @Param("offset") int offset);
 
 
     /**
@@ -172,10 +172,10 @@ public interface MovieDao {
      * @param offset   偏移量
      * @return 电影信息列表，没有则返回[]
      */
-    ArrayList<Movie> getMoviesIncludeDirector(@Param("director") String director,
-                                              @Param("orderBy") String orderBy,
-                                              @Param("limit") int limit,
-                                              @Param("offset") int offset);
+    ArrayList<SimpleMovie> getMoviesIncludeDirector(@Param("director") String director,
+                                                    @Param("orderBy") String orderBy,
+                                                    @Param("limit") int limit,
+                                                    @Param("offset") int offset);
 
 
     /**
@@ -187,10 +187,10 @@ public interface MovieDao {
      * @param offset       偏移量
      * @return 电影信息列表，没有则返回[]
      */
-    ArrayList<Movie> getMoviesIncludeScreenwriter(@Param("screenwriter") String screenwriter,
-                                                  @Param("orderBy") String orderBy,
-                                                  @Param("limit") int limit,
-                                                  @Param("offset") int offset);
+    ArrayList<SimpleMovie> getMoviesIncludeScreenwriter(@Param("screenwriter") String screenwriter,
+                                                        @Param("orderBy") String orderBy,
+                                                        @Param("limit") int limit,
+                                                        @Param("offset") int offset);
 
 
     /**
@@ -202,10 +202,10 @@ public interface MovieDao {
      * @param offset  偏移量
      * @return 电影信息列表，没有则返回[]
      */
-    ArrayList<Movie> getMoviesIncludeActor(@Param("actor") String actor,
-                                           @Param("orderBy") String orderBy,
-                                           @Param("limit") int limit,
-                                           @Param("offset") int offset);
+    ArrayList<SimpleMovie> getMoviesIncludeActor(@Param("actor") String actor,
+                                                 @Param("orderBy") String orderBy,
+                                                 @Param("limit") int limit,
+                                                 @Param("offset") int offset);
 
 
     /**
@@ -217,10 +217,10 @@ public interface MovieDao {
      * @param offset  偏移量
      * @return 电影信息列表，没有则返回[]
      */
-    ArrayList<Movie> getMoviesIncludeType(@Param("type") String type,
-                                          @Param("orderBy") String orderBy,
-                                          @Param("limit") int limit,
-                                          @Param("offset") int offset);
+    ArrayList<SimpleMovie> getMoviesIncludeType(@Param("type") String type,
+                                                @Param("orderBy") String orderBy,
+                                                @Param("limit") int limit,
+                                                @Param("offset") int offset);
 
 
     /**
@@ -232,10 +232,10 @@ public interface MovieDao {
      * @param offset      偏移量
      * @return 电影信息列表，没有则返回[]
      */
-    ArrayList<Movie> getMoviesIncludeOriginPlace(@Param("originPlace") String originPlace,
-                                                 @Param("orderBy") String orderBy,
-                                                 @Param("limit") int limit,
-                                                 @Param("offset") int offset);
+    ArrayList<SimpleMovie> getMoviesIncludeOriginPlace(@Param("originPlace") String originPlace,
+                                                       @Param("orderBy") String orderBy,
+                                                       @Param("limit") int limit,
+                                                       @Param("offset") int offset);
 
 
     /**
@@ -247,10 +247,10 @@ public interface MovieDao {
      * @param offset   偏移量
      * @return 电影信息列表，没有则返回[]
      */
-    ArrayList<Movie> getMoviesIncludeLanguage(@Param("language") String language,
-                                              @Param("orderBy") String orderBy,
-                                              @Param("limit") int limit,
-                                              @Param("offset") int offset);
+    ArrayList<SimpleMovie> getMoviesIncludeLanguage(@Param("language") String language,
+                                                    @Param("orderBy") String orderBy,
+                                                    @Param("limit") int limit,
+                                                    @Param("offset") int offset);
 
 
     /**
@@ -262,10 +262,10 @@ public interface MovieDao {
      * @param offset      偏移量
      * @return 电影信息列表，没有则返回[]
      */
-    ArrayList<Movie> getMoviesIncludeAnotherName(@Param("anotherName") String anotherName,
-                                                 @Param("orderBy") String orderBy,
-                                                 @Param("limit") int limit,
-                                                 @Param("offset") int offset);
+    ArrayList<SimpleMovie> getMoviesIncludeAnotherName(@Param("anotherName") String anotherName,
+                                                       @Param("orderBy") String orderBy,
+                                                       @Param("limit") int limit,
+                                                       @Param("offset") int offset);
 
 
     /**
@@ -277,10 +277,10 @@ public interface MovieDao {
      * @param offset  偏移量
      * @return 电影信息列表，没有则返回[]
      */
-    ArrayList<Movie> getMoviesIncludeAward(@Param("award") String award,
-                                           @Param("orderBy") String orderBy,
-                                           @Param("limit") int limit,
-                                           @Param("offset") int offset);
+    ArrayList<SimpleMovie> getMoviesIncludeAward(@Param("award") String award,
+                                                 @Param("orderBy") String orderBy,
+                                                 @Param("limit") int limit,
+                                                 @Param("offset") int offset);
 
 
     /**
