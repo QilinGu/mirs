@@ -70,7 +70,7 @@
 
 
     <sql id="additionalCondition">
-        ORDER BY ${orderBy}
+        ORDER BY ${orderBy} DESC
         LIMIT #{limit}
         offset #{offset}
     </sql>

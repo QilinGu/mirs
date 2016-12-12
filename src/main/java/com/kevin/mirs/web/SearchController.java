@@ -51,7 +51,7 @@ public class SearchController {
         if (results != null) {
             return new MIRSResult<>(true, results);
         }
-        
+
         return new MIRSResult<>(false, "出问题了哦~");
     }
 
