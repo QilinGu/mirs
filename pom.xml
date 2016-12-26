@@ -33,6 +33,7 @@
         <jcseg.version>2.0.0</jcseg.version>
         <mahout-core.version>0.9</mahout-core.version>
         <mahout-math.version>0.12.2</mahout-math.version>
+        <mahout-integration.version>0.10.2</mahout-integration.version>
         <cors-filter.version>2.5</cors-filter.version>
         <mail.version>1.4.7</mail.version>
     </properties>
@@ -255,6 +256,11 @@
             <version>${mahout-math.version}</version>
         </dependency>
         <dependency>
+            <groupId>org.apache.mahout</groupId>
+            <artifactId>mahout-integration</artifactId>
+            <version>${mahout-integration.version}</version>
+        </dependency>
+        <dependency>
             <groupId>com.thetransactioncompany</groupId>
             <artifactId>cors-filter</artifactId>
             <version>${cors-filter.version}</version>
@@ -263,6 +269,11 @@
             <groupId>javax.mail</groupId>
             <artifactId>mail</artifactId>
             <version>${mail.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>6.0.3</version>
         </dependency>
 
 

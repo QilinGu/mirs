@@ -8,8 +8,12 @@ import com.kevin.mirs.recommendation.RecommendFriendsBySimilarity;
 import com.kevin.mirs.recommendation.RecommendMovies;
 import com.kevin.mirs.recommendation.RecommendMoviesByPerson;
 import java.util.List;
+
+import com.mysql.cj.jdbc.MysqlDataSource;
 import org.apache.mahout.cf.taste.impl.model.file.FileDataModel;
+import org.apache.mahout.cf.taste.impl.model.jdbc.MySQLJDBCDataModel;
 import org.apache.mahout.cf.taste.model.DataModel;
+import org.apache.mahout.cf.taste.model.JDBCDataModel;
 import org.apache.mahout.cf.taste.recommender.RecommendedItem;
 import org.springframework.stereotype.Service;
 
@@ -27,8 +31,15 @@ public class RecommendService{
 
     RecommendService(){
         try{
-            String data = "src/main/resources/recommendation/test.csv";
-            this.data = new FileDataModel(new File(data));
+            MysqlDataSource dataSource = new MysqlDataSource();
+            dataSource.setServerName("localhost");
+            dataSource.setUser("root");
+            dataSource.setPassword("12345678");
+            dataSource.setDatabaseName("mirs");
+            JDBCDataModel model = new MySQLJDBCDataModel(dataSource, "mirs_user_movie", "uid", "mid", "score", null);
+            //String data = "src/main/resources/recommendation/test.csv";
+            //this.data = new FileDataModel(new File(data));
+            this.data = model;
         } catch(Exception e){
             e.printStackTrace();
         }
