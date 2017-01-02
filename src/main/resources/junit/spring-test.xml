@@ -55,6 +55,16 @@
 
     </bean>
 
+    <!-- 配置推荐系统使用到的MySQLJDBCDataModel -->
+    <bean id="recommendDataModel" class="org.apache.mahout.cf.taste.impl.model.jdbc.MySQLJDBCDataModel">
+        <constructor-arg name="dataSource" ref="dataSource"/>
+        <constructor-arg name="preferenceTable" value="${preferenceTable}"/>
+        <constructor-arg name="userIDColumn" value="${userIDColumn}"/>
+        <constructor-arg name="itemIDColumn" value="${itemIDColumn}"/>
+        <constructor-arg name="preferenceColumn" value="${preferenceColumn}"/>
+        <constructor-arg name="timestampColumn" value=""/>
+    </bean>
+
     <!-- 配置扫描DAO接口包，动态实现DAO接口，注入到Spring容器中 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 
