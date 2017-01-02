@@ -8,31 +8,26 @@ import com.kevin.mirs.recommendation.RecommendFriendsBySimilarity;
 import com.kevin.mirs.recommendation.RecommendMovies;
 import com.kevin.mirs.recommendation.RecommendMoviesByPerson;
 import java.util.List;
-import org.apache.mahout.cf.taste.impl.model.file.FileDataModel;
-import org.apache.mahout.cf.taste.model.DataModel;
+
+
+import org.apache.mahout.cf.taste.impl.model.jdbc.MySQLJDBCDataModel;
 import org.apache.mahout.cf.taste.recommender.RecommendedItem;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.io.*;
+
 
 @Service
 public class RecommendService{
-    DataModel data;
     @Resource
     UserRecommendedMoviesDao rm;
 
     @Resource
     UserRecommendedFriendsDao rf;
 
-    RecommendService(){
-        try{
-            String data = "src/main/resources/recommendation/test.csv";
-            this.data = new FileDataModel(new File(data));
-        } catch(Exception e){
-            e.printStackTrace();
-        }
-    }
+    @Resource
+    MySQLJDBCDataModel data;
+
 
     public List<RecommendedItem> getRealTimeRecommendedMovies(int uid){
         RecommendMovies recommendMovies = new RecommendMoviesByPerson(data, 20);
