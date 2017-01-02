@@ -42,12 +42,12 @@ public class UserDaoTest {
 
         logger.info("--------create a user: " + user);
 
-        logger.info("-------before insert user id: " + user.getId() + " user" );
+        logger.info("-------before insert user id: " + user.getId());
 
         int result = userDao.addUser(user);
 
         logger.info("-------insert " + result + " user" );
-        logger.info("-------after insert user id: " + user.getId() + " user" );
+        logger.info("-------after insert user id: " + user.getId());
 
 
 
