@@ -4,9 +4,10 @@ package com.kevin.mirs.recommendation;
 import org.apache.mahout.cf.taste.impl.model.file.FileDataModel;
 import org.apache.mahout.cf.taste.model.DataModel;
 
+
 import java.io.*;
 
-public class RecommendtionController {
+public class RecommendationController {
 
     public static void main(String[] args){
         try{
