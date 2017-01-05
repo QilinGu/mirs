@@ -120,5 +120,6 @@
 
 
     <bean class="com.kevin.config.LuceneConfig"/>
+    <bean class="com.kevin.config.WebSocketConfig"/>
 
 </beans>

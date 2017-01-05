@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 @Service
-public class SocketHandler implements WebSocketHandler{
+public class SocketHandler implements WebSocketHandler {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
     private static final ArrayList<WebSocketSession> users = new ArrayList<WebSocketSession>();
